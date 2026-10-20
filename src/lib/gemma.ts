@@ -30,7 +30,7 @@ export function getGemmaConfig(
   if (kind === "hosted") {
     return {
       kind,
-      model: process.env.GEMMA_HOSTED_MODEL ?? "google/gemma-4-31b-it:free",
+      model: process.env.GEMMA_HOSTED_MODEL ?? "google/gemma-4-26b-a4b-it:free",
       baseUrl:
         process.env.GEMMA_HOSTED_BASE_URL ?? "https://openrouter.ai/api/v1",
       apiKey: process.env.GEMMA_HOSTED_API_KEY,

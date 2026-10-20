@@ -23,7 +23,10 @@ services:
         value: hosted
       - key: GEMMA_HOSTED_BASE_URL
         value: https://openrouter.ai/api/v1
+      # Gemma 4 26B-A4B (MoE) free variant: the 31B free pool was
+      # rate-limited (HTTP 429) in live testing on 2026-10-19; the 26B
+      # MoE is the same Gemma 4 family with a far less contended pool.
       - key: GEMMA_HOSTED_MODEL
-        value: google/gemma-4-31b-it:free
+        value: google/gemma-4-26b-a4b-it:free
       - key: GEMMA_HOSTED_API_KEY
         sync: false
