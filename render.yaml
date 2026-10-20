@@ -1,0 +1,29 @@
+# Render Blueprint — one web service, the whole app.
+# Deploy: Render Dashboard → New → Blueprint → connect Mike-Demo/black-box.
+# Or: render.com/deploy?repo=https://github.com/Mike-Demo/black-box
+#
+# Before judging week: the free plan spins down after inactivity (first
+# hit takes ~1 min to wake). The starter plan keeps the demo warm —
+# that plan choice is a billing decision for the repo owner.
+services:
+  - type: web
+    name: black-box
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_VERSION
+        value: "24"
+      # The hosted demo serves the same Gemma 4 weights via an
+      # OpenAI-compatible endpoint (Render has no GPU for local Ollama).
+      # The UI labels this "Demo mode" wherever it applies.
+      - key: GEMMA_PROVIDER
+        value: hosted
+      - key: GEMMA_HOSTED_BASE_URL
+        value: https://openrouter.ai/api/v1
+      - key: GEMMA_HOSTED_MODEL
+        value: google/gemma-4-31b-it:free
+      - key: GEMMA_HOSTED_API_KEY
+        sync: false

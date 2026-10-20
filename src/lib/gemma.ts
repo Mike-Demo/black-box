@@ -22,8 +22,11 @@ export interface GemmaConfig {
   apiKey?: string;
 }
 
-export function getGemmaConfig(): GemmaConfig {
-  const kind = (process.env.GEMMA_PROVIDER ?? "local") as GemmaProviderKind;
+export function getGemmaConfig(
+  override?: GemmaProviderKind,
+): GemmaConfig {
+  const kind =
+    override ?? ((process.env.GEMMA_PROVIDER ?? "local") as GemmaProviderKind);
   if (kind === "hosted") {
     return {
       kind,

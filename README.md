@@ -56,6 +56,10 @@ GEMMA_HOSTED_API_KEY=your-key
 
 For development without any model, `GEMMA_PROVIDER=mock` returns clearly-labelled placeholder responses so the whole interface can be exercised.
 
+## Deploy on Render
+
+The repo ships a Render Blueprint (`render.yaml`): Render Dashboard → New → Blueprint → connect this repo. It creates one web service that builds and runs the whole app, with `GEMMA_PROVIDER=hosted` and a prompt for the one secret it needs (`GEMMA_HOSTED_API_KEY`). Note the free plan spins down when idle — the first visit after a quiet spell takes about a minute to wake.
+
 ## Prize categories entered
 
 - Overall — Hacktoberfest Open-Source AI Challenge Week 3: Slow and Steady

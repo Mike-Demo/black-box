@@ -9,7 +9,11 @@
 import { useState } from "react";
 import type { ReframeResult } from "@/lib/types";
 
-export default function ReframePanel() {
+export default function ReframePanel({
+  provider,
+}: {
+  provider?: "local" | "hosted";
+}) {
   const [text, setText] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -22,7 +26,7 @@ export default function ReframePanel() {
       const res = await fetch("/api/reframe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text }),
+        body: JSON.stringify({ text, provider }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? "Request failed");

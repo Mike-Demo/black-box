@@ -2,16 +2,18 @@ import { NextRequest, NextResponse } from "next/server";
 import { callGemma, getGemmaConfig, parseModelJson } from "@/lib/gemma";
 import { QUALITY_SCORE_SYSTEM_PROMPT } from "@/lib/prompts";
 
-// POST /api/score  { "profile": "...", "jobDescription": "..." }
+// POST /api/score  { "profile": "...", "jobDescription": "...", "provider"?: "local" | "hosted" }
 // Gemma scores the match 1-10 against ONLY what both texts state.
 // Stateless: nothing is stored.
 export async function POST(req: NextRequest) {
   let profile: string;
   let jobDescription: string;
+  let providerOverride: "local" | "hosted" | undefined;
   try {
     const body = (await req.json()) as {
       profile?: unknown;
       jobDescription?: unknown;
+      provider?: unknown;
     };
     if (
       typeof body.profile !== "string" ||
@@ -26,11 +28,18 @@ export async function POST(req: NextRequest) {
     }
     profile = body.profile;
     jobDescription = body.jobDescription;
+    if (body.provider === "local" || body.provider === "hosted") {
+      providerOverride = body.provider;
+    }
   } catch {
     return NextResponse.json({ error: "Invalid JSON body." }, { status: 400 });
   }
 
-  const config = getGemmaConfig();
+  const serverKind = process.env.GEMMA_PROVIDER ?? "local";
+  const config =
+    serverKind === "mock"
+      ? getGemmaConfig("mock")
+      : getGemmaConfig(providerOverride);
   try {
     const raw = await callGemma(
       QUALITY_SCORE_SYSTEM_PROMPT,
