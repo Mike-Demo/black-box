@@ -247,7 +247,7 @@ export default function Dashboard() {
   const provider = config?.mock ? undefined : mode;
 
   return (
-    <main className="mx-auto flex min-h-screen w-full max-w-3xl flex-col gap-5 px-4 py-8">
+    <main className="mx-auto flex min-h-screen w-full max-w-3xl flex-col gap-6 px-4 py-10">
       <header>
         <div className="flex flex-wrap items-center justify-between gap-3">
           <h1 className="text-2xl font-bold text-[#1b1d26]">
@@ -339,7 +339,7 @@ export default function Dashboard() {
       </header>
 
       {/* Daily budget */}
-      <section className="rounded-2xl border border-neutral-200 bg-white p-5">
+      <section className="rounded-3xl border border-neutral-200/80 bg-white p-6 shadow-[0_1px_4px_rgb(27_29_38/0.05)]">
         <h2 className="text-xs font-semibold uppercase tracking-wider text-neutral-500">
           Applications today
         </h2>
@@ -399,7 +399,7 @@ export default function Dashboard() {
       />
 
       {/* Inbox summary — full inbox lives inside the vault */}
-      <section className="rounded-2xl border border-neutral-200 bg-white p-5">
+      <section className="rounded-3xl border border-neutral-200/80 bg-white p-6 shadow-[0_1px_4px_rgb(27_29_38/0.05)]">
         <h2 className="text-xs font-semibold uppercase tracking-wider text-neutral-500">
           Application email
         </h2>
@@ -449,7 +449,7 @@ export default function Dashboard() {
       {/* The Vault */}
       <section
         id="vault"
-        className="rounded-2xl border border-neutral-200 bg-white p-5"
+        className="rounded-3xl border border-neutral-200/80 bg-white p-6 shadow-[0_1px_4px_rgb(27_29_38/0.05)]"
       >
         <h2 className="text-lg font-semibold">The Vault</h2>
         {!open && !gating && (

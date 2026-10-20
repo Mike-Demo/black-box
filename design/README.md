@@ -25,3 +25,22 @@ background, white cards), ink text (`#1b1d26`), quiet text (`#545868`),
 one loud brand action (`#0071ec`), success/warning accents (`#00ac49` /
 `#fac22b`), thin borders, modest rounding, visible form labels, and
 uppercase letter-spaced section kickers.
+
+## Explorations — Voda-native directions (not implemented)
+
+On 2026-10-20 Stitch was asked for two redesigns of the Today dashboard
+taking full inspiration from **Voda** (the LGBTQIA+ wellbeing app), with
+*no* design system attached. Stitch invented its own theme for the first
+("Sanctuary Quietude") and produced:
+
+| Version | Stitch title | File |
+| --- | --- | --- |
+| A — pastel daylight | Black Box - Today (Voda Wellbeing Aesthetic) | `stitch/voda-a.html` |
+| B — dusk | Black Box - Today (Voda Dusk Aesthetic) | `stitch/voda-b.html` |
+
+Both keep the same content (budget, emoji-face mood scale, Deliberate
+Milestones, vault) in a much softer visual language — cream backgrounds,
+serif greetings, pastel or terracotta/sage tints, pill buttons. They are
+explorations for a possible future restyle; the shipped UI remains the
+Web Awesome system above, with a calmer spacing pass and the emoji-face
+scale handle adopted from them.

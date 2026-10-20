@@ -63,7 +63,7 @@ export default function InboxEmailView({
   }
 
   return (
-    <section className="rounded-2xl border border-neutral-200 bg-white p-5">
+    <section className="rounded-3xl border border-neutral-200/80 bg-white p-6 shadow-[0_1px_4px_rgb(27_29_38/0.05)]">
       <button onClick={onBack} className="text-sm text-[#0071ec]">
         ← Back to the vault
       </button>

@@ -14,6 +14,8 @@ const ECHO: Record<(typeof WORDS)[number], string> = {
   Good: "A good one.",
 };
 const WEEKDAY = ["S", "M", "T", "W", "T", "F", "S"] as const;
+/** The handle is an emoji face, one per stop on the scale. */
+const FACES = ["😞", "🥱", "😐", "🙂", "😊"] as const;
 
 export function moodWord(v: number): string {
   return WORDS[Math.min(5, Math.max(1, v)) - 1];
@@ -30,7 +32,7 @@ export default function MoodScale({
 }) {
   const shown = value ?? 3;
   return (
-    <section className="rounded-2xl border border-neutral-200 bg-white p-5">
+    <section className="rounded-3xl border border-neutral-200/80 bg-white p-6 shadow-[0_1px_4px_rgb(27_29_38/0.05)]">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <h2 className="text-xs font-semibold uppercase tracking-wider text-neutral-500">
           How is today
@@ -41,18 +43,35 @@ export default function MoodScale({
       </div>
 
       <div className="mt-5 px-1">
-        <input
-          type="range"
-          min={1}
-          max={5}
-          step={1}
-          value={shown}
-          onChange={(e) =>
-            onPick(Number(e.target.value) as 1 | 2 | 3 | 4 | 5)
-          }
-          aria-label={`Mood scale, currently ${value ? moodWord(value) : "not marked"}`}
-          className="mood-scale w-full"
-        />
+        <div className="relative h-9">
+          <div
+            aria-hidden="true"
+            className="absolute inset-x-0 top-1/2 h-3 -translate-y-1/2 rounded-full bg-[linear-gradient(90deg,#dc3146,#fac22b_50%,#00ac49)]"
+          />
+          <input
+            type="range"
+            min={1}
+            max={5}
+            step={1}
+            value={shown}
+            onChange={(e) =>
+              onPick(Number(e.target.value) as 1 | 2 | 3 | 4 | 5)
+            }
+            aria-label={`Mood scale, currently ${value ? moodWord(value) : "not marked"}`}
+            className="mood-scale relative h-9 w-full"
+          />
+          <span
+            aria-hidden="true"
+            style={{
+              left: `calc(${((shown - 1) / 4).toFixed(2)} * (100% - 36px) + 18px)`,
+            }}
+            className={`pointer-events-none absolute top-1/2 flex h-9 w-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white text-xl shadow-[0_1px_5px_rgb(0_0_0/0.3)] ring-1 ring-neutral-200 transition-[left] duration-200 ease-out ${
+              value ? "" : "opacity-70"
+            }`}
+          >
+            {value ? FACES[value - 1] : "🦥"}
+          </span>
+        </div>
         <div className="mt-1.5 flex justify-between text-xs text-neutral-400">
           <span>● Rough</span>
           <span>Good ●</span>

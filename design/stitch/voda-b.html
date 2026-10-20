@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Black Box — Today</title>
+<!-- Google Fonts: Literata & Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,300;0,7..72,400;0,7..72,500;0,7..72,600;1,7..72,400&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-tertiary-fixed-variant": "#663e00",
+            "on-secondary": "#ffffff",
+            "error": "#ba1a1a",
+            "primary-fixed": "#ffdad2",
+            "surface-variant": "#e6e2db",
+            "surface-container-lowest": "#ffffff",
+            "on-secondary-fixed-variant": "#334c3c",
+            "surface-container-highest": "#e6e2db",
+            "on-error": "#ffffff",
+            "on-surface-variant": "#55433e",
+            "secondary-fixed": "#ccead3",
+            "tertiary-fixed-dim": "#f9bb72",
+            "outline-variant": "#dbc1bb",
+            "surface-container-high": "#ece7e1",
+            "surface-dim": "#ded9d3",
+            "on-tertiary-container": "#fffbff",
+            "on-background": "#1d1c18",
+            "on-primary-container": "#fffbff",
+            "secondary-fixed-dim": "#b0ceb8",
+            "on-surface": "#1d1c18",
+            "tertiary": "#805212",
+            "on-primary-fixed": "#3c0700",
+            "on-secondary-container": "#506a58",
+            "primary": "#96432e",
+            "surface": "#fef9f2",
+            "on-primary-fixed-variant": "#7a2f1c",
+            "on-tertiary": "#ffffff",
+            "on-error-container": "#93000a",
+            "primary-container": "#b55b44",
+            "secondary-container": "#ccead3",
+            "surface-container-low": "#f8f3ec",
+            "surface-tint": "#994530",
+            "secondary": "#4a6453",
+            "on-tertiary-fixed": "#2b1700",
+            "error-container": "#ffdad6",
+            "tertiary-fixed": "#ffddb9",
+            "inverse-primary": "#ffb4a2",
+            "surface-bright": "#fef9f2",
+            "on-secondary-fixed": "#062012",
+            "background": "#fef9f2",
+            "inverse-surface": "#32302c",
+            "surface-container": "#f2ede6",
+            "primary-fixed-dim": "#ffb4a2",
+            "on-primary": "#ffffff",
+            "outline": "#88726d",
+            "tertiary-container": "#9c6a29",
+            "inverse-on-surface": "#f5f0e9"
+          },
+          "borderRadius": {
+            "DEFAULT": "1rem",
+            "lg": "2rem",
+            "xl": "3rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin": "3rem",
+            "margin-tablet": "2rem",
+            "space-lg": "2rem",
+            "space-sm": "0.75rem",
+            "space-md": "1.25rem",
+            "space-xl": "3.5rem",
+            "space-xs": "0.375rem",
+            "margin-mobile": "1.25rem",
+            "gutter": "1.5rem",
+            "gutter-mobile": "1rem"
+          },
+          "fontFamily": {
+            "headline-lg": ["Literata"],
+            "display-lg-mobile": ["Literata"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "headline-md": ["Literata"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Literata"],
+            "body-md": ["Plus Jakarta Sans"],
+            "display-lg": ["Literata"],
+            "headline-sm": ["Literata"],
+            "label-md": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "headline-lg": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.015em", "fontWeight": "400" }],
+            "display-lg-mobile": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.015em", "fontWeight": "400" }],
+            "label-sm": ["0.6875rem", { "lineHeight": "1rem", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "headline-md": ["1.625rem", { "lineHeight": "2.125rem", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "body-sm": ["0.875rem", { "lineHeight": "1.375rem", "fontWeight": "400" }],
+            "headline-lg-mobile": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "body-md": ["1rem", { "lineHeight": "1.625rem", "fontWeight": "400" }],
+            "display-lg": ["3.25rem", { "lineHeight": "3.75rem", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+            "headline-sm": ["1.25rem", { "lineHeight": "1.75rem", "fontWeight": "500" }],
+            "label-md": ["0.8125rem", { "lineHeight": "1.125rem", "letterSpacing": "0.02em", "fontWeight": "500" }],
+            "label-lg": ["0.9375rem", { "lineHeight": "1.25rem", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "body-lg": ["1.125rem", { "lineHeight": "1.75rem", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    /* Ambient River Stone Warm Shadow */
+    .stone-shadow {
+      box-shadow: 0 20px 40px -15px rgba(59, 36, 59, 0.07), 0 2px 6px 0 rgba(59, 36, 59, 0.03);
+    }
+    .stone-shadow-elevated {
+      box-shadow: 0 24px 48px -12px rgba(59, 36, 59, 0.12), 0 4px 12px 0 rgba(59, 36, 59, 0.04);
+    }
+    .dusk-track {
+      background: linear-gradient(90deg, #d68878 0%, #e2a355 50%, #7e9a86 100%);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased min-h-full flex flex-col selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar (Shared Component JSON anchor) -->
+<header class="docked full-width top-0 sticky z-40 bg-surface/90 dark:bg-inverse-surface/90 backdrop-blur-md shadow-[0_20px_40px_-15px_rgba(59,36,59,0.07)] dark:shadow-none">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
+<!-- Logo & Brand identity -->
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary shadow-inner">
+<span class="material-symbols-outlined text-2xl" data-icon="bedtime">bedtime</span>
+</div>
+<div>
+<span class="text-headline-sm font-headline-sm text-on-surface dark:text-inverse-on-surface tracking-tight block">Black Box</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant block tracking-wide -mt-1">A job search that slows you down on purpose.</span>
+</div>
+</div>
+<!-- Navigation Links (Active: Today) -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-primary dark:text-primary-fixed-dim font-label-lg border-b-2 border-primary dark:border-primary-fixed-dim pb-1 transition-all duration-300" href="#today">Today</a>
+<a class="text-on-surface-variant dark:text-outline-variant font-label-lg hover:text-on-surface dark:hover:text-inverse-on-surface transition-colors" href="#vault">The Vault</a>
+<a class="text-on-surface-variant dark:text-outline-variant font-label-lg hover:text-on-surface dark:hover:text-inverse-on-surface transition-colors" href="#rhythm">Rhythm</a>
+<a class="text-on-surface-variant dark:text-outline-variant font-label-lg hover:text-on-surface dark:hover:text-inverse-on-surface transition-colors" href="#reflections">Reflections</a>
+</nav>
+<!-- Trailing Primary & Quiet Actions -->
+<div class="flex items-center gap-3">
+<div class="hidden lg:flex items-center gap-2 bg-surface-container-low px-3.5 py-1.5 rounded-full text-label-md font-label-md text-on-surface-variant border border-surface-variant/40">
+<span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim animate-pulse"></span>
+<span>Lamplight Mode • Unhurried</span>
+</div>
+<button class="bg-primary text-on-primary font-label-lg px-6 py-2.5 rounded-full stone-shadow-elevated hover:bg-primary-container transition-all duration-300 active:scale-95 flex items-center gap-2" type="button">
+<span class="material-symbols-outlined text-lg" data-icon="air">air</span>
+<span>Breathe</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Narrative Feed Canvas (Max Content: 1120px for relaxed layout) -->
+<main class="flex-grow max-w-[1120px] w-full mx-auto px-6 md:px-8 py-10 md:py-14 space-y-12">
+<!-- 1. Salutation & Evening Banner -->
+<section class="space-y-4 max-w-[760px]">
+<div class="inline-flex items-center gap-2.5 bg-surface-container px-4 py-1.5 rounded-full text-label-md font-label-md text-on-secondary-container">
+<span class="material-symbols-outlined text-sm" data-icon="wb_twilight">wb_twilight</span>
+<span>Rest Window Active • Sunset 7:42 PM • Quiet rest active</span>
+</div>
+<h1 class="text-display-lg font-display-lg text-on-surface tracking-tight leading-tight">
+        Good evening, Mike.
+      </h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant leading-relaxed">
+        Take your time. You are more than your productivity, your resume, or the urgency of the world.
+      </p>
+</section>
+<!-- 2. Two-Column Stone Cards Grid -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
+<!-- LEFT CARD: Applications Today -->
+<div class="md:col-span-5 bg-surface-container rounded-lg p-space-lg stone-shadow flex flex-col justify-between relative overflow-hidden">
+<div class="space-y-6">
+<div class="flex items-center justify-between">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container/50 text-secondary text-label-sm font-label-sm tracking-wider uppercase">
+<span class="material-symbols-outlined text-sm" data-icon="spa">spa</span>
+              Daily Rhythm
+            </span>
+<span class="text-label-sm font-label-sm text-outline">Evening cycle</span>
+</div>
+<div>
+<span class="text-headline-md font-headline-md text-on-surface block mb-1">Applications Today</span>
+<div class="text-headline-lg font-headline-lg text-primary tracking-tight font-medium my-2">
+              0 of 3 used
+            </div>
+<p class="text-body-sm font-body-sm text-on-surface-variant leading-relaxed">
+              3 daily maximum to protect your peace. No rush to use them.
+            </p>
+</div>
+<!-- Tranquil 3-Slot Indicator Lozenge -->
+<div class="space-y-2 pt-2">
+<div class="grid grid-cols-3 gap-2.5">
+<div class="h-3 rounded-full bg-surface-container-high border border-outline-variant/30 flex items-center justify-center">
+<span class="sr-only">Available Slot 1</span>
+</div>
+<div class="h-3 rounded-full bg-surface-container-high border border-outline-variant/30 flex items-center justify-center">
+<span class="sr-only">Available Slot 2</span>
+</div>
+<div class="h-3 rounded-full bg-surface-container-high border border-outline-variant/30 flex items-center justify-center">
+<span class="sr-only">Available Slot 3</span>
+</div>
+</div>
+<div class="flex justify-between items-center text-label-sm font-label-sm text-on-surface-variant px-1">
+<span>Restful slot 1</span>
+<span>Restful slot 2</span>
+<span>Restful slot 3</span>
+</div>
+</div>
+</div>
+<div class="pt-8 mt-6 border-t border-surface-variant/60 flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-base text-outline" data-icon="schedule">schedule</span>
+<span>Next reset: Tomorrow, 9:00 AM</span>
+</div>
+<button class="text-primary hover:underline font-label-md font-label-md transition-all" type="button">
+            Why we limit pace
+          </button>
+</div>
+</div>
+<!-- RIGHT HERO CARD: Emotional Check-In / Mood Sanctuary -->
+<div class="md:col-span-7 bg-surface-container rounded-lg p-space-lg stone-shadow flex flex-col justify-between">
+<div class="space-y-6">
+<div class="flex flex-wrap items-center justify-between gap-2">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-low text-on-surface-variant text-label-sm font-label-sm border border-outline-variant/20">
+<span class="material-symbols-outlined text-sm" data-icon="history_toggle_off">history_toggle_off</span>
+              Emotional Check-In • Marked at 5:45 PM
+            </span>
+<button class="bg-surface-container-low border border-outline-variant/40 hover:bg-surface text-on-surface px-4 py-1.5 rounded-full text-label-md font-label-md transition-all duration-300" type="button">
+              Update mood
+            </button>
+</div>
+<div>
+<h2 class="text-headline-md font-headline-md text-on-surface mb-2">
+              How is your spirit this evening?
+            </h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+              A private pulse to pause and notice how job searching feels in your body.
+            </p>
+</div>
+<!-- Tactile Mood Slider Container -->
+<div class="pt-4 pb-2 px-2">
+<div class="relative w-full h-4 rounded-full dusk-track shadow-inner flex items-center">
+<!-- Slider Stone Handle positioned at 'Steady' (~65%) -->
+<div class="absolute left-[65%] -translate-x-1/2 w-11 h-11 rounded-full bg-surface stone-shadow-elevated border-2 border-surface-container flex items-center justify-center text-xl cursor-grab hover:scale-105 active:scale-95 transition-transform duration-200" title="Steady state">
+<span>😌</span>
+</div>
+</div>
+<div class="flex justify-between items-center text-label-sm font-label-sm text-on-surface-variant mt-4 px-1">
+<span>Tender</span>
+<span>Reflective</span>
+<span>Steady</span>
+<span>Grounded</span>
+</div>
+</div>
+<!-- Selected State Explanation -->
+<div class="bg-surface rounded-DEFAULT p-4 flex items-start justify-between gap-4">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="text-headline-sm font-headline-sm text-on-surface font-medium">Steady</span>
+<span class="px-2.5 py-0.5 rounded-full bg-secondary-container text-secondary text-label-sm font-label-sm">
+                  In rhythm
+                </span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+                Calm, deliberate, moving forward without urgency.
+              </p>
+</div>
+</div>
+</div>
+<!-- 7 Days Rhythm Tracker -->
+<div class="pt-6 mt-6 border-t border-surface-variant/60">
+<div class="flex items-center justify-between mb-3">
+<span class="text-label-md font-label-md text-on-surface-variant">Last 7 days rhythm</span>
+<span class="text-label-sm font-label-sm text-outline">Unhurried presence</span>
+</div>
+<div class="flex items-center justify-between gap-2 max-w-md">
+<!-- M -->
+<div class="flex flex-col items-center gap-1.5">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-label-sm font-label-sm text-on-surface-variant">
+                🌿
+              </div>
+<span class="text-label-sm font-label-sm text-outline">M</span>
+</div>
+<!-- T -->
+<div class="flex flex-col items-center gap-1.5">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-label-sm font-label-sm text-on-surface-variant">
+                ☕
+              </div>
+<span class="text-label-sm font-label-sm text-outline">T</span>
+</div>
+<!-- W -->
+<div class="flex flex-col items-center gap-1.5">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-label-sm font-label-sm text-on-surface-variant">
+                📖
+              </div>
+<span class="text-label-sm font-label-sm text-outline">W</span>
+</div>
+<!-- T -->
+<div class="flex flex-col items-center gap-1.5">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-label-sm font-label-sm text-on-surface-variant">
+                🧘
+              </div>
+<span class="text-label-sm font-label-sm text-outline">T</span>
+</div>
+<!-- F -->
+<div class="flex flex-col items-center gap-1.5">
+<div class="w-8 h-8 rounded-full bg-secondary-container/60 flex items-center justify-center text-label-sm font-label-sm text-secondary">
+                ✨
+              </div>
+<span class="text-label-sm font-label-sm text-outline">F</span>
+</div>
+<!-- S -->
+<div class="flex flex-col items-center gap-1.5">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-label-sm font-label-sm text-on-surface-variant">
+                ☁️
+              </div>
+<span class="text-label-sm font-label-sm text-outline">S</span>
+</div>
+<!-- Today -->
+<div class="flex flex-col items-center gap-1.5">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary ring-2 ring-primary-fixed flex items-center justify-center text-label-sm font-label-sm font-semibold">
+                😌
+              </div>
+<span class="text-label-sm font-label-sm text-primary font-semibold">Today</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. THE VAULT CARD (Wide River Stone Banner) -->
+<section class="bg-surface-container rounded-lg p-space-lg md:p-10 stone-shadow relative overflow-hidden" id="vault">
+<div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+<div class="space-y-4 max-w-2xl">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed/40 text-tertiary flex items-center justify-center">
+<span class="material-symbols-outlined text-xl" data-icon="lock_clock">lock_clock</span>
+</div>
+<span class="text-label-sm font-label-sm tracking-wider uppercase text-on-surface-variant font-semibold">
+              The Vault Buffer • Resting Phase • Window opens at 6:00 PM
+            </span>
+</div>
+<h2 class="text-headline-lg font-headline-lg text-on-surface tracking-tight">
+            2 letters are resting safely
+          </h2>
+<p class="text-body-md font-body-md text-on-surface-variant leading-relaxed">
+            Held in the 48-hour buffer until your evening window opens. Nothing can be rushed, triggered by panic, or sent on an impulse.
+          </p>
+<div class="flex flex-wrap items-center gap-4 text-body-sm font-body-sm text-outline pt-1">
+<span class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+              Product Lead @ Monolith Design (Hold expires tomorrow 6:00 PM)
+            </span>
+<span class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+              Design Advocate @ Studio Kanso (24h remaining)
+            </span>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row items-center gap-4 w-full lg:w-auto">
+<button class="w-full sm:w-auto bg-primary text-on-primary font-label-lg px-8 py-3.5 rounded-full stone-shadow-elevated hover:bg-primary-container transition-all duration-300 active:scale-95 flex items-center justify-center gap-2" type="button">
+<span>Begin today's opening</span>
+<span class="material-symbols-outlined text-lg" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+<!-- 4. DELIBERATE MILESTONES / PROGRESS AREA -->
+<section class="space-y-6 pt-4">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-2">
+<div>
+<h2 class="text-headline-md font-headline-md text-on-surface">Deliberate Milestones</h2>
+<p class="text-body-md font-body-md text-on-surface-variant">
+            Celebrating restraint, reflection, and patience (4 earned • 2 unfolding)
+          </p>
+</div>
+<div class="text-label-md font-label-md text-secondary flex items-center gap-1.5">
+<span class="material-symbols-outlined text-base" data-icon="task_alt">task_alt</span>
+<span>Guilt-free trajectory</span>
+</div>
+</div>
+<!-- 3x2 Grid of River-Stone Milestone Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Milestone 1 -->
+<div class="bg-surface-container rounded-lg p-6 stone-shadow flex flex-col justify-between space-y-4 hover:translate-y-[-2px] transition-transform duration-300">
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<div class="w-12 h-12 rounded-full bg-primary-fixed/40 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl" data-icon="pause_circle">pause_circle</span>
+</div>
+<span class="px-3 py-1 rounded-full bg-secondary-container text-secondary text-label-sm font-label-sm">
+                Earned
+              </span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface">First hold</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+              You saved a draft to the 48-hour hold without yielding to sudden urgency.
+            </p>
+</div>
+<div class="text-label-sm font-label-sm text-outline pt-2 border-t border-surface-variant/40">
+            Recorded Oct 12
+          </div>
+</div>
+<!-- Milestone 2 -->
+<div class="bg-surface-container rounded-lg p-6 stone-shadow flex flex-col justify-between space-y-4 hover:translate-y-[-2px] transition-transform duration-300">
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<div class="w-12 h-12 rounded-full bg-secondary-container text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl" data-icon="hourglass_bottom">hourglass_bottom</span>
+</div>
+<span class="px-3 py-1 rounded-full bg-secondary-container text-secondary text-label-sm font-label-sm">
+                Earned
+              </span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface">The full wait</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+              You decided after the whole 48 hours had gently settled.
+            </p>
+</div>
+<div class="text-label-sm font-label-sm text-outline pt-2 border-t border-surface-variant/40">
+            Recorded Oct 18
+          </div>
+</div>
+<!-- Milestone 3 -->
+<div class="bg-surface-container rounded-lg p-6 stone-shadow flex flex-col justify-between space-y-4 hover:translate-y-[-2px] transition-transform duration-300">
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<div class="w-12 h-12 rounded-full bg-outline-variant/30 text-on-surface flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl" data-icon="air">air</span>
+</div>
+<span class="px-3 py-1 rounded-full bg-secondary-container text-secondary text-label-sm font-label-sm">
+                Earned
+              </span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Let one go</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+              Released a draft instead of applying. Honoring your boundary and energy.
+            </p>
+</div>
+<div class="text-label-sm font-label-sm text-outline pt-2 border-t border-surface-variant/40">
+            Recorded Oct 24
+          </div>
+</div>
+<!-- Milestone 4 -->
+<div class="bg-surface-container rounded-lg p-6 stone-shadow flex flex-col justify-between space-y-4 hover:translate-y-[-2px] transition-transform duration-300">
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<div class="w-12 h-12 rounded-full bg-surface-dim text-on-surface flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl" data-icon="menu_book">menu_book</span>
+</div>
+<span class="px-3 py-1 rounded-full bg-secondary-container text-secondary text-label-sm font-label-sm">
+                Earned
+              </span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Read it calmly</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+              You used a compassionate reframe for recruiter feedback instead of self-judgment.
+            </p>
+</div>
+<div class="text-label-sm font-label-sm text-outline pt-2 border-t border-surface-variant/40">
+            Recorded Yesterday
+          </div>
+</div>
+<!-- Milestone 5 (Unfolding) -->
+<div class="bg-surface-container rounded-lg p-6 stone-shadow flex flex-col justify-between space-y-4 hover:translate-y-[-2px] transition-transform duration-300 border border-outline-variant/20">
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<div class="w-12 h-12 rounded-full bg-tertiary-fixed/30 text-tertiary flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl" data-icon="lock_open">lock_open</span>
+</div>
+<span class="px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant text-label-sm font-label-sm">
+                3 of 5
+              </span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Five windows</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+              Open the vault on 5 different unhurried days with complete calm.
+            </p>
+</div>
+<div class="space-y-1.5 pt-2 border-t border-surface-variant/40">
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-tertiary h-full rounded-full" style="width: 60%"></div>
+</div>
+<span class="text-label-sm font-label-sm text-outline block text-right">60% resting</span>
+</div>
+</div>
+<!-- Milestone 6 (Unfolding) -->
+<div class="bg-surface-container rounded-lg p-6 stone-shadow flex flex-col justify-between space-y-4 hover:translate-y-[-2px] transition-transform duration-300 border border-outline-variant/20">
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<div class="w-12 h-12 rounded-full bg-primary-fixed/30 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl" data-icon="sentiment_satisfied">sentiment_satisfied</span>
+</div>
+<span class="px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant text-label-sm font-label-sm">
+                5 of 7
+              </span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Seven marks</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+              Mark your mood across 7 consecutive twilight check-ins.
+            </p>
+</div>
+<div class="space-y-1.5 pt-2 border-t border-surface-variant/40">
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 71%"></div>
+</div>
+<span class="text-label-sm font-label-sm text-outline block text-right">2 evenings left</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. Specialized Reflection Journal Prompt -->
+<section class="bg-surface rounded-lg p-8 stone-shadow border border-outline-variant/30 relative" id="reflections">
+<div class="max-w-xl space-y-4">
+<div class="flex items-center gap-2 text-primary font-label-md">
+<span class="material-symbols-outlined text-base" data-icon="edit_note">edit_note</span>
+<span>Evening Journal Prompt</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm italic text-on-surface">
+          "What did you say 'no' to today so your spirit could remain unhurried?"
+        </h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+          Your thoughts are stored locally in your private sanctuary. Nothing is tracked, ranked, or analyzed.
+        </p>
+<div class="pt-2">
+<div class="bg-surface-container rounded-full px-5 py-3 flex items-center justify-between text-body-sm text-on-surface-variant border border-outline-variant/20 shadow-inner">
+<input class="bg-transparent border-0 focus:ring-0 text-on-surface placeholder:text-outline w-full text-body-sm" placeholder="Write a gentle reflection..." type="text"/>
+<button class="text-primary hover:text-primary-container transition-colors pl-2" type="button">
+<span class="material-symbols-outlined" data-icon="save">save</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer (Shared Component JSON anchor) -->
+<footer class="w-full mt-auto bg-surface-container-low dark:bg-inverse-surface border-t-0">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-8 py-10 max-w-7xl mx-auto gap-6">
+<!-- Copyright / Philosophy statement -->
+<div class="text-center md:text-left">
+<div class="text-headline-sm font-headline-sm text-on-surface dark:text-inverse-on-surface tracking-tight mb-1">
+          Black Box
+        </div>
+<p class="text-body-sm font-body-sm text-on-surface-variant dark:text-outline-variant">
+          © 2025 Black Box. A job search that slows you down on purpose.
+        </p>
+</div>
+<!-- Footer Navigation Links -->
+<nav class="flex flex-wrap justify-center gap-6 md:gap-8">
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors font-label-md" href="#terms-of-pause">
+          Terms of Pause
+        </a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors font-label-md" href="#quiet-privacy">
+          Quiet Privacy
+        </a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors font-label-md" href="#rest-rituals">
+          Rest Rituals
+        </a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors font-label-md" href="#support-sanctuary">
+          Support Sanctuary
+        </a>
+</nav>
+</div>
+</footer>
+</body></html>

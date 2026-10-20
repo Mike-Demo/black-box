@@ -89,7 +89,7 @@ export default function AddJob({
   }
 
   return (
-    <section className="rounded-2xl border border-neutral-200 bg-white p-5">
+    <section className="rounded-3xl border border-neutral-200/80 bg-white p-6 shadow-[0_1px_4px_rgb(27_29_38/0.05)]">
       <h2 className="text-lg font-semibold">Add a job — slowly</h2>
       <p className="mt-1 text-sm text-neutral-500">
         One at a time, on purpose. New roles sit in a 48-hour hold before

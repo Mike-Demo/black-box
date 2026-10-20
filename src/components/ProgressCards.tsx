@@ -10,7 +10,7 @@ import { ACHIEVEMENTS, type AchievementContext } from "@/lib/achievements";
 export default function ProgressCards({ ctx }: { ctx: AchievementContext }) {
   const earnedCount = ACHIEVEMENTS.filter((a) => a.earned(ctx)).length;
   return (
-    <section className="rounded-2xl border border-neutral-200 bg-white p-5">
+    <section className="rounded-3xl border border-neutral-200/80 bg-white p-6 shadow-[0_1px_4px_rgb(27_29_38/0.05)]">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <h2 className="text-xs font-semibold uppercase tracking-wider text-neutral-500">
           Progress
