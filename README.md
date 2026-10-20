@@ -31,6 +31,14 @@ Black Box runs **Gemma 4** (Google's open-weight model family, Apache 2.0) **loc
 
 The reframe guardrails come from the open-source [mental-health-support skill](https://github.com/Mike-Demo/agent-skills): transformations are display-only and labelled, originals are preserved, and the model is forbidden from diagnosing, inferring feelings, or adding reassurance the source text does not support.
 
+## Design references
+
+The interaction design is checked against Microsoft's Inclusive Design guidance for mental health, whose three considerations map directly onto the app: **Preserve** (protect focus and control — no push notifications, no badges, no manufactured urgency), **Direct** (visible progress, one obvious next step per screen), and **Customize** (a per-call privacy-mode choice, a mood scale instead of a form).
+
+- [Mental Health Guidebook](https://inclusive.microsoft.design/articles/mental-health-guidebook) — Microsoft Inclusive Design
+- [Mental Health Cards](https://inclusive.microsoft.design/articles/mental-health-cards) — design-pattern guidance (AI assistants, color, loading states, confirmation & error states)
+- [Inclusive Design for Mental Health & Cognition](https://www.figma.com/community/plugin/1268611308971699930) — the same guidance as a Figma plugin
+
 ## Tech
 
 - Next.js (App Router) + TypeScript + Tailwind CSS — one small codebase

@@ -52,3 +52,20 @@ serif greetings, pastel or terracotta/sage tints, pill buttons. **Demo
 chose Version A on 2026-10-20 and the app was rebuilt toward it** (see
 the note at the top of this file). Version B remains an unimplemented
 exploration.
+
+## References — designing for mental health
+
+The design language is checked against Microsoft's Inclusive Design
+guidance for mental health. Their three considerations — **Preserve**
+(focus, attention, control), **Direct** (momentum, clear next steps,
+visible progress), **Customize** (adapt the experience to the person) —
+are the yardstick for choices like no notifications or badges, progress
+cards that can only be earned, and the per-call privacy-mode toggle.
+
+- Mental Health Guidebook —
+  https://inclusive.microsoft.design/articles/mental-health-guidebook
+- Mental Health Cards (design patterns: AI assistants, color, loading
+  states, confirmation & error states) —
+  https://inclusive.microsoft.design/articles/mental-health-cards
+- Inclusive Design for Mental Health & Cognition (Figma plugin) —
+  https://www.figma.com/community/plugin/1268611308971699930
