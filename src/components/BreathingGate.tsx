@@ -64,7 +64,7 @@ export default function BreathingGate({ onDone }: { onDone: () => void }) {
   return (
     <div className="flex flex-col items-center gap-6 py-10 text-center">
       <div
-        className={`flex h-36 w-36 items-center justify-center rounded-full bg-blue-100 text-blue-900 transition-transform duration-[4000ms] ease-in-out ${scale}`}
+        className={`flex h-36 w-36 items-center justify-center rounded-full bg-[#e9e4f8] text-indigo-900 shadow-[0_10px_36px_rgb(87_83_78/0.12)] transition-transform duration-[4000ms] ease-in-out ${scale}`}
         aria-hidden="true"
       >
         <span className="text-4xl">🦥</span>
@@ -74,14 +74,14 @@ export default function BreathingGate({ onDone }: { onDone: () => void }) {
           <p className="text-lg" role="status">
             {phase.label} · {secondsLeft}
           </p>
-          <p className="max-w-sm text-sm text-neutral-500">
+          <p className="max-w-sm text-sm text-stone-500">
             The vault opens once a day. A few slow breaths first — the
             statuses will be exactly the same in half a minute.
           </p>
           {canSkip && (
             <button
               onClick={onDone}
-              className="text-sm text-neutral-500 underline underline-offset-4"
+              className="text-sm text-stone-500 underline underline-offset-4"
             >
               Skip the pause and open
             </button>
@@ -90,7 +90,7 @@ export default function BreathingGate({ onDone }: { onDone: () => void }) {
       ) : (
         <button
           onClick={onDone}
-          className="rounded-full bg-[#0071ec] px-6 py-3 text-white"
+          className="rounded-full bg-[#4338ca] px-6 py-3 text-white"
         >
           Open the vault
         </button>

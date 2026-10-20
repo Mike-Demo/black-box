@@ -250,13 +250,13 @@ export default function Dashboard() {
     <main className="mx-auto flex min-h-screen w-full max-w-3xl flex-col gap-6 px-4 py-10">
       <header>
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <h1 className="text-2xl font-bold text-[#1b1d26]">
+          <h1 className="font-display text-[2rem] font-semibold leading-tight text-stone-800">
             Black Box <span aria-hidden="true">🦥</span>
           </h1>
           <div className="flex flex-wrap items-center gap-2 text-sm">
             {session ? (
               <>
-                <span className="rounded-full border border-neutral-200 bg-white px-3 py-1 text-neutral-600">
+                <span className="rounded-full border border-stone-200 bg-white px-3 py-1 text-stone-600">
                   {session.email}
                 </span>
                 <button
@@ -264,7 +264,7 @@ export default function Dashboard() {
                     setSession(null);
                     setGuest(false);
                   }}
-                  className="px-1 text-neutral-500"
+                  className="px-1 text-stone-500"
                 >
                   Sign out
                 </button>
@@ -272,14 +272,24 @@ export default function Dashboard() {
             ) : (
               <button
                 onClick={() => setGuest(false)}
-                className="rounded-full border border-neutral-300 bg-white px-3 py-1"
+                className="rounded-full border border-stone-300 bg-white px-3 py-1"
               >
                 Sign in with email
               </button>
             )}
           </div>
         </div>
-        <p className="mt-1 text-neutral-500">
+        {now > 0 && (
+          <p className="font-display mt-2 text-xl italic text-stone-600">
+            {new Date(now).getHours() < 12
+              ? "Good morning."
+              : new Date(now).getHours() < 18
+                ? "Good afternoon."
+                : "Good evening."}{" "}
+            Take your time — that&rsquo;s the whole idea.
+          </p>
+        )}
+        <p className="mt-1 text-stone-500">
           A job search app that slows you down on purpose. Your data lives in
           this browser; nothing is tracked or uploaded.
         </p>
@@ -287,13 +297,13 @@ export default function Dashboard() {
         <div className="mt-3 flex flex-wrap items-center gap-2 text-sm">
           <span className="font-medium">Privacy mode:</span>
           {config?.mock ? (
-            <span className="rounded-full bg-amber-100 px-3 py-1 text-amber-900">
+            <span className="rounded-full bg-[#fcf3dc] px-3 py-1 text-[#77620f]">
               Mock mode — no model is being called
             </span>
           ) : (
             <>
               <div
-                className="inline-flex rounded-full border border-neutral-300 bg-white p-0.5"
+                className="inline-flex rounded-full border border-stone-300 bg-white p-0.5"
                 role="group"
                 aria-label="Privacy mode"
               >
@@ -302,8 +312,8 @@ export default function Dashboard() {
                   aria-pressed={mode === "local"}
                   className={`rounded-full px-3 py-1 ${
                     mode === "local"
-                      ? "bg-[#0071ec] text-white"
-                      : "text-neutral-600"
+                      ? "bg-[#4338ca] text-white"
+                      : "text-stone-600"
                   }`}
                 >
                   Private — local Gemma
@@ -321,14 +331,14 @@ export default function Dashboard() {
                   }
                   className={`rounded-full px-3 py-1 ${
                     mode === "hosted"
-                      ? "bg-[#0071ec] text-white"
-                      : "text-neutral-600"
+                      ? "bg-[#4338ca] text-white"
+                      : "text-stone-600"
                   } disabled:opacity-40`}
                 >
                   Demo — hosted Gemma
                 </button>
               </div>
-              <span className="text-xs text-neutral-400">
+              <span className="text-xs text-stone-400">
                 {mode === "local"
                   ? "Reframe and score text goes to the Gemma running on this machine, nowhere else."
                   : "Demo mode sends reframe and score text to the hosted provider for that call."}
@@ -339,13 +349,13 @@ export default function Dashboard() {
       </header>
 
       {/* Daily budget */}
-      <section className="rounded-3xl border border-neutral-200/80 bg-white p-6 shadow-[0_1px_4px_rgb(27_29_38/0.05)]">
-        <h2 className="text-xs font-semibold uppercase tracking-wider text-neutral-500">
+      <section className="rounded-[2rem] bg-white p-6 shadow-[0_10px_36px_rgb(87_83_78/0.10)]">
+        <h2 className="text-xs font-semibold uppercase tracking-wider text-stone-500">
           Applications today
         </h2>
         <p className="mt-1 text-2xl font-bold">
           {vaultReady ? vault.appliedToday : "…"}{" "}
-          <span className="text-base font-normal text-neutral-500">
+          <span className="text-base font-normal text-stone-500">
             of {vault.dailyLimit} used today
           </span>
         </p>
@@ -361,7 +371,7 @@ export default function Dashboard() {
               <div
                 key={i}
                 className={`h-2 flex-1 rounded-full ${
-                  i < vault.appliedToday ? "bg-[#0071ec]" : "bg-neutral-100"
+                  i < vault.appliedToday ? "bg-[#4338ca]" : "bg-stone-100"
                 }`}
               />
             ),
@@ -381,11 +391,11 @@ export default function Dashboard() {
                 appliedDate: today,
               })
             }
-            className="w-16 rounded-lg border border-neutral-300 px-2 py-1"
+            className="w-16 rounded-lg border border-stone-300 px-2 py-1"
           />
         </label>
         {budgetSpent && (
-          <p className="mt-2 text-sm text-[#0071ec]">
+          <p className="mt-2 text-sm text-[#4338ca]">
             Budget spent. That&apos;s the whole job for today — the rest of
             the day is yours.
           </p>
@@ -399,8 +409,8 @@ export default function Dashboard() {
       />
 
       {/* Inbox summary — full inbox lives inside the vault */}
-      <section className="rounded-3xl border border-neutral-200/80 bg-white p-6 shadow-[0_1px_4px_rgb(27_29_38/0.05)]">
-        <h2 className="text-xs font-semibold uppercase tracking-wider text-neutral-500">
+      <section className="rounded-[2rem] bg-[#f1edfb] p-6 shadow-[0_10px_36px_rgb(87_83_78/0.08)]">
+        <h2 className="text-xs font-semibold uppercase tracking-wider text-stone-500">
           Application email
         </h2>
         {session ? (
@@ -410,7 +420,7 @@ export default function Dashboard() {
                 ? `${unreadCount} email${unreadCount === 1 ? "" : "s"} waiting in your vault`
                 : "Nothing new is waiting in your vault"}
             </p>
-            <p className="mt-1 text-sm text-neutral-500">
+            <p className="mt-1 text-sm text-stone-500">
               Application email arrives into Black Box and is only shown
               during your daily vault window — never as a push, never as a
               badge you have to clear.
@@ -421,7 +431,7 @@ export default function Dashboard() {
             </p>
             <a
               href="#vault"
-              className="mt-3 inline-block rounded-full border border-neutral-300 px-5 py-2 text-sm"
+              className="mt-3 inline-block rounded-full border border-stone-300 px-5 py-2 text-sm"
             >
               Review in today&apos;s vault
             </a>
@@ -431,14 +441,14 @@ export default function Dashboard() {
             <p className="mt-1 text-lg font-semibold">
               Bring your application email into the box
             </p>
-            <p className="mt-1 text-sm text-neutral-500">
+            <p className="mt-1 text-sm text-stone-500">
               Sign in with email and application messages land here instead
               of your regular inbox — read once a day, inside the vault, on
               your terms.
             </p>
             <button
               onClick={() => setGuest(false)}
-              className="mt-3 rounded-full bg-[#0071ec] px-5 py-2 text-sm font-semibold text-white"
+              className="mt-3 rounded-full bg-[#4338ca] px-5 py-2 text-sm font-semibold text-white"
             >
               Sign in with email
             </button>
@@ -449,18 +459,18 @@ export default function Dashboard() {
       {/* The Vault */}
       <section
         id="vault"
-        className="rounded-3xl border border-neutral-200/80 bg-white p-6 shadow-[0_1px_4px_rgb(27_29_38/0.05)]"
+        className="rounded-[2rem] bg-white p-6 shadow-[0_10px_36px_rgb(87_83_78/0.10)]"
       >
-        <h2 className="text-lg font-semibold">The Vault</h2>
+        <h2 className="font-display text-xl font-semibold text-stone-800">The Vault</h2>
         {!open && !gating && (
           <>
-            <p className="mt-1 text-sm text-neutral-500">
+            <p className="mt-1 text-sm text-stone-500">
               Statuses and inbox mail stay shut until your daily opening.
               Checking more often changes nothing — it only costs attention.
             </p>
             <button
               onClick={() => setGating(true)}
-              className="mt-3 rounded-full bg-[#0071ec] px-5 py-2 text-sm font-semibold text-white"
+              className="mt-3 rounded-full bg-[#4338ca] px-5 py-2 text-sm font-semibold text-white"
             >
               Begin today&apos;s opening
             </button>
@@ -469,18 +479,18 @@ export default function Dashboard() {
         {gating && <BreathingGate onDone={openVault} />}
         {open && (
           <>
-            <p className="mt-1 text-sm text-[#0071ec]">
+            <p className="mt-1 text-sm text-[#4338ca]">
               Open for today. Everything here waited on purpose. It closes
               again at midnight.
             </p>
 
             {session && (
               <>
-                <h3 className="mt-5 text-sm font-semibold uppercase tracking-wide text-neutral-500">
+                <h3 className="mt-5 text-sm font-semibold uppercase tracking-wide text-stone-500">
                   Application email inbox
                 </h3>
                 {availableMail.length === 0 && heldMail.length === 0 && (
-                  <p className="mt-2 text-sm text-neutral-500">
+                  <p className="mt-2 text-sm text-stone-500">
                     No application email yet.
                   </p>
                 )}
@@ -488,11 +498,11 @@ export default function Dashboard() {
                   {availableMail.map((m) => (
                     <li
                       key={m.id}
-                      className="rounded-xl bg-neutral-50 p-3 text-sm"
+                      className="rounded-xl bg-stone-50 p-3 text-sm"
                     >
                       <div className="flex flex-wrap items-baseline justify-between gap-2">
                         <span className="font-medium">{m.from}</span>
-                        <span className="text-xs text-neutral-500">
+                        <span className="text-xs text-stone-500">
                           {new Date(m.receivedAt).toLocaleString()}
                         </span>
                       </div>
@@ -504,13 +514,13 @@ export default function Dashboard() {
                           {STATUS_LABEL[m.status]}
                         </span>
                         {!m.readAt && (
-                          <span className="text-xs text-neutral-500">
+                          <span className="text-xs text-stone-500">
                             Unread
                           </span>
                         )}
                         <button
                           onClick={() => readMail(m)}
-                          className="text-sm text-[#0071ec]"
+                          className="text-sm text-[#4338ca]"
                         >
                           Read when ready →
                         </button>
@@ -520,16 +530,16 @@ export default function Dashboard() {
                   {heldMail.map((m) => (
                     <li
                       key={m.id}
-                      className="rounded-xl bg-neutral-50 p-3 text-sm opacity-60"
+                      className="rounded-xl bg-stone-50 p-3 text-sm opacity-60"
                     >
                       <div className="flex flex-wrap items-baseline justify-between gap-2">
                         <span className="font-medium">{m.from}</span>
-                        <span className="text-xs text-neutral-500">
+                        <span className="text-xs text-stone-500">
                           {new Date(m.receivedAt).toLocaleString()}
                         </span>
                       </div>
                       <p className="mt-0.5">{m.subject}</p>
-                      <p className="mt-1 text-xs text-neutral-500">
+                      <p className="mt-1 text-xs text-stone-500">
                         Held for the next window — it arrived after
                         today&apos;s.
                       </p>
@@ -540,7 +550,7 @@ export default function Dashboard() {
             )}
 
             {applications.length === 0 && (
-              <p className="mt-3 text-sm text-neutral-500">
+              <p className="mt-3 text-sm text-stone-500">
                 Nothing tracked yet. Add a job above and it will wait here,
                 quietly, in its 48-hour hold.
               </p>
@@ -548,7 +558,7 @@ export default function Dashboard() {
 
             {drafts.length > 0 && (
               <>
-                <h3 className="mt-4 text-sm font-semibold uppercase tracking-wide text-neutral-500">
+                <h3 className="mt-4 text-sm font-semibold uppercase tracking-wide text-stone-500">
                   Ready to decide
                 </h3>
                 <ul className="mt-2 space-y-3">
@@ -557,18 +567,18 @@ export default function Dashboard() {
                     return (
                       <li
                         key={a.id}
-                        className="rounded-xl bg-neutral-50 p-3 text-sm"
+                        className="rounded-xl bg-stone-50 p-3 text-sm"
                       >
                         <div className="flex flex-wrap items-baseline justify-between gap-2">
                           <span className="font-medium">
                             {a.role} · {a.company}
                             {a.qualityScore != null && (
-                              <span className="ml-2 rounded-full bg-blue-50 px-2 py-0.5 text-xs text-blue-900">
+                              <span className="ml-2 rounded-full bg-indigo-50 px-2 py-0.5 text-xs text-indigo-900">
                                 Fit {a.qualityScore}/10
                               </span>
                             )}
                           </span>
-                          <span className="text-xs text-neutral-500">
+                          <span className="text-xs text-stone-500">
                             {ready
                               ? "Ready to review"
                               : hoursLeft(a.reviewAfter, now)}
@@ -579,18 +589,18 @@ export default function Dashboard() {
                             <button
                               onClick={() => confirmApplied(a)}
                               disabled={budgetSpent}
-                              className="rounded-full bg-[#0071ec] px-4 py-1.5 font-semibold text-white disabled:opacity-40"
+                              className="rounded-full bg-[#4338ca] px-4 py-1.5 font-semibold text-white disabled:opacity-40"
                             >
                               I applied — count it
                             </button>
                             <button
                               onClick={() => removeApp(a)}
-                              className="rounded-full bg-neutral-200 px-4 py-1.5"
+                              className="rounded-full bg-stone-200 px-4 py-1.5"
                             >
                               Let it go
                             </button>
                             {budgetSpent && (
-                              <span className="text-xs text-neutral-500">
+                              <span className="text-xs text-stone-500">
                                 Today&apos;s budget is spent — this can wait
                                 until tomorrow. That&apos;s the point.
                               </span>
@@ -606,17 +616,17 @@ export default function Dashboard() {
 
             {active.length > 0 && (
               <>
-                <h3 className="mt-4 text-sm font-semibold uppercase tracking-wide text-neutral-500">
+                <h3 className="mt-4 text-sm font-semibold uppercase tracking-wide text-stone-500">
                   Applied
                 </h3>
-                <ul className="mt-2 divide-y divide-neutral-100 text-sm">
+                <ul className="mt-2 divide-y divide-stone-100 text-sm">
                   {active.map((a) => (
                     <li key={a.id} className="flex flex-wrap items-center justify-between gap-2 py-2">
                       <span>
                         {a.role} · {a.company}
                       </span>
                       <span className="flex items-center gap-2">
-                        <span className="text-neutral-500">
+                        <span className="text-stone-500">
                           {a.status === "no-response-yet"
                             ? "No response yet"
                             : "Applied"}
@@ -626,21 +636,21 @@ export default function Dashboard() {
                             onClick={() =>
                               patchApp(a.id, { status: "no-response-yet" })
                             }
-                            className="rounded-full bg-neutral-100 px-3 py-1 text-xs"
+                            className="rounded-full bg-stone-100 px-3 py-1 text-xs"
                           >
                             Mark: no response yet
                           </button>
                         )}
                         <button
                           onClick={() => patchApp(a.id, { status: "closed" })}
-                          className="rounded-full bg-neutral-100 px-3 py-1 text-xs"
+                          className="rounded-full bg-stone-100 px-3 py-1 text-xs"
                         >
                           Outcome received
                         </button>
                         <button
                           onClick={() => removeApp(a)}
                           aria-label={`Remove ${a.company}`}
-                          className="rounded-full bg-neutral-100 px-2 py-1 text-xs"
+                          className="rounded-full bg-stone-100 px-2 py-1 text-xs"
                         >
                           ✕
                         </button>
@@ -653,10 +663,10 @@ export default function Dashboard() {
 
             {closed.length > 0 && (
               <>
-                <h3 className="mt-4 text-sm font-semibold uppercase tracking-wide text-neutral-500">
+                <h3 className="mt-4 text-sm font-semibold uppercase tracking-wide text-stone-500">
                   Closed
                 </h3>
-                <ul className="mt-2 divide-y divide-neutral-100 text-sm text-neutral-400">
+                <ul className="mt-2 divide-y divide-stone-100 text-sm text-stone-400">
                   {closed.map((a) => (
                     <li key={a.id} className="flex justify-between py-2">
                       <span>
@@ -706,10 +716,10 @@ export default function Dashboard() {
         onReframed={() => bumpProgress("reframesEver")}
       />
 
-      <footer className="pb-6 text-center text-xs text-neutral-400">
+      <footer className="pb-6 text-center text-xs text-stone-400">
         Slow and steady. Built with Gemma 4, an open-weight model, for
-        Hacktoberfest Week 3. UX designed in Google Stitch with the Web
-        Awesome design system.
+        Hacktoberfest Week 3. UX designed in Google Stitch, rebuilt toward
+        a Voda-inspired pastel theme.
       </footer>
     </main>
   );

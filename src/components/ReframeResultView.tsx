@@ -24,27 +24,27 @@ export default function ReframeResultView({
   return (
     <div className="space-y-4">
       <div>
-        <h3 className="text-xs font-semibold uppercase tracking-wider text-neutral-500">
+        <h3 className="text-xs font-semibold uppercase tracking-wider text-stone-500">
           Your original words — untouched
         </h3>
-        <blockquote className="mt-1 whitespace-pre-wrap rounded-xl bg-neutral-100 p-3 font-mono text-sm">
+        <blockquote className="mt-1 whitespace-pre-wrap rounded-xl bg-stone-100 p-3 font-mono text-sm">
           {result.original}
         </blockquote>
       </div>
       <div>
         <div className="flex flex-wrap items-center gap-2">
-          <h3 className="text-xs font-semibold uppercase tracking-wider text-[#0071ec]">
+          <h3 className="text-xs font-semibold uppercase tracking-wider text-[#4338ca]">
             In plain words — same facts, plainer language
           </h3>
-          <span className="rounded-full bg-blue-50 px-2 py-0.5 text-xs text-blue-900">
+          <span className="rounded-full bg-indigo-50 px-2 py-0.5 text-xs text-indigo-900">
             {providerLabel(result)}
           </span>
         </div>
         <p className="mt-1 text-sm">{result.reframed}</p>
       </div>
       <div className="grid gap-3 text-sm sm:grid-cols-2">
-        <div className="rounded-xl bg-neutral-50 p-3">
-          <h4 className="text-xs font-semibold uppercase tracking-wider text-neutral-500">
+        <div className="rounded-xl bg-stone-50 p-3">
+          <h4 className="text-xs font-semibold uppercase tracking-wider text-stone-500">
             Known
           </h4>
           <p className="mt-1">{result.facts.decision}</p>
@@ -54,8 +54,8 @@ export default function ReframeResultView({
             ))}
           </ul>
         </div>
-        <div className="rounded-xl bg-neutral-50 p-3">
-          <h4 className="text-xs font-semibold uppercase tracking-wider text-neutral-500">
+        <div className="rounded-xl bg-stone-50 p-3">
+          <h4 className="text-xs font-semibold uppercase tracking-wider text-stone-500">
             Unknown — the message does not say
           </h4>
           <ul className="mt-1 list-disc pl-5">
@@ -71,7 +71,7 @@ export default function ReframeResultView({
           )}
         </div>
       </div>
-      <p className="text-xs text-neutral-400">
+      <p className="text-xs text-stone-400">
         {result.provider === "local"
           ? "Inference ran on this device. Nothing left the machine."
           : result.provider === "hosted"

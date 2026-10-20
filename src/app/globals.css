@@ -1,12 +1,13 @@
 @import "tailwindcss";
 
-/* Web Awesome design system (via Google Stitch): clean light surfaces,
-   cool neutrals, one brand-blue action color. Light is the designed
-   theme for Black Box; no auto dark flip, so the judged demo always
-   matches the design. */
+/* Black Box visual theme — Version A "pastel daylight" (Demo's pick,
+   2026-10-20, from the Stitch Voda explorations): warm cream background,
+   plum-gray stone text, pastel-tinted cards with big soft shadows,
+   deep indigo as the one loud action, Fraunces serif display type.
+   Light only; no auto dark flip, so the judged demo always matches. */
 :root {
-  --background: #f8f9fa;
-  --foreground: #1b1d26;
+  --background: #faf6f0;
+  --foreground: #44403c;
 }
 
 @theme inline {
@@ -14,12 +15,17 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-fraunces);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+::selection {
+  background: #ddd6fe;
 }
 
 /* Mood scale slider: the gradient track is drawn by the component;
@@ -56,7 +62,7 @@ input[type="range"].mood-scale::-moz-range-track {
   background: transparent;
 }
 input[type="range"].mood-scale:focus-visible {
-  outline: 2px solid #0071ec;
+  outline: 2px solid #4338ca;
   outline-offset: 4px;
   border-radius: 9999px;
 }

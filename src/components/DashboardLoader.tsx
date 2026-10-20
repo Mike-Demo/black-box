@@ -10,8 +10,8 @@ import dynamic from "next/dynamic";
 const Dashboard = dynamic(() => import("./Dashboard"), {
   ssr: false,
   loading: () => (
-    <main className="mx-auto flex min-h-screen w-full max-w-3xl flex-col gap-5 px-4 py-8">
-      <p className="text-neutral-500">Opening Black Box… 🦥</p>
+    <main className="mx-auto flex min-h-screen w-full max-w-3xl flex-col gap-6 px-4 py-10">
+      <p className="font-display text-lg text-stone-500">Opening Black Box… 🦥</p>
     </main>
   ),
 });

@@ -1,7 +1,15 @@
 # Black Box — UX design (Google Stitch)
 
-The interface was designed in **Google Stitch** before the restyle was
-implemented, using the open-source **Web Awesome Design System**:
+> **Current shipped theme (2026-10-20): Version A "pastel daylight"** —
+> see *Explorations* below. Demo picked the Voda-inspired pastel
+> direction, and the app was rebuilt toward it: warm cream background
+> (`#faf6f0`), plum-gray stone text, Fraunces serif display type,
+> pastel-tinted cards with big soft shadows, deep indigo (`#4338ca`) as
+> the one loud action. The Web Awesome system below was the first
+> restyle and remains the layout's skeleton.
+
+The interface was first designed in **Google Stitch** using the
+open-source **Web Awesome Design System**:
 
 - Source design system: `happy-code-DESIGN.md` (this folder) — copied from
   [Mike-Demo/happy-code-library/.stitch](https://github.com/Mike-Demo/happy-code-library/tree/main/.stitch)
@@ -26,7 +34,7 @@ one loud brand action (`#0071ec`), success/warning accents (`#00ac49` /
 `#fac22b`), thin borders, modest rounding, visible form labels, and
 uppercase letter-spaced section kickers.
 
-## Explorations — Voda-native directions (not implemented)
+## Explorations — Voda-native directions
 
 On 2026-10-20 Stitch was asked for two redesigns of the Today dashboard
 taking full inspiration from **Voda** (the LGBTQIA+ wellbeing app), with
@@ -40,7 +48,7 @@ taking full inspiration from **Voda** (the LGBTQIA+ wellbeing app), with
 
 Both keep the same content (budget, emoji-face mood scale, Deliberate
 Milestones, vault) in a much softer visual language — cream backgrounds,
-serif greetings, pastel or terracotta/sage tints, pill buttons. They are
-explorations for a possible future restyle; the shipped UI remains the
-Web Awesome system above, with a calmer spacing pass and the emoji-face
-scale handle adopted from them.
+serif greetings, pastel or terracotta/sage tints, pill buttons. **Demo
+chose Version A on 2026-10-20 and the app was rebuilt toward it** (see
+the note at the top of this file). Version B remains an unimplemented
+exploration.

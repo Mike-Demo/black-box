@@ -22,22 +22,22 @@ export default function SignIn({
 
   return (
     <main className="mx-auto flex min-h-screen w-full max-w-md flex-col justify-center px-4 py-10">
-      <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">
+      <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-stone-500">
         Slow and steady
       </p>
-      <h1 className="mt-2 text-center text-3xl font-bold text-[#1b1d26]">
+      <h1 className="font-display mt-2 text-center text-3xl font-semibold text-stone-800">
         Black Box
       </h1>
-      <p className="mt-1 text-center text-neutral-500">
+      <p className="mt-1 text-center text-stone-500">
         Your applications, at your pace.
       </p>
 
-      <section className="mt-8 rounded-3xl border border-neutral-200/80 bg-white p-6 shadow-[0_1px_4px_rgb(27_29_38/0.05)]">
+      <section className="mt-8 rounded-[2rem] bg-white p-6 shadow-[0_10px_36px_rgb(87_83_78/0.10)]">
         {!linkSent ? (
           <>
             <label
               htmlFor="bb-email"
-              className="text-xs font-semibold uppercase tracking-wider text-neutral-500"
+              className="text-xs font-semibold uppercase tracking-wider text-stone-500"
             >
               Email address
             </label>
@@ -48,18 +48,18 @@ export default function SignIn({
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@example.com"
-              className="mt-2 w-full rounded-xl border border-neutral-300 p-3 text-sm focus:border-[#0071ec] focus:outline-none"
+              className="mt-2 w-full rounded-xl border border-stone-300 p-3 text-sm focus:border-[#4338ca] focus:outline-none"
             />
             <button
               onClick={() => valid && setLinkSent(true)}
               disabled={!valid}
-              className="mt-4 w-full rounded-full bg-[#0071ec] px-5 py-2.5 text-sm font-semibold text-white disabled:opacity-40"
+              className="mt-4 w-full rounded-full bg-[#4338ca] px-5 py-2.5 text-sm font-semibold text-white disabled:opacity-40"
             >
               Email me a sign-in link →
             </button>
             <button
               onClick={onContinueAsGuest}
-              className="mt-3 w-full py-1 text-sm text-[#0071ec]"
+              className="mt-3 w-full py-1 text-sm text-[#4338ca]"
             >
               Continue without signing in →
             </button>
@@ -67,9 +67,9 @@ export default function SignIn({
         ) : (
           <>
             <h2 className="text-base font-semibold">Check your inbox</h2>
-            <p className="mt-1 text-sm text-neutral-500">
+            <p className="mt-1 text-sm text-stone-500">
               A sign-in link is on its way to{" "}
-              <span className="font-medium text-neutral-700">
+              <span className="font-medium text-stone-700">
                 {email.trim()}
               </span>
               . In a live build it would arrive by email; in this demo it is
@@ -77,13 +77,13 @@ export default function SignIn({
             </p>
             <button
               onClick={() => onSignedIn(email.trim())}
-              className="mt-4 w-full rounded-full bg-[#0071ec] px-5 py-2.5 text-sm font-semibold text-white"
+              className="mt-4 w-full rounded-full bg-[#4338ca] px-5 py-2.5 text-sm font-semibold text-white"
             >
               Open the simulated sign-in link
             </button>
             <button
               onClick={() => setLinkSent(false)}
-              className="mt-3 w-full py-1 text-sm text-neutral-500"
+              className="mt-3 w-full py-1 text-sm text-stone-500"
             >
               Use a different email
             </button>
@@ -91,13 +91,13 @@ export default function SignIn({
         )}
       </section>
 
-      <p className="mt-4 text-center text-xs leading-relaxed text-neutral-400">
+      <p className="mt-4 text-center text-xs leading-relaxed text-stone-400">
         Demo build: the sign-in link is simulated. No real email is sent,
         no server account is created, and everything you save stays in this
         browser.
       </p>
       <p className="mt-3 text-center">
-        <span className="rounded-full border border-neutral-200 bg-white px-3 py-1 text-xs text-neutral-500">
+        <span className="rounded-full border border-stone-200 bg-white px-3 py-1 text-xs text-stone-500">
           ● On-device storage mode — sign-in is simulated for this demo
         </span>
       </p>

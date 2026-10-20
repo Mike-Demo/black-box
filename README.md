@@ -34,7 +34,7 @@ The reframe guardrails come from the open-source [mental-health-support skill](h
 - Next.js (App Router) + TypeScript + Tailwind CSS — one small codebase
 - Gemma 4 (`gemma4:e4b` locally via Ollama; hosted Gemma 4 for the demo)
 - No database — state in browser local storage. Sign-in is a simulated email-link flow for the demo (labelled in the UI); the session never leaves the browser
-- UX designed in **Google Stitch** using the open-source Web Awesome design system (`DESIGN.md` borrowed from [happy-code-library](https://github.com/Mike-Demo/happy-code-library/tree/main/.stitch)); the Stitch project, screens, and exports live in [`design/`](design/)
+- UX designed in **Google Stitch**: first with the open-source Web Awesome design system (`DESIGN.md` borrowed from [happy-code-library](https://github.com/Mike-Demo/happy-code-library/tree/main/.stitch)), then rebuilt toward a Voda-inspired pastel direction ("Version A") that Stitch generated with no design system attached — cream background, Fraunces serif display type, pastel-tinted cards, indigo pill actions. The Stitch project, screens, and explorations live in [`design/`](design/)
 - Deployed as a single web service on **Render**
 
 ## Run it locally

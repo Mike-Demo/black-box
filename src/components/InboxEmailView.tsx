@@ -17,10 +17,10 @@ export const STATUS_LABEL: Record<InboxEmailStatus, string> = {
 };
 
 export const STATUS_CHIP: Record<InboxEmailStatus, string> = {
-  waiting: "bg-neutral-100 text-neutral-600",
-  "no-response-yet": "bg-neutral-100 text-neutral-600",
-  outcome: "bg-amber-100 text-amber-900",
-  "next-step": "bg-green-100 text-green-900",
+  waiting: "bg-stone-100 text-stone-600",
+  "no-response-yet": "bg-stone-100 text-stone-600",
+  outcome: "bg-[#fcf3dc] text-[#77620f]",
+  "next-step": "bg-[#e2f3e7] text-[#1e6b41]",
 };
 
 export default function InboxEmailView({
@@ -63,15 +63,15 @@ export default function InboxEmailView({
   }
 
   return (
-    <section className="rounded-3xl border border-neutral-200/80 bg-white p-6 shadow-[0_1px_4px_rgb(27_29_38/0.05)]">
-      <button onClick={onBack} className="text-sm text-[#0071ec]">
+    <section className="rounded-[2rem] bg-white p-6 shadow-[0_10px_36px_rgb(87_83_78/0.10)]">
+      <button onClick={onBack} className="text-sm text-[#4338ca]">
         ← Back to the vault
       </button>
 
       <div className="mt-3 flex flex-wrap items-start justify-between gap-2">
         <div>
           <h2 className="text-lg font-semibold">{email.subject}</h2>
-          <p className="mt-0.5 text-sm text-neutral-500">
+          <p className="mt-0.5 text-sm text-stone-500">
             {email.from} · received{" "}
             {new Date(email.receivedAt).toLocaleString()}
             {email.demo && " · demo message"}
@@ -85,10 +85,10 @@ export default function InboxEmailView({
       </div>
 
       <div className="mt-4">
-        <h3 className="text-xs font-semibold uppercase tracking-wider text-neutral-500">
+        <h3 className="text-xs font-semibold uppercase tracking-wider text-stone-500">
           The email, word for word
         </h3>
-        <blockquote className="mt-1 whitespace-pre-wrap rounded-xl bg-neutral-100 p-3 font-mono text-sm">
+        <blockquote className="mt-1 whitespace-pre-wrap rounded-xl bg-stone-100 p-3 font-mono text-sm">
           {email.body}
         </blockquote>
       </div>
@@ -97,34 +97,34 @@ export default function InboxEmailView({
         <button
           onClick={runReframe}
           disabled={busy}
-          className="mt-4 rounded-full border border-neutral-300 px-5 py-2 text-sm disabled:opacity-40"
+          className="mt-4 rounded-full border border-stone-300 px-5 py-2 text-sm disabled:opacity-40"
         >
           {busy ? "Reading…" : "Read it in plain words (Gemma reframe)"}
         </button>
       )}
-      {error && <p className="mt-3 text-sm text-red-700">{error}</p>}
+      {error && <p className="mt-3 text-sm text-rose-700">{error}</p>}
       {result && (
         <div className="mt-5">
           <ReframeResultView result={result} />
         </div>
       )}
 
-      <div className="mt-6 flex flex-wrap items-center gap-2 border-t border-neutral-100 pt-4">
+      <div className="mt-6 flex flex-wrap items-center gap-2 border-t border-stone-100 pt-4">
         <button
           onClick={() => onStatus("outcome")}
-          className="rounded-full bg-[#0071ec] px-4 py-1.5 text-sm font-semibold text-white"
+          className="rounded-full bg-[#4338ca] px-4 py-1.5 text-sm font-semibold text-white"
         >
           Mark outcome received
         </button>
         <button
           onClick={() => onStatus("no-response-yet")}
-          className="rounded-full border border-neutral-300 px-4 py-1.5 text-sm"
+          className="rounded-full border border-stone-300 px-4 py-1.5 text-sm"
         >
           No response yet
         </button>
         <button
           onClick={onRemove}
-          className="rounded-full px-3 py-1.5 text-sm text-red-700"
+          className="rounded-full px-3 py-1.5 text-sm text-rose-700"
         >
           Remove from Black Box
         </button>

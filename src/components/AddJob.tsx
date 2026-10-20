@@ -89,9 +89,9 @@ export default function AddJob({
   }
 
   return (
-    <section className="rounded-3xl border border-neutral-200/80 bg-white p-6 shadow-[0_1px_4px_rgb(27_29_38/0.05)]">
+    <section className="rounded-[2rem] bg-white p-6 shadow-[0_10px_36px_rgb(87_83_78/0.10)]">
       <h2 className="text-lg font-semibold">Add a job — slowly</h2>
-      <p className="mt-1 text-sm text-neutral-500">
+      <p className="mt-1 text-sm text-stone-500">
         One at a time, on purpose. New roles sit in a 48-hour hold before
         they can be marked applied.
       </p>
@@ -104,10 +104,10 @@ export default function AddJob({
           value={profile}
           onChange={(e) => setProfile(e.target.value)}
           rows={4}
-          className="mt-2 w-full rounded-xl border border-neutral-300 p-3 text-sm"
+          className="mt-2 w-full rounded-xl border border-stone-300 p-3 text-sm"
           placeholder="Roles you want, skills you actually have, location / work-type constraints, salary floor — only what is true and stated."
         />
-        <p className="mt-1 text-xs text-neutral-400">
+        <p className="mt-1 text-xs text-stone-400">
           Stored only in this browser. Gemma scores strictly against what
           you write here — it will not assume anything you leave out.
         </p>
@@ -117,27 +117,27 @@ export default function AddJob({
         <input
           value={company}
           onChange={(e) => setCompany(e.target.value)}
-          className="rounded-xl border border-neutral-300 p-3 text-sm"
+          className="rounded-xl border border-stone-300 p-3 text-sm"
           placeholder="Company"
         />
         <input
           value={role}
           onChange={(e) => setRole(e.target.value)}
-          className="rounded-xl border border-neutral-300 p-3 text-sm"
+          className="rounded-xl border border-stone-300 p-3 text-sm"
           placeholder="Role"
         />
       </div>
       <input
         value={url}
         onChange={(e) => setUrl(e.target.value)}
-        className="mt-3 w-full rounded-xl border border-neutral-300 p-3 text-sm"
+        className="mt-3 w-full rounded-xl border border-stone-300 p-3 text-sm"
         placeholder="Posting URL (optional)"
       />
       <textarea
         value={jd}
         onChange={(e) => setJd(e.target.value)}
         rows={5}
-        className="mt-3 w-full rounded-xl border border-neutral-300 p-3 text-sm"
+        className="mt-3 w-full rounded-xl border border-stone-300 p-3 text-sm"
         placeholder="Paste the job description to score it (optional)…"
       />
 
@@ -145,32 +145,32 @@ export default function AddJob({
         <button
           onClick={runScore}
           disabled={busy || jd.trim() === "" || profile.trim() === ""}
-          className="rounded-full bg-[#0071ec] px-5 py-2 text-sm text-white disabled:opacity-40"
+          className="rounded-full bg-[#4338ca] px-5 py-2 text-sm text-white disabled:opacity-40"
         >
           {busy ? "Scoring…" : "Score with Gemma"}
         </button>
         <button
           onClick={saveDraft}
           disabled={!canSave}
-          className="rounded-full bg-neutral-900 px-5 py-2 text-sm text-white disabled:opacity-40"
+          className="rounded-full bg-stone-900 px-5 py-2 text-sm text-white disabled:opacity-40"
         >
           Save to the 48-hour hold
         </button>
         {profile.trim() === "" && jd.trim() !== "" && (
-          <span className="text-xs text-neutral-400">
+          <span className="text-xs text-stone-400">
             Add your profile above before scoring.
           </span>
         )}
       </div>
 
-      {error && <p className="mt-3 text-sm text-red-700">{error}</p>}
-      {saved && <p className="mt-3 text-sm text-blue-900">{saved}</p>}
+      {error && <p className="mt-3 text-sm text-rose-700">{error}</p>}
+      {saved && <p className="mt-3 text-sm text-indigo-900">{saved}</p>}
 
       {score && (
-        <div className="mt-4 rounded-xl bg-neutral-50 p-4 text-sm">
+        <div className="mt-4 rounded-xl bg-stone-50 p-4 text-sm">
           <p>
             <span className="text-2xl font-bold">{score.score}/10</span>{" "}
-            <span className="text-neutral-500">
+            <span className="text-stone-500">
               match against your stated profile
             </span>
           </p>
@@ -179,7 +179,7 @@ export default function AddJob({
               <li key={i}>{r}</li>
             ))}
           </ul>
-          <p className="mt-2 text-xs text-neutral-400">
+          <p className="mt-2 text-xs text-stone-400">
             Scored by Gemma ({score.model}) via the {score.provider} path.
             A low score is information, not a verdict — the hold applies
             either way.
