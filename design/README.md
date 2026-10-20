@@ -18,6 +18,7 @@ implemented, using the open-source **Web Awesome Design System**:
 | Today dashboard (budget, hold, inbox summary, mood) | Black Box - Today Dashboard | `stitch/dashboard.html` |
 | The Vault (inbox, ready-to-decide, reframe) | Black Box - The Vault | `stitch/vault.html` |
 | Email detail + Gemma reframe | Black Box - Email Reframe Detail | `stitch/email.html` |
+| Mood scale + progress cards | Black Box - Check-in & Progress | `stitch/progress.html` |
 
 The implementation follows these screens: light surfaces (`#f8f9fa`
 background, white cards), ink text (`#1b1d26`), quiet text (`#545868`),

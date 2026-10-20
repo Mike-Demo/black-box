@@ -6,11 +6,11 @@ you don't have to hold the urge.**
 ```mermaid
 flowchart LR
   subgraph Browser["Your browser — all personal data lives here"]
-    Dash["Dashboard<br/>daily budget · mood check-in · 7-day trend"]
+    Dash["Dashboard<br/>daily budget · mood scale · progress cards · 7-day trend"]
     Vault["The Vault<br/>one daily window · 4·4·4 breathing gate"]
     AddJob["Add a Job<br/>profile + JD → score → hold"]
     Reframe["Reframe panel<br/>inside the vault"]
-    Store[("On-device browser storage<br/>drafts + 48h expiry · budget · mood · profile · inbox · demo session<br/>No server account. No database.")]
+    Store[("On-device browser storage<br/>drafts + 48h expiry · budget · mood · profile · inbox · demo session · progress counters<br/>No server account. No database.")]
     Dash --- Store
     Vault --- Store
     AddJob --- Store

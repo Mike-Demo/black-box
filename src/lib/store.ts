@@ -10,6 +10,7 @@ import type {
   InboxEmail,
   JobApplication,
   MoodEntry,
+  ProgressState,
   SessionState,
   VaultState,
 } from "./types";
@@ -22,6 +23,7 @@ const KEYS = {
   session: "blackbox.session.v1",
   inbox: "blackbox.inbox.v1",
   guest: "blackbox.guest.v1",
+  progress: "blackbox.progress.v1",
 } as const;
 
 export function todayLocal(now = new Date()): string {
@@ -136,6 +138,22 @@ function seedInbox(now = Date.now()): InboxEmail[] {
 
 export function useInbox() {
   return useStored<InboxEmail[]>(KEYS.inbox, seedInbox());
+}
+
+const DEFAULT_PROGRESS: ProgressState = {
+  draftsEver: 0,
+  appliedEver: 0,
+  letGoEver: 0,
+  heldFullEver: 0,
+  scoresEver: 0,
+  reframesEver: 0,
+  budgetSpentDates: [],
+  openedDates: [],
+  earnedAt: {},
+};
+
+export function useProgress() {
+  return useStored<ProgressState>(KEYS.progress, DEFAULT_PROGRESS);
 }
 
 const DEFAULT_VAULT: VaultState = {

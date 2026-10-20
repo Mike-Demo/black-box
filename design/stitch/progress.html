@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Black Box — Check-in &amp; Journey</title>
+<!-- Fonts & Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration matching design system -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-secondary": "#ffffff",
+            "on-primary-container": "#fffdff",
+            "tertiary-container": "#c75000",
+            "on-secondary-fixed-variant": "#424656",
+            "on-error": "#ffffff",
+            "surface-bright": "#f8f9fa",
+            "inverse-surface": "#2e3132",
+            "on-primary-fixed-variant": "#004493",
+            "on-tertiary-fixed": "#351000",
+            "error-container": "#ffdad6",
+            "secondary-container": "#dee1f5",
+            "primary-container": "#0071ec",
+            "surface-container-low": "#f3f4f5",
+            "palette-yellow": "#fac22b",
+            "on-background": "#191c1d",
+            "tertiary": "#9f3e00",
+            "on-tertiary-fixed-variant": "#7b2f00",
+            "primary": "#0059bd",
+            "inverse-on-surface": "#f0f1f2",
+            "background": "#f8f9fa",
+            "secondary": "#5a5e6e",
+            "outline-variant": "#c1c6d6",
+            "on-surface-variant": "#414754",
+            "error": "#ba1a1a",
+            "palette-green": "#00ac49",
+            "surface-container-highest": "#e1e3e4",
+            "surface-dim": "#d9dadb",
+            "primary-fixed": "#d8e2ff",
+            "surface": "#ffffff",
+            "tertiary-fixed-dim": "#ffb695",
+            "secondary-fixed": "#dee1f5",
+            "on-primary-fixed": "#001a41",
+            "surface-container": "#edeeef",
+            "tertiary-fixed": "#ffdbcc",
+            "surface-container-high": "#e7e8e9",
+            "palette-red": "#dc3146",
+            "on-error-container": "#93000a",
+            "on-surface": "#191c1d",
+            "on-secondary-fixed": "#171b29",
+            "surface-container-lowest": "#ffffff",
+            "on-secondary-container": "#606474",
+            "neutral-ink": "#1b1d26",
+            "on-tertiary-container": "#fffdff",
+            "inverse-primary": "#adc6ff",
+            "surface-variant": "#e1e3e4",
+            "secondary-fixed-dim": "#c2c6d8",
+            "primary-fixed-dim": "#adc6ff",
+            "on-primary": "#ffffff",
+            "outline": "#727786",
+            "on-tertiary": "#ffffff",
+            "surface-tint": "#005bc0"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "space-3xl": "5rem",
+            "space-sm": "0.5rem",
+            "space-lg": "1.5rem",
+            "space-2xl": "3rem",
+            "space-md": "1rem",
+            "space-xl": "2rem",
+            "gutter": "2rem",
+            "space-xs": "0.25rem",
+            "margin": "2rem"
+          },
+          "fontFamily": {
+            "headline-3xl": ["\"Inter, ui-sans-serif, system-ui, sans-serif\""],
+            "code": ["\"ui-monospace, monospace\""],
+            "body-sm": ["\"Inter, ui-sans-serif, system-ui, sans-serif\""],
+            "label-md": ["\"Inter, ui-sans-serif, system-ui, sans-serif\""],
+            "body-md": ["\"Inter, ui-sans-serif, system-ui, sans-serif\""],
+            "headline-lg": ["\"Inter, ui-sans-serif, system-ui, sans-serif\""],
+            "body-lg": ["\"Inter, ui-sans-serif, system-ui, sans-serif\""],
+            "headline-xl": ["\"Inter, ui-sans-serif, system-ui, sans-serif\""],
+            "headline-4xl": ["\"Inter, ui-sans-serif, system-ui, sans-serif\""],
+            "headline-5xl": ["\"Inter, ui-sans-serif, system-ui, sans-serif\""],
+            "headline-2xl": ["\"Inter, ui-sans-serif, system-ui, sans-serif\""],
+            "label-sm": ["\"Inter, ui-sans-serif, system-ui, sans-serif\""]
+          },
+          "fontSize": {
+            "headline-3xl": ["41px", { "lineHeight": "1.2", "fontWeight": "600" }],
+            "code": ["13px", { "lineHeight": "1.5", "fontWeight": "400" }],
+            "body-sm": ["12px", { "lineHeight": "1.5", "fontWeight": "400" }],
+            "label-md": ["11px", { "lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "600" }],
+            "body-md": ["14px", { "lineHeight": "1.6", "fontWeight": "400" }],
+            "headline-lg": ["20px", { "lineHeight": "1.2", "fontWeight": "600" }],
+            "body-lg": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+            "headline-xl": ["25px", { "lineHeight": "1.2", "fontWeight": "600" }],
+            "headline-4xl": ["52px", { "lineHeight": "1.2", "fontWeight": "600" }],
+            "headline-5xl": ["66px", { "lineHeight": "1.2", "fontWeight": "600" }],
+            "headline-2xl": ["32px", { "lineHeight": "1.2", "fontWeight": "600" }],
+            "label-sm": ["10px", { "lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "600" }]
+          }
+        }
+      }
+    };
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+    }
+    .track-gradient {
+      background: linear-gradient(90deg, #dc3146 0%, #fac22b 50%, #00ac49 100%);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased min-h-full flex flex-col font-body-md text-body-md selection:bg-secondary-container selection:text-neutral-ink">
+<!-- TopNavBar (Shared Component Execution) -->
+<header class="w-full sticky top-0 z-50 bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline">
+<div class="flex items-center justify-between px-space-xl max-w-7xl mx-auto h-16">
+<!-- Brand & Navigation Cluster -->
+<div class="flex items-center gap-space-xl">
+<span class="font-headline-lg text-headline-lg text-on-surface dark:text-inverse-on-surface tracking-tight font-semibold">
+          Black Box
+        </span>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-primary dark:text-inverse-primary font-semibold border-b-2 border-primary dark:border-inverse-primary py-4" href="#">Dashboard</a>
+<a class="text-secondary dark:text-secondary-fixed py-4 hover:text-on-surface dark:hover:text-inverse-on-surface transition-colors" href="#">Applications</a>
+<a class="text-secondary dark:text-secondary-fixed py-4 hover:text-on-surface dark:hover:text-inverse-on-surface transition-colors" href="#">Companies</a>
+<a class="text-secondary dark:text-secondary-fixed py-4 hover:text-on-surface dark:hover:text-inverse-on-surface transition-colors" href="#">Settings</a>
+</nav>
+</div>
+<!-- Trailing Action Badges -->
+<div class="flex items-center gap-space-md">
+<span class="text-body-sm font-body-sm text-secondary bg-surface-container-low px-2.5 py-1 rounded border border-outline-variant">
+          hey.demo@mikedemo.email
+        </span>
+<button class="text-body-sm font-body-sm text-secondary hover:text-on-surface transition-colors duration-150 font-medium">
+          Sign out
+        </button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 py-space-2xl px-space-md md:px-space-xl">
+<div class="max-w-4xl mx-auto space-y-space-xl">
+<!-- Subdued Header Section -->
+<section class="space-y-1.5">
+<div class="text-label-sm font-label-sm text-secondary tracking-widest uppercase">
+          DAILY RHYTHM · REFLECTION &amp; MILESTONES
+        </div>
+<h1 class="text-headline-2xl font-headline-2xl text-neutral-ink tracking-tight">
+          Check-in &amp; Journey
+        </h1>
+<p class="text-body-lg font-body-lg text-secondary max-w-2xl">
+          A bounded, compassionate record of your process. No gamification, no pressure.
+        </p>
+</section>
+<!-- SECTION 1: HOW IS TODAY (Mood Scale) -->
+<section class="bg-surface rounded-xl border border-outline-variant p-6 md:p-8 space-y-8 shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
+<!-- Header row -->
+<div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 border-b border-surface-container pb-4">
+<h2 class="text-label-md font-label-md text-on-surface tracking-wider uppercase font-semibold">
+            HOW IS TODAY
+          </h2>
+<span class="text-body-sm font-body-sm text-secondary">
+            No streaks. Just a mark for today, if you want one.
+          </span>
+</div>
+<!-- Slider Scale Workspace -->
+<div class="space-y-6 pt-2">
+<!-- Interactive Scale Track -->
+<div class="relative py-4 select-none">
+<!-- Track bar -->
+<div class="h-3.5 w-full rounded-full track-gradient opacity-90 shadow-inner relative">
+<!-- Draggable / Positioned Thumb -->
+<div class="absolute top-1/2 -translate-y-1/2 left-[72%] -translate-x-1/2 w-8 h-8 rounded-full bg-surface border-2 border-neutral-ink shadow-md flex items-center justify-center cursor-pointer transition-transform hover:scale-105 active:scale-95">
+<div class="w-2.5 h-2.5 rounded-full bg-neutral-ink"></div>
+</div>
+</div>
+<!-- Extremity Labels -->
+<div class="flex justify-between items-center mt-3 text-body-sm font-body-sm text-secondary">
+<span class="flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-palette-red inline-block"></span>
+                Rough
+              </span>
+<span class="flex items-center gap-1">
+                Good
+                <span class="w-1.5 h-1.5 rounded-full bg-palette-green inline-block"></span>
+</span>
+</div>
+</div>
+<!-- Active Status Readout -->
+<div class="bg-surface-container-low rounded p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2 border border-surface-container-high">
+<div>
+<div class="text-headline-lg font-headline-lg text-neutral-ink font-semibold flex items-center gap-2">
+                Steady
+                <span class="inline-block w-2 h-2 rounded-full bg-palette-green"></span>
+</div>
+<p class="text-body-md font-body-md text-secondary">
+                Calm, deliberate, moving forward without urgency.
+              </p>
+</div>
+<div class="text-label-sm font-label-sm text-secondary bg-surface px-2.5 py-1 rounded border border-outline-variant w-fit self-start sm:self-auto">
+              Marked at 09:42 AM
+            </div>
+</div>
+</div>
+<!-- Rhythm Row: Last 7 days -->
+<div class="border-t border-surface-container pt-6 space-y-3">
+<div class="text-label-sm font-label-sm text-secondary uppercase tracking-wider">
+            Last 7 days rhythm
+          </div>
+<div class="flex items-center justify-between sm:justify-start sm:gap-8 overflow-x-auto py-1">
+<!-- Day 1: Wed (Green) -->
+<div class="flex flex-col items-center gap-2">
+<span class="text-body-sm font-body-sm text-secondary font-medium">W</span>
+<div class="w-6 h-6 rounded-full bg-palette-green/15 text-palette-green flex items-center justify-center border border-palette-green/30" title="Recorded: Calm">
+<div class="w-2 h-2 rounded-full bg-palette-green"></div>
+</div>
+</div>
+<!-- Day 2: Thu (Amber) -->
+<div class="flex flex-col items-center gap-2">
+<span class="text-body-sm font-body-sm text-secondary font-medium">T</span>
+<div class="w-6 h-6 rounded-full bg-palette-yellow/20 text-tertiary flex items-center justify-center border border-palette-yellow/40" title="Recorded: Reflective">
+<div class="w-2 h-2 rounded-full bg-palette-yellow"></div>
+</div>
+</div>
+<!-- Day 3: Fri (Green) -->
+<div class="flex flex-col items-center gap-2">
+<span class="text-body-sm font-body-sm text-secondary font-medium">F</span>
+<div class="w-6 h-6 rounded-full bg-palette-green/15 text-palette-green flex items-center justify-center border border-palette-green/30" title="Recorded: Steady">
+<div class="w-2 h-2 rounded-full bg-palette-green"></div>
+</div>
+</div>
+<!-- Day 4: Sat (Unrecorded / Rest) -->
+<div class="flex flex-col items-center gap-2">
+<span class="text-body-sm font-body-sm text-secondary font-medium">S</span>
+<div class="w-6 h-6 rounded-full bg-surface-container-high border border-outline-variant flex items-center justify-center" title="No mark taken">
+<div class="w-1.5 h-1.5 rounded-full bg-secondary"></div>
+</div>
+</div>
+<!-- Day 5: Sun (Unrecorded / Rest) -->
+<div class="flex flex-col items-center gap-2">
+<span class="text-body-sm font-body-sm text-secondary font-medium">S</span>
+<div class="w-6 h-6 rounded-full bg-surface-container-high border border-outline-variant flex items-center justify-center" title="No mark taken">
+<div class="w-1.5 h-1.5 rounded-full bg-secondary"></div>
+</div>
+</div>
+<!-- Day 6: Mon (Amber) -->
+<div class="flex flex-col items-center gap-2">
+<span class="text-body-sm font-body-sm text-secondary font-medium">M</span>
+<div class="w-6 h-6 rounded-full bg-palette-yellow/20 text-tertiary flex items-center justify-center border border-palette-yellow/40" title="Recorded: Focused">
+<div class="w-2 h-2 rounded-full bg-palette-yellow"></div>
+</div>
+</div>
+<!-- Day 7: Tue (Today - Active Green) -->
+<div class="flex flex-col items-center gap-2">
+<span class="text-body-sm font-body-sm text-neutral-ink font-semibold">T</span>
+<div class="w-6 h-6 rounded-full bg-palette-green text-on-primary flex items-center justify-center shadow-sm" title="Today: Steady">
+<div class="w-2 h-2 rounded-full bg-surface"></div>
+</div>
+</div>
+</div>
+<p class="text-body-sm font-body-sm text-secondary pt-1">
+            Gaps represent natural pauses, deliberate rest, or simply choosing not to log.
+          </p>
+</div>
+</section>
+<!-- SECTION 2: PROGRESS (Achievement Cards) -->
+<section class="bg-surface rounded-xl border border-outline-variant p-6 md:p-8 space-y-6 shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
+<!-- Header row -->
+<div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 border-b border-surface-container pb-4">
+<div class="space-y-0.5">
+<h2 class="text-label-md font-label-md text-on-surface tracking-wider uppercase font-semibold">
+              PROGRESS
+            </h2>
+<p class="text-body-sm font-body-sm text-secondary">
+              Deliberate milestones celebrating restraint, reflection, and patience.
+            </p>
+</div>
+<span class="text-label-sm font-label-sm text-secondary bg-surface-container-low px-2 py-0.5 rounded border border-outline-variant w-fit">
+            3 of 10 cards
+          </span>
+</div>
+<!-- 3-Column Milestone Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Card 1 (Earned) -->
+<div class="rounded-xl border border-outline-variant bg-surface-container-lowest p-5 flex flex-col justify-between hover:border-primary/50 transition-colors duration-150 space-y-4">
+<div class="space-y-3">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</div>
+<div>
+<h3 class="text-body-lg font-headline-lg text-neutral-ink font-semibold">
+                  First hold
+                </h3>
+<p class="text-body-sm font-body-sm text-secondary mt-1">
+                  You saved a draft to the 48-hour hold.
+                </p>
+</div>
+</div>
+<div class="pt-3 border-t border-surface-container text-label-sm font-label-sm text-secondary">
+              Earned Oct 20
+            </div>
+</div>
+<!-- Card 2 (Earned) -->
+<div class="rounded-xl border border-outline-variant bg-surface-container-lowest p-5 flex flex-col justify-between hover:border-palette-green transition-colors duration-150 space-y-4">
+<div class="space-y-3">
+<div class="w-8 h-8 rounded-full bg-palette-green text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">hourglass_empty</span>
+</div>
+<div>
+<h3 class="text-body-lg font-headline-lg text-neutral-ink font-semibold">
+                  The full wait
+                </h3>
+<p class="text-body-sm font-body-sm text-secondary mt-1">
+                  You decided after the whole 48 hours.
+                </p>
+</div>
+</div>
+<div class="pt-3 border-t border-surface-container text-label-sm font-label-sm text-secondary">
+              Earned Oct 22
+            </div>
+</div>
+<!-- Card 3 (Earned) -->
+<div class="rounded-xl border border-outline-variant bg-surface-container-lowest p-5 flex flex-col justify-between hover:border-primary/50 transition-colors duration-150 space-y-4">
+<div class="space-y-3">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</div>
+<div>
+<h3 class="text-body-lg font-headline-lg text-neutral-ink font-semibold">
+                  Read it calmly
+                </h3>
+<p class="text-body-sm font-body-sm text-secondary mt-1">
+                  You used a Gemma reframe.
+                </p>
+</div>
+</div>
+<div class="pt-3 border-t border-surface-container text-label-sm font-label-sm text-secondary">
+              Earned Oct 24
+            </div>
+</div>
+<!-- Card 4 (Unearned) -->
+<div class="rounded-xl border border-dashed border-outline-variant bg-surface-container-low/40 p-5 flex flex-col justify-between space-y-4">
+<div class="space-y-3">
+<div class="w-8 h-8 rounded-full border border-outline text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px] text-secondary">grid_view</span>
+</div>
+<div>
+<h3 class="text-body-lg font-headline-lg text-secondary font-semibold">
+                  Five windows
+                </h3>
+<p class="text-body-sm font-body-sm text-secondary mt-1">
+                  Open the vault on 5 different days.
+                </p>
+</div>
+</div>
+<div class="pt-3 border-t border-surface-container text-label-sm font-label-sm text-secondary flex justify-between items-center">
+<span>Progress</span>
+<span class="font-semibold text-neutral-ink">2 / 5</span>
+</div>
+</div>
+<!-- Card 5 (Unearned) -->
+<div class="rounded-xl border border-dashed border-outline-variant bg-surface-container-low/40 p-5 flex flex-col justify-between space-y-4">
+<div class="space-y-3">
+<div class="w-8 h-8 rounded-full border border-outline text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px] text-secondary">radio_button_checked</span>
+</div>
+<div>
+<h3 class="text-body-lg font-headline-lg text-secondary font-semibold">
+                  Seven marks
+                </h3>
+<p class="text-body-sm font-body-sm text-secondary mt-1">
+                  Mark your mood on 7 days.
+                </p>
+</div>
+</div>
+<div class="pt-3 border-t border-surface-container text-label-sm font-label-sm text-secondary flex justify-between items-center">
+<span>Progress</span>
+<span class="font-semibold text-neutral-ink">4 / 7</span>
+</div>
+</div>
+<!-- Card 6 (Unearned) -->
+<div class="rounded-xl border border-dashed border-outline-variant bg-surface-container-low/40 p-5 flex flex-col justify-between space-y-4">
+<div class="space-y-3">
+<div class="w-8 h-8 rounded-full border border-outline text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px] text-secondary">close</span>
+</div>
+<div>
+<h3 class="text-body-lg font-headline-lg text-secondary font-semibold">
+                  Let one go
+                </h3>
+<p class="text-body-sm font-body-sm text-secondary mt-1">
+                  Release a draft instead of applying.
+                </p>
+</div>
+</div>
+<div class="pt-3 border-t border-surface-container text-label-sm font-label-sm text-secondary flex justify-between items-center">
+<span>Status</span>
+<span class="text-secondary">Unearned</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer (Shared Component Execution) -->
+<footer class="w-full mt-auto bg-surface-container-low dark:bg-inverse-surface border-t border-outline-variant dark:border-outline">
+<div class="flex flex-col md:flex-row items-center justify-between px-space-xl py-space-lg max-w-7xl mx-auto gap-space-md text-body-sm font-body-sm">
+<div class="text-secondary dark:text-secondary-fixed">
+        © 2025 Black Box. Deliberate job-search infrastructure.
+      </div>
+<div class="flex items-center gap-space-lg">
+<a class="text-secondary dark:text-secondary-fixed hover:text-primary dark:hover:text-inverse-primary transition-colors duration-150" href="#">Manifesto</a>
+<a class="text-secondary dark:text-secondary-fixed hover:text-primary dark:hover:text-inverse-primary transition-colors duration-150" href="#">Privacy</a>
+<a class="text-secondary dark:text-secondary-fixed hover:text-primary dark:hover:text-inverse-primary transition-colors duration-150" href="#">Terms</a>
+<a class="text-secondary dark:text-secondary-fixed hover:text-primary dark:hover:text-inverse-primary transition-colors duration-150" href="#">Documentation</a>
+</div>
+</div>
+</footer>
+</body></html>

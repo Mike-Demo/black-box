@@ -23,8 +23,12 @@ interface ScoreResponse {
 
 export default function AddJob({
   provider,
+  onSavedDraft,
+  onScored,
 }: {
   provider?: "local" | "hosted";
+  onSavedDraft?: () => void;
+  onScored?: () => void;
 }) {
   const { value: profile, update: setProfile } = useProfile();
   const { update: setApplications } = useApplications();
@@ -51,6 +55,7 @@ export default function AddJob({
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? "Scoring failed");
       setScore(data as ScoreResponse);
+      onScored?.();
     } catch (e) {
       setError(e instanceof Error ? e.message : "Scoring failed.");
     } finally {
@@ -72,6 +77,7 @@ export default function AddJob({
       qualityReasons: score?.reasons,
     };
     setApplications((prev) => [app, ...prev]);
+    onSavedDraft?.();
     setSaved(
       `Saved to the hold. It will be ready to review on ${new Date(app.reviewAfter).toLocaleString()}.`,
     );

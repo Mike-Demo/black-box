@@ -29,12 +29,14 @@ export default function InboxEmailView({
   onBack,
   onStatus,
   onRemove,
+  onReframed,
 }: {
   email: InboxEmail;
   provider?: "local" | "hosted";
   onBack: () => void;
   onStatus: (status: InboxEmailStatus) => void;
   onRemove: () => void;
+  onReframed?: () => void;
 }) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -52,6 +54,7 @@ export default function InboxEmailView({
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? "Request failed");
       setResult(data as ReframeResult);
+      onReframed?.();
     } catch (e) {
       setError(e instanceof Error ? e.message : "Something went wrong.");
     } finally {

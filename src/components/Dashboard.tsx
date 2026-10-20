@@ -7,21 +7,24 @@ import InboxEmailView, {
   STATUS_CHIP,
   STATUS_LABEL,
 } from "@/components/InboxEmailView";
+import MoodScale from "@/components/MoodScale";
+import ProgressCards from "@/components/ProgressCards";
 import ReframePanel from "@/components/ReframePanel";
 import SignIn from "@/components/SignIn";
+import { ACHIEVEMENTS, type AchievementContext } from "@/lib/achievements";
 import {
   todayLocal,
   useApplications,
   useGuest,
   useInbox,
   useMood,
+  useProgress,
   useSession,
   useVault,
   vaultIsOpen,
 } from "@/lib/store";
-import type { InboxEmail, JobApplication } from "@/lib/types";
+import type { InboxEmail, JobApplication, ProgressState } from "@/lib/types";
 
-const MOOD_WORDS = ["Rough", "Tiring", "Neutral", "Steady", "Good"] as const;
 const MODE_KEY = "blackbox.mode.v1";
 
 interface ServerConfig {
@@ -45,6 +48,11 @@ export default function Dashboard() {
     useSession();
   const { value: guest, update: setGuest, hydrated: guestReady } = useGuest();
   const { value: inbox, update: setInbox } = useInbox();
+  const {
+    value: progress,
+    update: setProgress,
+    hydrated: progressReady,
+  } = useProgress();
   const [gating, setGating] = useState(false);
   const [config, setConfig] = useState<ServerConfig | null>(null);
   const [mode, setMode] = useState<Mode>("local");
@@ -101,6 +109,36 @@ export default function Dashboard() {
   const unreadCount = availableMail.filter((m) => !m.readAt).length;
   const openEmail = inbox.find((m) => m.id === openEmailId) ?? null;
 
+  // Progress cards: context + first-earned date stamping.
+  const achievementCtx: AchievementContext = {
+    progress,
+    moodDays: mood.length,
+    inboxRead: inbox.filter((m) => m.readAt).length,
+  };
+  const earnedKey = ACHIEVEMENTS.filter((a) => a.earned(achievementCtx))
+    .map((a) => a.id)
+    .join(",");
+  useEffect(() => {
+    if (!progressReady || !earnedKey || now === 0) return;
+    const missing = earnedKey
+      .split(",")
+      .filter((id) => !progress.earnedAt[id]);
+    if (missing.length === 0) return;
+    setProgress((prev) => {
+      const earnedAt = { ...prev.earnedAt };
+      let changed = false;
+      for (const id of missing) {
+        if (!earnedAt[id]) {
+          earnedAt[id] = now;
+          changed = true;
+        }
+      }
+      return changed ? { ...prev, earnedAt } : prev;
+    });
+    // Stamping depends on which cards are earned, not on progress writes.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [earnedKey, progressReady, now]);
+
   const todaysMood = mood.find((m) => m.date === today);
   const last7 = useMemo(() => {
     const out: { date: string; mood?: number }[] = [];
@@ -113,9 +151,26 @@ export default function Dashboard() {
     return out;
   }, [mood]);
 
+  function bumpProgress(
+    field:
+      | "draftsEver"
+      | "appliedEver"
+      | "letGoEver"
+      | "heldFullEver"
+      | "scoresEver"
+      | "reframesEver",
+  ) {
+    setProgress((prev) => ({ ...prev, [field]: prev[field] + 1 }));
+  }
+
   function openVault() {
     setGating(false);
     setVault({ ...vault, lastOpenedDate: today, appliedDate: today });
+    setProgress((prev) =>
+      prev.openedDates.includes(today)
+        ? prev
+        : { ...prev, openedDates: [...prev.openedDates, today] },
+    );
   }
 
   function pickMood(v: 1 | 2 | 3 | 4 | 5) {
@@ -131,18 +186,37 @@ export default function Dashboard() {
     );
   }
 
-  function removeApp(id: string) {
-    setApplications((prev) => prev.filter((a) => a.id !== id));
+  function removeApp(a: JobApplication) {
+    // Releasing a DRAFT is the "let one go" behaviour the progress
+    // cards record; removing an already-decided row is just tidying.
+    if (a.status === "draft") {
+      bumpProgress("letGoEver");
+      if (a.reviewAfter <= now) bumpProgress("heldFullEver");
+    }
+    setApplications((prev) => prev.filter((x) => x.id !== a.id));
   }
 
   function confirmApplied(a: JobApplication) {
     if (budgetSpent) return;
     patchApp(a.id, { status: "applied" });
+    bumpProgress("appliedEver");
+    if (a.reviewAfter <= now) bumpProgress("heldFullEver");
+    const newCount = vault.appliedToday + 1;
     setVault({
       ...vault,
-      appliedToday: vault.appliedToday + 1,
+      appliedToday: newCount,
       appliedDate: today,
     });
+    if (newCount >= vault.dailyLimit) {
+      setProgress((prev: ProgressState) =>
+        prev.budgetSpentDates.includes(today)
+          ? prev
+          : {
+              ...prev,
+              budgetSpentDates: [...prev.budgetSpentDates, today],
+            },
+      );
+    }
   }
 
   function patchMail(id: string, patch: Partial<InboxEmail>) {
@@ -318,7 +392,11 @@ export default function Dashboard() {
         )}
       </section>
 
-      <AddJob provider={provider} />
+      <AddJob
+        provider={provider}
+        onSavedDraft={() => bumpProgress("draftsEver")}
+        onScored={() => bumpProgress("scoresEver")}
+      />
 
       {/* Inbox summary — full inbox lives inside the vault */}
       <section className="rounded-2xl border border-neutral-200 bg-white p-5">
@@ -506,7 +584,7 @@ export default function Dashboard() {
                               I applied — count it
                             </button>
                             <button
-                              onClick={() => removeApp(a.id)}
+                              onClick={() => removeApp(a)}
                               className="rounded-full bg-neutral-200 px-4 py-1.5"
                             >
                               Let it go
@@ -560,7 +638,7 @@ export default function Dashboard() {
                           Outcome received
                         </button>
                         <button
-                          onClick={() => removeApp(a.id)}
+                          onClick={() => removeApp(a)}
                           aria-label={`Remove ${a.company}`}
                           className="rounded-full bg-neutral-100 px-2 py-1 text-xs"
                         >
@@ -585,7 +663,7 @@ export default function Dashboard() {
                         {a.role} · {a.company}
                       </span>
                       <button
-                        onClick={() => removeApp(a.id)}
+                        onClick={() => removeApp(a)}
                         aria-label={`Remove ${a.company}`}
                         className="text-xs"
                       >
@@ -604,6 +682,7 @@ export default function Dashboard() {
         <InboxEmailView
           email={openEmail}
           provider={provider}
+          onReframed={() => bumpProgress("reframesEver")}
           onBack={() => setOpenEmailId(null)}
           onStatus={(s) => patchMail(openEmail.id, { status: s })}
           onRemove={() => {
@@ -613,51 +692,19 @@ export default function Dashboard() {
         />
       )}
 
-      {/* Mood check-in */}
-      <section className="rounded-2xl border border-neutral-200 bg-white p-5">
-        <h2 className="text-xs font-semibold uppercase tracking-wider text-neutral-500">
-          How is today
-        </h2>
-        <p className="mt-1 text-sm text-neutral-500">
-          No streaks, no scores. Just a mark for today, if you want one.
-        </p>
-        <div className="mt-3 flex flex-wrap gap-2">
-          {MOOD_WORDS.map((word, i) => (
-            <button
-              key={word}
-              onClick={() => pickMood((i + 1) as 1 | 2 | 3 | 4 | 5)}
-              aria-pressed={todaysMood?.mood === i + 1}
-              className={`rounded-full border px-3.5 py-1.5 text-sm ${
-                todaysMood?.mood === i + 1
-                  ? "border-[#0071ec] bg-blue-50 text-blue-900"
-                  : "border-neutral-200 text-neutral-600"
-              }`}
-            >
-              {word}
-            </button>
-          ))}
-        </div>
-        <div className="mt-4 flex items-center gap-2.5" aria-hidden="true">
-          {last7.map((d) => (
-            <span
-              key={d.date}
-              title={d.date}
-              className={`inline-block h-3 w-3 rounded-full ${
-                d.mood
-                  ? d.mood >= 4
-                    ? "bg-[#00ac49]"
-                    : d.mood === 3
-                      ? "bg-neutral-300"
-                      : "bg-[#fac22b]"
-                  : "bg-neutral-100"
-              }`}
-            />
-          ))}
-          <span className="ml-1 text-xs text-neutral-400">last 7 days</span>
-        </div>
-      </section>
+      {/* Mood check-in — a scale, Voda-style */}
+      <MoodScale
+        value={todaysMood?.mood ?? null}
+        onPick={pickMood}
+        last7={last7}
+      />
 
-      <ReframePanel provider={provider} />
+      <ProgressCards ctx={achievementCtx} />
+
+      <ReframePanel
+        provider={provider}
+        onReframed={() => bumpProgress("reframesEver")}
+      />
 
       <footer className="pb-6 text-center text-xs text-neutral-400">
         Slow and steady. Built with Gemma 4, an open-weight model, for

@@ -12,8 +12,10 @@ import type { ReframeResult } from "@/lib/types";
 
 export default function ReframePanel({
   provider,
+  onReframed,
 }: {
   provider?: "local" | "hosted";
+  onReframed?: () => void;
 }) {
   const [text, setText] = useState("");
   const [busy, setBusy] = useState(false);
@@ -32,6 +34,7 @@ export default function ReframePanel({
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? "Request failed");
       setResult(data as ReframeResult);
+      onReframed?.();
     } catch (e) {
       setError(e instanceof Error ? e.message : "Something went wrong.");
     } finally {

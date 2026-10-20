@@ -65,6 +65,24 @@ export interface VaultState {
   appliedDate: string | null; // date the appliedToday counter belongs to
 }
 
+/**
+ * Process record for the Progress cards. Counts the app's own slow
+ * behaviours (holding, waiting, letting go, reading in the window) —
+ * never outcomes, never points. Earned dates are stamped the first time
+ * a card's condition is observed true.
+ */
+export interface ProgressState {
+  draftsEver: number;
+  appliedEver: number;
+  letGoEver: number;
+  heldFullEver: number; // decided on a draft after its full 48h elapsed
+  scoresEver: number;
+  reframesEver: number;
+  budgetSpentDates: string[]; // days the full daily budget was spent
+  openedDates: string[]; // days the vault was opened (YYYY-MM-DD)
+  earnedAt: Record<string, number>; // achievement id -> epoch ms
+}
+
 export interface ReframeResult {
   /** The user's original text, returned verbatim. Never altered server-side. */
   original: string;

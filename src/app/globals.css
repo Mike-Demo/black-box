@@ -21,3 +21,38 @@ body {
   color: var(--foreground);
   font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
 }
+
+/* Mood scale slider: gradient track in the design system's state
+   colors (danger → warning → success), one large calm thumb. */
+input[type="range"].mood-scale {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 12px;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #dc3146, #fac22b 50%, #00ac49);
+  cursor: pointer;
+}
+input[type="range"].mood-scale::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid #d4d4d8;
+  box-shadow: 0 1px 5px rgb(0 0 0 / 0.3);
+  cursor: grab;
+}
+input[type="range"].mood-scale::-moz-range-thumb {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid #d4d4d8;
+  box-shadow: 0 1px 5px rgb(0 0 0 / 0.3);
+  cursor: grab;
+}
+input[type="range"].mood-scale:focus-visible {
+  outline: 2px solid #0071ec;
+  outline-offset: 6px;
+}
