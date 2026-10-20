@@ -23,10 +23,12 @@ services:
         value: hosted
       - key: GEMMA_HOSTED_BASE_URL
         value: https://openrouter.ai/api/v1
-      # Gemma 4 26B-A4B (MoE) free variant: the 31B free pool was
-      # rate-limited (HTTP 429) in live testing on 2026-10-19; the 26B
-      # MoE is the same Gemma 4 family with a far less contended pool.
+      # Gemma 4 31B, paid slug: OpenRouter's free pools (both the 31B
+      # and the 26B-A4B MoE variants) returned HTTP 429 on every live
+      # test call on 2026-10-19. The paid slug costs $0.20/$0.40 per
+      # million tokens — a reframe or score call is a fraction of a
+      # cent — and skips the free-pool throttling entirely.
       - key: GEMMA_HOSTED_MODEL
-        value: google/gemma-4-26b-a4b-it:free
+        value: google/gemma-4-31b-it
       - key: GEMMA_HOSTED_API_KEY
         sync: false

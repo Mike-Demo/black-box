@@ -53,7 +53,7 @@ To run against a hosted Gemma endpoint instead, set in `.env.local`:
 GEMMA_PROVIDER=hosted
 GEMMA_HOSTED_API_KEY=your-key
 # GEMMA_HOSTED_BASE_URL=https://openrouter.ai/api/v1 (default)
-# GEMMA_HOSTED_MODEL=google/gemma-4-26b-a4b-it:free (default)
+# GEMMA_HOSTED_MODEL=google/gemma-4-31b-it (default)
 ```
 
 For development without any model, `GEMMA_PROVIDER=mock` returns clearly-labelled placeholder responses so the whole interface can be exercised.
