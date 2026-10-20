@@ -64,7 +64,7 @@ export default function BreathingGate({ onDone }: { onDone: () => void }) {
   return (
     <div className="flex flex-col items-center gap-6 py-10 text-center">
       <div
-        className={`flex h-36 w-36 items-center justify-center rounded-full bg-emerald-100 text-emerald-900 transition-transform duration-[4000ms] ease-in-out ${scale}`}
+        className={`flex h-36 w-36 items-center justify-center rounded-full bg-blue-100 text-blue-900 transition-transform duration-[4000ms] ease-in-out ${scale}`}
         aria-hidden="true"
       >
         <span className="text-4xl">🦥</span>
@@ -90,7 +90,7 @@ export default function BreathingGate({ onDone }: { onDone: () => void }) {
       ) : (
         <button
           onClick={onDone}
-          className="rounded-full bg-emerald-700 px-6 py-3 text-white"
+          className="rounded-full bg-[#0071ec] px-6 py-3 text-white"
         >
           Open the vault
         </button>

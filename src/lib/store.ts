@@ -6,13 +6,22 @@
 // stateless and disclosed in the UI.
 
 import { useCallback, useEffect, useState } from "react";
-import type { JobApplication, MoodEntry, VaultState } from "./types";
+import type {
+  InboxEmail,
+  JobApplication,
+  MoodEntry,
+  SessionState,
+  VaultState,
+} from "./types";
 
 const KEYS = {
   applications: "blackbox.applications.v1",
   mood: "blackbox.mood.v1",
   vault: "blackbox.vault.v1",
   profile: "blackbox.profile.v1",
+  session: "blackbox.session.v1",
+  inbox: "blackbox.inbox.v1",
+  guest: "blackbox.guest.v1",
 } as const;
 
 export function todayLocal(now = new Date()): string {
@@ -74,6 +83,59 @@ export function useMood() {
 
 export function useProfile() {
   return useStored<string>(KEYS.profile, "");
+}
+
+export function useSession() {
+  return useStored<SessionState | null>(KEYS.session, null);
+}
+
+/** "Continue without signing in" — remembered so it isn't asked daily. */
+export function useGuest() {
+  return useStored<boolean>(KEYS.guest, false);
+}
+
+/**
+ * Sample inbox, seeded on first run only. This build fetches NO real mail:
+ * these are fictional demo messages so the vault inbox can be exercised.
+ * Received times are relative to first run so one message always demos
+ * the "arrived after the window — held for the next one" rule.
+ */
+function seedInbox(now = Date.now()): InboxEmail[] {
+  const h = 60 * 60 * 1000;
+  return [
+    {
+      id: "demo-mail-northwind",
+      from: "Northwind Cloud Talent",
+      subject: "Update on your application for Director of Partnerships",
+      body: "Dear Demo,\n\nThank you for applying for the Director of Partnerships role and for speaking with our team last week. After careful consideration, we have decided to move forward with another candidate whose experience more closely matches our current needs.\n\nWe will keep your resume on file for future openings. We wish you the best in your search.\n\n— Talent Team, Northwind Cloud",
+      receivedAt: now - 26 * h,
+      status: "waiting",
+      demo: true,
+    },
+    {
+      id: "demo-mail-meridian",
+      from: "Meridian Systems Recruiting",
+      subject: "Application received: Head of Strategic Alliances",
+      body: "Hello Demo,\n\nThank you for your application for the Head of Strategic Alliances role. Your application has been received and is with the hiring team.\n\nNo action is needed from you at this stage. We will contact you if your experience matches what the team is looking for.\n\n— Meridian Systems Recruiting",
+      receivedAt: now - 50 * h,
+      status: "no-response-yet",
+      demo: true,
+    },
+    {
+      id: "demo-mail-larkspur",
+      from: "Larkspur Health Hiring",
+      subject: "Next step: a conversation with the hiring team",
+      body: "Hi Demo,\n\nThank you for applying for the Director of Partner Programs role. The hiring team would like to invite you to a 30-minute conversation next week.\n\nThis message arrived outside your vault window, so Black Box held it here for the next one — there is nothing to do until then.\n\n— Larkspur Health Hiring",
+      receivedAt: now - 2 * h,
+      heldForNextWindow: true,
+      status: "next-step",
+      demo: true,
+    },
+  ];
+}
+
+export function useInbox() {
+  return useStored<InboxEmail[]>(KEYS.inbox, seedInbox());
 }
 
 const DEFAULT_VAULT: VaultState = {

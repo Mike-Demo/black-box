@@ -7,6 +7,7 @@
 //  - the inference path (local / hosted demo / mock) is disclosed.
 
 import { useState } from "react";
+import ReframeResultView from "@/components/ReframeResultView";
 import type { ReframeResult } from "@/lib/types";
 
 export default function ReframePanel({
@@ -56,61 +57,14 @@ export default function ReframePanel({
       <button
         onClick={run}
         disabled={busy || text.trim().length === 0}
-        className="mt-3 rounded-full bg-neutral-900 px-5 py-2 text-sm text-white disabled:opacity-40"
+        className="mt-3 rounded-full bg-[#0071ec] px-5 py-2 text-sm font-semibold text-white disabled:opacity-40"
       >
         {busy ? "Reading…" : "Reframe it"}
       </button>
       {error && <p className="mt-3 text-sm text-red-700">{error}</p>}
       {result && (
-        <div className="mt-5 space-y-4">
-          <div>
-            <h3 className="text-xs font-semibold uppercase tracking-wide text-neutral-500">
-              The original, word for word
-            </h3>
-            <blockquote className="mt-1 whitespace-pre-wrap rounded-xl bg-neutral-50 p-3 text-sm">
-              {result.original}
-            </blockquote>
-          </div>
-          <div>
-            <h3 className="text-xs font-semibold uppercase tracking-wide text-emerald-700">
-              Reframe — same facts, plainer words
-            </h3>
-            <p className="mt-1 text-sm">{result.reframed}</p>
-          </div>
-          <div className="grid gap-3 text-sm sm:grid-cols-2">
-            <div className="rounded-xl bg-neutral-50 p-3">
-              <h4 className="font-medium">What it decided</h4>
-              <p className="mt-1">{result.facts.decision}</p>
-              <h4 className="mt-3 font-medium">What it states</h4>
-              <ul className="mt-1 list-disc pl-5">
-                {result.facts.known.map((k, i) => (
-                  <li key={i}>{k}</li>
-                ))}
-              </ul>
-            </div>
-            <div className="rounded-xl bg-neutral-50 p-3">
-              <h4 className="font-medium">What it does not say</h4>
-              <ul className="mt-1 list-disc pl-5">
-                {result.facts.unknown.map((k, i) => (
-                  <li key={i}>{k}</li>
-                ))}
-              </ul>
-              {result.facts.nextStep && (
-                <>
-                  <h4 className="mt-3 font-medium">One factual next step</h4>
-                  <p className="mt-1">{result.facts.nextStep}</p>
-                </>
-              )}
-            </div>
-          </div>
-          <p className="text-xs text-neutral-400">
-            Inference:{" "}
-            {result.provider === "local"
-              ? `local — Gemma (${result.model}) on this device. Nothing left the machine.`
-              : result.provider === "hosted"
-                ? `Demo mode — hosted Gemma (${result.model}). The text above was sent to the hosting provider for this call.`
-                : "Mock mode — no model was called; placeholder response."}
-          </p>
+        <div className="mt-5">
+          <ReframeResultView result={result} />
         </div>
       )}
     </section>

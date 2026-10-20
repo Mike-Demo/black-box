@@ -139,7 +139,7 @@ export default function AddJob({
         <button
           onClick={runScore}
           disabled={busy || jd.trim() === "" || profile.trim() === ""}
-          className="rounded-full bg-emerald-700 px-5 py-2 text-sm text-white disabled:opacity-40"
+          className="rounded-full bg-[#0071ec] px-5 py-2 text-sm text-white disabled:opacity-40"
         >
           {busy ? "Scoring…" : "Score with Gemma"}
         </button>
@@ -158,7 +158,7 @@ export default function AddJob({
       </div>
 
       {error && <p className="mt-3 text-sm text-red-700">{error}</p>}
-      {saved && <p className="mt-3 text-sm text-emerald-800">{saved}</p>}
+      {saved && <p className="mt-3 text-sm text-blue-900">{saved}</p>}
 
       {score && (
         <div className="mt-4 rounded-xl bg-neutral-50 p-4 text-sm">

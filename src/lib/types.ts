@@ -24,6 +24,40 @@ export interface MoodEntry {
   mood: 1 | 2 | 3 | 4 | 5;
 }
 
+/**
+ * Demo sign-in session. The sign-in link flow is SIMULATED in this build:
+ * no email is sent and no server account exists. The session is just the
+ * email address the user typed, kept in this browser like everything else.
+ */
+export interface SessionState {
+  email: string;
+  signedInAt: number; // epoch ms
+}
+
+export type InboxEmailStatus =
+  | "waiting" // arrived, not yet read in a vault window
+  | "no-response-yet" // silence, stated plainly — never spun
+  | "outcome" // an outcome was received
+  | "next-step"; // the sender proposed a next step
+
+export interface InboxEmail {
+  id: string;
+  from: string;
+  subject: string;
+  /** Full message text. Shown verbatim; a reframe never replaces it. */
+  body: string;
+  receivedAt: number; // epoch ms
+  /**
+   * Arrived after the current vault window: the inbox holds it until the
+   * next window instead of surfacing it immediately.
+   */
+  heldForNextWindow?: boolean;
+  status: InboxEmailStatus;
+  readAt?: number; // epoch ms, set when opened inside the vault
+  /** Seeded sample mail for the demo inbox (no real mail is fetched). */
+  demo?: boolean;
+}
+
 export interface VaultState {
   lastOpenedDate: string | null; // YYYY-MM-DD (local) of last vault opening
   dailyLimit: number; // applications allowed per day

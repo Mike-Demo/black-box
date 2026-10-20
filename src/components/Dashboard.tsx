@@ -3,17 +3,25 @@
 import { useEffect, useMemo, useState } from "react";
 import AddJob from "@/components/AddJob";
 import BreathingGate from "@/components/BreathingGate";
+import InboxEmailView, {
+  STATUS_CHIP,
+  STATUS_LABEL,
+} from "@/components/InboxEmailView";
 import ReframePanel from "@/components/ReframePanel";
+import SignIn from "@/components/SignIn";
 import {
   todayLocal,
   useApplications,
+  useGuest,
+  useInbox,
   useMood,
+  useSession,
   useVault,
   vaultIsOpen,
 } from "@/lib/store";
-import type { JobApplication } from "@/lib/types";
+import type { InboxEmail, JobApplication } from "@/lib/types";
 
-const MOODS = ["😔", "🙁", "😐", "🙂", "😄"] as const;
+const MOOD_WORDS = ["Rough", "Tiring", "Neutral", "Steady", "Good"] as const;
 const MODE_KEY = "blackbox.mode.v1";
 
 interface ServerConfig {
@@ -24,13 +32,23 @@ interface ServerConfig {
 
 type Mode = "local" | "hosted";
 
+function hoursLeft(ms: number, now: number): string {
+  const h = Math.max(0, Math.round((ms - now) / 3600000));
+  return h >= 1 ? `${h}h left in hold` : "Under an hour left in hold";
+}
+
 export default function Dashboard() {
   const { vault, setVault, hydrated: vaultReady } = useVault();
   const { value: applications, update: setApplications } = useApplications();
   const { value: mood, update: setMood } = useMood();
+  const { value: session, update: setSession, hydrated: sessionReady } =
+    useSession();
+  const { value: guest, update: setGuest, hydrated: guestReady } = useGuest();
+  const { value: inbox, update: setInbox } = useInbox();
   const [gating, setGating] = useState(false);
   const [config, setConfig] = useState<ServerConfig | null>(null);
   const [mode, setMode] = useState<Mode>("local");
+  const [openEmailId, setOpenEmailId] = useState<string | null>(null);
 
   useEffect(() => {
     fetch("/api/config")
@@ -72,6 +90,16 @@ export default function Dashboard() {
     (a) => a.status === "applied" || a.status === "no-response-yet",
   );
   const closed = applications.filter((a) => a.status === "closed");
+
+  // Inbox: mail that arrived after its day's window is held for the next
+  // one. "Available" = not held, or it arrived on an earlier day.
+  const mailAvailable = (m: InboxEmail) =>
+    !m.heldForNextWindow ||
+    todayLocal(new Date(m.receivedAt)) < today;
+  const availableMail = inbox.filter(mailAvailable);
+  const heldMail = inbox.filter((m) => !mailAvailable(m));
+  const unreadCount = availableMail.filter((m) => !m.readAt).length;
+  const openEmail = inbox.find((m) => m.id === openEmailId) ?? null;
 
   const todaysMood = mood.find((m) => m.date === today);
   const last7 = useMemo(() => {
@@ -117,53 +145,115 @@ export default function Dashboard() {
     });
   }
 
+  function patchMail(id: string, patch: Partial<InboxEmail>) {
+    setInbox((prev) =>
+      prev.map((m) => (m.id === id ? { ...m, ...patch } : m)),
+    );
+  }
+
+  function readMail(m: InboxEmail) {
+    // `now` is the component's clock state (mount + per-minute refresh);
+    // clicks can only happen after mount, so it is always set here.
+    if (!m.readAt) patchMail(m.id, { readAt: now });
+    setOpenEmailId(m.id);
+  }
+
+  // --- Sign-in gate (simulated for this demo build) ---
+  if (sessionReady && guestReady && !session && !guest) {
+    return (
+      <SignIn
+        onSignedIn={(email) =>
+          setSession({ email, signedInAt: Date.now() })
+        }
+        onContinueAsGuest={() => setGuest(true)}
+      />
+    );
+  }
+
+  const provider = config?.mock ? undefined : mode;
+
   return (
     <main className="mx-auto flex min-h-screen w-full max-w-3xl flex-col gap-5 px-4 py-8">
       <header>
-        <h1 className="text-3xl font-bold">
-          Black Box <span aria-hidden="true">🦥</span>
-        </h1>
-        <p className="mt-1 text-neutral-600">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <h1 className="text-2xl font-bold text-[#1b1d26]">
+            Black Box <span aria-hidden="true">🦥</span>
+          </h1>
+          <div className="flex flex-wrap items-center gap-2 text-sm">
+            {session ? (
+              <>
+                <span className="rounded-full border border-neutral-200 bg-white px-3 py-1 text-neutral-600">
+                  {session.email}
+                </span>
+                <button
+                  onClick={() => {
+                    setSession(null);
+                    setGuest(false);
+                  }}
+                  className="px-1 text-neutral-500"
+                >
+                  Sign out
+                </button>
+              </>
+            ) : (
+              <button
+                onClick={() => setGuest(false)}
+                className="rounded-full border border-neutral-300 bg-white px-3 py-1"
+              >
+                Sign in with email
+              </button>
+            )}
+          </div>
+        </div>
+        <p className="mt-1 text-neutral-500">
           A job search app that slows you down on purpose. Your data lives in
           this browser; nothing is tracked or uploaded.
         </p>
         {/* Privacy mode — real, wired to the API routes. */}
         <div className="mt-3 flex flex-wrap items-center gap-2 text-sm">
-          <span className="font-medium">Inference:</span>
+          <span className="font-medium">Privacy mode:</span>
           {config?.mock ? (
             <span className="rounded-full bg-amber-100 px-3 py-1 text-amber-900">
               Mock mode — no model is being called
             </span>
           ) : (
             <>
-              <button
-                onClick={() => pickMode("local")}
-                aria-pressed={mode === "local"}
-                className={`rounded-full px-3 py-1 ${
-                  mode === "local"
-                    ? "bg-emerald-700 text-white"
-                    : "bg-neutral-100 text-neutral-600"
-                }`}
+              <div
+                className="inline-flex rounded-full border border-neutral-300 bg-white p-0.5"
+                role="group"
+                aria-label="Privacy mode"
               >
-                Local — Gemma on this device
-              </button>
-              <button
-                onClick={() => config?.hosted.configured && pickMode("hosted")}
-                aria-pressed={mode === "hosted"}
-                disabled={!config?.hosted.configured}
-                title={
-                  config?.hosted.configured
-                    ? "Use the hosted Gemma endpoint"
-                    : "This server has no hosted Gemma key configured"
-                }
-                className={`rounded-full px-3 py-1 ${
-                  mode === "hosted"
-                    ? "bg-emerald-700 text-white"
-                    : "bg-neutral-100 text-neutral-600"
-                } disabled:opacity-40`}
-              >
-                Demo — hosted Gemma
-              </button>
+                <button
+                  onClick={() => pickMode("local")}
+                  aria-pressed={mode === "local"}
+                  className={`rounded-full px-3 py-1 ${
+                    mode === "local"
+                      ? "bg-[#0071ec] text-white"
+                      : "text-neutral-600"
+                  }`}
+                >
+                  Private — local Gemma
+                </button>
+                <button
+                  onClick={() =>
+                    config?.hosted.configured && pickMode("hosted")
+                  }
+                  aria-pressed={mode === "hosted"}
+                  disabled={!config?.hosted.configured}
+                  title={
+                    config?.hosted.configured
+                      ? "Use the hosted Gemma endpoint"
+                      : "This server has no hosted Gemma key configured"
+                  }
+                  className={`rounded-full px-3 py-1 ${
+                    mode === "hosted"
+                      ? "bg-[#0071ec] text-white"
+                      : "text-neutral-600"
+                  } disabled:opacity-40`}
+                >
+                  Demo — hosted Gemma
+                </button>
+              </div>
               <span className="text-xs text-neutral-400">
                 {mode === "local"
                   ? "Reframe and score text goes to the Gemma running on this machine, nowhere else."
@@ -176,24 +266,32 @@ export default function Dashboard() {
 
       {/* Daily budget */}
       <section className="rounded-2xl border border-neutral-200 bg-white p-5">
-        <h2 className="text-lg font-semibold">Today&apos;s budget</h2>
-        <p className="mt-1 text-sm text-neutral-500">
-          {vaultReady
-            ? `${vault.appliedToday} of ${vault.dailyLimit} applications used today.`
-            : "…"}
+        <h2 className="text-xs font-semibold uppercase tracking-wider text-neutral-500">
+          Applications today
+        </h2>
+        <p className="mt-1 text-2xl font-bold">
+          {vaultReady ? vault.appliedToday : "…"}{" "}
+          <span className="text-base font-normal text-neutral-500">
+            of {vault.dailyLimit} used today
+          </span>
         </p>
         <div
-          className="mt-3 h-2 overflow-hidden rounded-full bg-neutral-100"
+          className="mt-3 flex gap-1.5"
           role="progressbar"
           aria-valuenow={vault.appliedToday}
           aria-valuemax={vault.dailyLimit}
+          aria-label="Daily application budget"
         >
-          <div
-            className="h-full bg-emerald-600"
-            style={{
-              width: `${Math.min(100, (vault.appliedToday / Math.max(1, vault.dailyLimit)) * 100)}%`,
-            }}
-          />
+          {Array.from({ length: Math.max(1, vault.dailyLimit) }).map(
+            (_, i) => (
+              <div
+                key={i}
+                className={`h-2 flex-1 rounded-full ${
+                  i < vault.appliedToday ? "bg-[#0071ec]" : "bg-neutral-100"
+                }`}
+              />
+            ),
+          )}
         </div>
         <label className="mt-3 flex items-center gap-2 text-sm">
           Daily limit
@@ -213,27 +311,78 @@ export default function Dashboard() {
           />
         </label>
         {budgetSpent && (
-          <p className="mt-2 text-sm text-emerald-800">
+          <p className="mt-2 text-sm text-[#0071ec]">
             Budget spent. That&apos;s the whole job for today — the rest of
             the day is yours.
           </p>
         )}
       </section>
 
-      <AddJob provider={config?.mock ? undefined : mode} />
+      <AddJob provider={provider} />
+
+      {/* Inbox summary — full inbox lives inside the vault */}
+      <section className="rounded-2xl border border-neutral-200 bg-white p-5">
+        <h2 className="text-xs font-semibold uppercase tracking-wider text-neutral-500">
+          Application email
+        </h2>
+        {session ? (
+          <>
+            <p className="mt-1 text-lg font-semibold">
+              {unreadCount > 0
+                ? `${unreadCount} email${unreadCount === 1 ? "" : "s"} waiting in your vault`
+                : "Nothing new is waiting in your vault"}
+            </p>
+            <p className="mt-1 text-sm text-neutral-500">
+              Application email arrives into Black Box and is only shown
+              during your daily vault window — never as a push, never as a
+              badge you have to clear.
+              {heldMail.length > 0 &&
+                ` ${heldMail.length} more arrived after the window and is held for the next one.`}{" "}
+              This demo inbox holds sample messages; no real mail is
+              fetched.
+            </p>
+            <a
+              href="#vault"
+              className="mt-3 inline-block rounded-full border border-neutral-300 px-5 py-2 text-sm"
+            >
+              Review in today&apos;s vault
+            </a>
+          </>
+        ) : (
+          <>
+            <p className="mt-1 text-lg font-semibold">
+              Bring your application email into the box
+            </p>
+            <p className="mt-1 text-sm text-neutral-500">
+              Sign in with email and application messages land here instead
+              of your regular inbox — read once a day, inside the vault, on
+              your terms.
+            </p>
+            <button
+              onClick={() => setGuest(false)}
+              className="mt-3 rounded-full bg-[#0071ec] px-5 py-2 text-sm font-semibold text-white"
+            >
+              Sign in with email
+            </button>
+          </>
+        )}
+      </section>
 
       {/* The Vault */}
-      <section className="rounded-2xl border border-neutral-200 bg-white p-5">
+      <section
+        id="vault"
+        className="rounded-2xl border border-neutral-200 bg-white p-5"
+      >
         <h2 className="text-lg font-semibold">The Vault</h2>
         {!open && !gating && (
           <>
             <p className="mt-1 text-sm text-neutral-500">
-              Statuses are shut until your daily opening. Checking more often
-              changes nothing — it only costs attention.
+              Statuses and inbox mail stay shut until your daily opening.
+              Checking more often changes nothing — it only costs attention.
             </p>
             <button
               onClick={() => setGating(true)}
-              className="mt-3 rounded-full bg-neutral-900 px-5 py-2 text-sm text-white"
+              className="mt-3 rounded-full bg-[#0071ec] px-5 py-2 text-sm font-semibold text-white"
             >
               Begin today&apos;s opening
             </button>
@@ -242,9 +391,75 @@ export default function Dashboard() {
         {gating && <BreathingGate onDone={openVault} />}
         {open && (
           <>
-            <p className="mt-1 text-sm text-emerald-800">
-              Open for today. It closes again at midnight.
+            <p className="mt-1 text-sm text-[#0071ec]">
+              Open for today. Everything here waited on purpose. It closes
+              again at midnight.
             </p>
+
+            {session && (
+              <>
+                <h3 className="mt-5 text-sm font-semibold uppercase tracking-wide text-neutral-500">
+                  Application email inbox
+                </h3>
+                {availableMail.length === 0 && heldMail.length === 0 && (
+                  <p className="mt-2 text-sm text-neutral-500">
+                    No application email yet.
+                  </p>
+                )}
+                <ul className="mt-2 space-y-3">
+                  {availableMail.map((m) => (
+                    <li
+                      key={m.id}
+                      className="rounded-xl bg-neutral-50 p-3 text-sm"
+                    >
+                      <div className="flex flex-wrap items-baseline justify-between gap-2">
+                        <span className="font-medium">{m.from}</span>
+                        <span className="text-xs text-neutral-500">
+                          {new Date(m.receivedAt).toLocaleString()}
+                        </span>
+                      </div>
+                      <p className="mt-0.5">{m.subject}</p>
+                      <div className="mt-2 flex flex-wrap items-center gap-2">
+                        <span
+                          className={`rounded-full px-2 py-0.5 text-xs font-medium ${STATUS_CHIP[m.status]}`}
+                        >
+                          {STATUS_LABEL[m.status]}
+                        </span>
+                        {!m.readAt && (
+                          <span className="text-xs text-neutral-500">
+                            Unread
+                          </span>
+                        )}
+                        <button
+                          onClick={() => readMail(m)}
+                          className="text-sm text-[#0071ec]"
+                        >
+                          Read when ready →
+                        </button>
+                      </div>
+                    </li>
+                  ))}
+                  {heldMail.map((m) => (
+                    <li
+                      key={m.id}
+                      className="rounded-xl bg-neutral-50 p-3 text-sm opacity-60"
+                    >
+                      <div className="flex flex-wrap items-baseline justify-between gap-2">
+                        <span className="font-medium">{m.from}</span>
+                        <span className="text-xs text-neutral-500">
+                          {new Date(m.receivedAt).toLocaleString()}
+                        </span>
+                      </div>
+                      <p className="mt-0.5">{m.subject}</p>
+                      <p className="mt-1 text-xs text-neutral-500">
+                        Held for the next window — it arrived after
+                        today&apos;s.
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
 
             {applications.length === 0 && (
               <p className="mt-3 text-sm text-neutral-500">
@@ -256,7 +471,7 @@ export default function Dashboard() {
             {drafts.length > 0 && (
               <>
                 <h3 className="mt-4 text-sm font-semibold uppercase tracking-wide text-neutral-500">
-                  In the hold
+                  Ready to decide
                 </h3>
                 <ul className="mt-2 space-y-3">
                   {drafts.map((a) => {
@@ -270,15 +485,15 @@ export default function Dashboard() {
                           <span className="font-medium">
                             {a.role} · {a.company}
                             {a.qualityScore != null && (
-                              <span className="ml-2 rounded-full bg-emerald-100 px-2 py-0.5 text-xs text-emerald-900">
-                                Gemma score {a.qualityScore}/10
+                              <span className="ml-2 rounded-full bg-blue-50 px-2 py-0.5 text-xs text-blue-900">
+                                Fit {a.qualityScore}/10
                               </span>
                             )}
                           </span>
                           <span className="text-xs text-neutral-500">
                             {ready
                               ? "Ready to review"
-                              : `In hold until ${new Date(a.reviewAfter).toLocaleString()}`}
+                              : hoursLeft(a.reviewAfter, now)}
                           </span>
                         </div>
                         {ready && (
@@ -286,7 +501,7 @@ export default function Dashboard() {
                             <button
                               onClick={() => confirmApplied(a)}
                               disabled={budgetSpent}
-                              className="rounded-full bg-emerald-700 px-4 py-1.5 text-white disabled:opacity-40"
+                              className="rounded-full bg-[#0071ec] px-4 py-1.5 font-semibold text-white disabled:opacity-40"
                             >
                               I applied — count it
                             </button>
@@ -385,48 +600,69 @@ export default function Dashboard() {
         )}
       </section>
 
+      {openEmail && (
+        <InboxEmailView
+          email={openEmail}
+          provider={provider}
+          onBack={() => setOpenEmailId(null)}
+          onStatus={(s) => patchMail(openEmail.id, { status: s })}
+          onRemove={() => {
+            setInbox((prev) => prev.filter((m) => m.id !== openEmail.id));
+            setOpenEmailId(null);
+          }}
+        />
+      )}
+
       {/* Mood check-in */}
       <section className="rounded-2xl border border-neutral-200 bg-white p-5">
-        <h2 className="text-lg font-semibold">One-tap check-in</h2>
+        <h2 className="text-xs font-semibold uppercase tracking-wider text-neutral-500">
+          How is today
+        </h2>
         <p className="mt-1 text-sm text-neutral-500">
           No streaks, no scores. Just a mark for today, if you want one.
         </p>
-        <div className="mt-3 flex gap-2">
-          {MOODS.map((emoji, i) => (
+        <div className="mt-3 flex flex-wrap gap-2">
+          {MOOD_WORDS.map((word, i) => (
             <button
-              key={emoji}
+              key={word}
               onClick={() => pickMood((i + 1) as 1 | 2 | 3 | 4 | 5)}
               aria-pressed={todaysMood?.mood === i + 1}
-              className={`rounded-full border px-3 py-2 text-xl ${
+              className={`rounded-full border px-3.5 py-1.5 text-sm ${
                 todaysMood?.mood === i + 1
-                  ? "border-emerald-600 bg-emerald-50"
-                  : "border-neutral-200"
+                  ? "border-[#0071ec] bg-blue-50 text-blue-900"
+                  : "border-neutral-200 text-neutral-600"
               }`}
             >
-              {emoji}
+              {word}
             </button>
           ))}
         </div>
-        <div className="mt-4 flex items-end gap-2" aria-hidden="true">
+        <div className="mt-4 flex items-center gap-2.5" aria-hidden="true">
           {last7.map((d) => (
-            <div key={d.date} className="flex flex-col items-center gap-1">
-              <div
-                className="w-6 rounded bg-emerald-200"
-                style={{ height: `${(d.mood ?? 0) * 8 + 2}px` }}
-              />
-              <span className="text-[10px] text-neutral-400">
-                {d.date.slice(5)}
-              </span>
-            </div>
+            <span
+              key={d.date}
+              title={d.date}
+              className={`inline-block h-3 w-3 rounded-full ${
+                d.mood
+                  ? d.mood >= 4
+                    ? "bg-[#00ac49]"
+                    : d.mood === 3
+                      ? "bg-neutral-300"
+                      : "bg-[#fac22b]"
+                  : "bg-neutral-100"
+              }`}
+            />
           ))}
+          <span className="ml-1 text-xs text-neutral-400">last 7 days</span>
         </div>
       </section>
 
-      <ReframePanel provider={config?.mock ? undefined : mode} />
+      <ReframePanel provider={provider} />
 
       <footer className="pb-6 text-center text-xs text-neutral-400">
         Slow and steady. Built with Gemma 4, an open-weight model, for
-        Hacktoberfest Week 3.
+        Hacktoberfest Week 3. UX designed in Google Stitch with the Web
+        Awesome design system.
       </footer>
     </main>
   );

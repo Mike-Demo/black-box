@@ -10,7 +10,7 @@ flowchart LR
     Vault["The Vault<br/>one daily window · 4·4·4 breathing gate"]
     AddJob["Add a Job<br/>profile + JD → score → hold"]
     Reframe["Reframe panel<br/>inside the vault"]
-    Store[("On-device browser storage<br/>drafts + 48h expiry · budget · mood · profile<br/>No account. No database.")]
+    Store[("On-device browser storage<br/>drafts + 48h expiry · budget · mood · profile · inbox · demo session<br/>No server account. No database.")]
     Dash --- Store
     Vault --- Store
     AddJob --- Store
@@ -42,12 +42,14 @@ substitutions.
 
 ```mermaid
 flowchart TD
+  A0["0 · Sign in with email (simulated in the demo)<br/>application email now lands in the box, not your inbox"]
   A["1 · Find a job<br/>paste the JD — Gemma scores the fit, with reasons"]
   B["2 · Save it — don't send it<br/>the draft enters the 48-hour hold"]
   C["3 · Walk away<br/>nothing to refresh; the app holds the draft"]
   D["4 · Once a day, breathe<br/>4·4·4, then the vault opens in your window"]
   E["5 · Decide on purpose<br/>'I applied — count it' spends 1 daily budget<br/>budget spent = done for today"]
   F["6 · When news arrives<br/>Reframe: original verbatim + plain words<br/>+ facts split known vs unknown"]
+  A0 --> A
   A --> B --> C --> D --> E --> F
   F -.->|tomorrow| D
 ```

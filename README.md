@@ -15,13 +15,14 @@ Every job search tool tries to make you go faster: more applications, more refre
 - **A 48-hour draft hold** — New applications sit as drafts for 48 hours before they can be marked applied. If the role still looks right in two days, it was worth applying to.
 - **A Gemma quality score** — Paste a job description; Gemma scores it 1–10 against *your* stated profile — roles, skills, constraints — using only what both texts actually say, and shows its reasons.
 - **A calm reframe** — Paste a hard-to-read outcome notice. Gemma restates it in plainer words, lists what it actually decided, what it does not say, and one factual next step. The original is always shown alongside, and the reframe is labelled as one. Facts stay facts; silence is never dressed up as hope or as rejection.
+- **An application-email inbox** — Sign in with email and application messages land in Black Box instead of your regular inbox. They are only shown inside the daily vault window; mail that arrives after the window is held for the next one. Open one and you get the original word for word, plus an optional Gemma reframe. **Demo honesty:** in this build the sign-in link is *simulated* (no email is sent, no server account exists — the session is the address you typed, stored in your browser) and the inbox holds sample messages, so the flow can be exercised end to end. The design intent — mail that waits for your window instead of pinging you — is fully wired; a production build would connect a real mailbox behind the same screens.
 - **A mood check-in** — One tap a day, a simple 7-day trend. No streaks, no scores, no judgement.
 
 ## Why open innovation matters here
 
 The most sensitive text in a job search — outcome notices, salary anxiety, a private profile of what you want next — should not have to leave your machine to be useful.
 
-Black Box runs **Gemma 4** (Google's open-weight model family, Apache 2.0) **locally via Ollama** by default. In local mode, inference happens on your device; the app has no database, no accounts, and no analytics — your applications, vault state, and mood log live in your browser's local storage.
+Black Box runs **Gemma 4** (Google's open-weight model family, Apache 2.0) **locally via Ollama** by default. In local mode, inference happens on your device; the app has no database, no server accounts, and no analytics — your applications, vault state, inbox, and mood log live in your browser's local storage.
 
 **Honest disclosure:** the public demo is hosted on Render, which has no GPU, so the demo serves the same Gemma 4 weights through a hosted endpoint. In that mode — labelled **Demo mode** in the interface wherever it applies — the text of a reframe or score request is sent to that provider. Run it locally and nothing leaves your machine. Same code, same prompts, two inference paths, and the app tells you which one you are on.
 
@@ -31,7 +32,8 @@ The reframe guardrails come from the open-source [mental-health-support skill](h
 
 - Next.js (App Router) + TypeScript + Tailwind CSS — one small codebase
 - Gemma 4 (`gemma4:e4b` locally via Ollama; hosted Gemma 4 for the demo)
-- No database, no auth — state in browser local storage
+- No database — state in browser local storage. Sign-in is a simulated email-link flow for the demo (labelled in the UI); the session never leaves the browser
+- UX designed in **Google Stitch** using the open-source Web Awesome design system (`DESIGN.md` borrowed from [happy-code-library](https://github.com/Mike-Demo/happy-code-library/tree/main/.stitch)); the Stitch project, screens, and exports live in [`design/`](design/)
 - Deployed as a single web service on **Render**
 
 ## Run it locally

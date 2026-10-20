@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-background text-on-background" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Black Box · Email Reframe Detail</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary": "#5a5e6e",
+            "surface-variant": "#e1e3e4",
+            "secondary-container": "#dee1f5",
+            "palette-red": "#dc3146",
+            "on-tertiary": "#ffffff",
+            "surface-tint": "#005bc0",
+            "background": "#f8f9fa",
+            "tertiary": "#9f3e00",
+            "surface-container-high": "#e7e8e9",
+            "on-primary": "#ffffff",
+            "surface-bright": "#f8f9fa",
+            "outline-variant": "#c1c6d6",
+            "outline": "#727786",
+            "on-surface": "#191c1d",
+            "on-primary-fixed-variant": "#004493",
+            "tertiary-container": "#c75000",
+            "on-tertiary-fixed-variant": "#7b2f00",
+            "error-container": "#ffdad6",
+            "on-error": "#ffffff",
+            "surface": "#ffffff",
+            "error": "#ba1a1a",
+            "surface-dim": "#d9dadb",
+            "primary-container": "#0071ec",
+            "on-secondary": "#ffffff",
+            "on-surface-variant": "#414754",
+            "neutral-ink": "#1b1d26",
+            "palette-green": "#00ac49",
+            "on-background": "#191c1d",
+            "tertiary-fixed": "#ffdbcc",
+            "inverse-surface": "#2e3132",
+            "on-error-container": "#93000a",
+            "on-secondary-container": "#606474",
+            "on-primary-fixed": "#001a41",
+            "on-tertiary-fixed": "#351000",
+            "palette-yellow": "#fac22b",
+            "surface-container-low": "#f3f4f5",
+            "secondary-fixed-dim": "#c2c6d8",
+            "surface-container-lowest": "#ffffff",
+            "primary": "#0059bd",
+            "inverse-on-surface": "#f0f1f2",
+            "secondary-fixed": "#dee1f5",
+            "on-tertiary-container": "#fffdff",
+            "on-secondary-fixed": "#171b29",
+            "primary-fixed-dim": "#adc6ff",
+            "on-secondary-fixed-variant": "#424656",
+            "primary-fixed": "#d8e2ff",
+            "tertiary-fixed-dim": "#ffb695",
+            "surface-container-highest": "#e1e3e4",
+            "inverse-primary": "#adc6ff",
+            "on-primary-container": "#fffdff",
+            "surface-container": "#edeeef"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "space-xl": "2rem",
+            "space-2xl": "3rem",
+            "gutter": "2rem",
+            "space-xs": "0.25rem",
+            "space-lg": "1.5rem",
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            "space-3xl": "5rem",
+            "margin": "2rem"
+          },
+          "fontFamily": {
+            "headline-lg": ["\"Inter, ui-sans-serif, system-ui, sans-serif\""],
+            "headline-3xl": ["\"Inter, ui-sans-serif, system-ui, sans-serif\""],
+            "body-md": ["\"Inter, ui-sans-serif, system-ui, sans-serif\""],
+            "body-lg": ["\"Inter, ui-sans-serif, system-ui, sans-serif\""],
+            "headline-xl": ["\"Inter, ui-sans-serif, system-ui, sans-serif\""],
+            "label-sm": ["\"Inter, ui-sans-serif, system-ui, sans-serif\""],
+            "body-sm": ["\"Inter, ui-sans-serif, system-ui, sans-serif\""],
+            "headline-4xl": ["\"Inter, ui-sans-serif, system-ui, sans-serif\""],
+            "label-md": ["\"Inter, ui-sans-serif, system-ui, sans-serif\""],
+            "headline-5xl": ["\"Inter, ui-sans-serif, system-ui, sans-serif\""],
+            "headline-2xl": ["\"Inter, ui-sans-serif, system-ui, sans-serif\""],
+            "code": ["\"ui-monospace, monospace\""]
+          },
+          "fontSize": {
+            "headline-lg": ["20px", { "lineHeight": "1.2", "fontWeight": "600" }],
+            "headline-3xl": ["41px", { "lineHeight": "1.2", "fontWeight": "600" }],
+            "body-md": ["14px", { "lineHeight": "1.6", "fontWeight": "400" }],
+            "body-lg": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+            "headline-xl": ["25px", { "lineHeight": "1.2", "fontWeight": "600" }],
+            "label-sm": ["10px", { "lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "600" }],
+            "body-sm": ["12px", { "lineHeight": "1.5", "fontWeight": "400" }],
+            "headline-4xl": ["52px", { "lineHeight": "1.2", "fontWeight": "600" }],
+            "label-md": ["11px", { "lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "600" }],
+            "headline-5xl": ["66px", { "lineHeight": "1.2", "fontWeight": "600" }],
+            "headline-2xl": ["32px", { "lineHeight": "1.2", "fontWeight": "600" }],
+            "code": ["13px", { "lineHeight": "1.5", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="min-h-full flex flex-col font-body-md text-body-md bg-background text-neutral-ink antialiased">
+<!-- TopNavBar (Shared Component Anchor) -->
+<header class="w-full top-0 bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline">
+<div class="flex justify-between items-center w-full px-space-xl py-space-md max-w-6xl mx-auto">
+<!-- Brand & Navigation Cluster -->
+<div class="flex items-center gap-space-xl">
+<a class="flex items-center gap-space-sm group focus:outline-none" href="#">
+<span class="w-7 h-7 bg-neutral-ink text-surface flex items-center justify-center font-bold text-xs rounded-lg tracking-tighter">BB</span>
+<span class="font-headline-lg text-headline-lg text-neutral-ink dark:text-inverse-on-surface tracking-tight font-semibold">Black Box</span>
+</a>
+<nav class="hidden md:flex items-center gap-space-lg">
+<a class="text-secondary dark:text-secondary-fixed font-normal hover:text-primary dark:hover:text-primary-fixed transition-colors duration-150 font-body-md text-body-md" href="#">Dashboard</a>
+<!-- Active state on Applications -->
+<a class="text-primary dark:text-primary-fixed font-semibold flex items-center gap-1.5 font-body-md text-body-md" href="#">
+<span>Applications</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary inline-block"></span>
+</a>
+<a class="text-secondary dark:text-secondary-fixed font-normal hover:text-primary dark:hover:text-primary-fixed transition-colors duration-150 font-body-md text-body-md" href="#">Companies</a>
+<a class="text-secondary dark:text-secondary-fixed font-normal hover:text-primary dark:hover:text-primary-fixed transition-colors duration-150 font-body-md text-body-md" href="#">Settings</a>
+</nav>
+</div>
+<!-- Trailing Controls -->
+<div class="flex items-center gap-space-md">
+<!-- Private Demo pill -->
+<div class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container border border-outline-variant text-secondary font-label-md text-label-md">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span>Private Demo</span>
+</div>
+<!-- User Chip with live indicator -->
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-low border border-outline-variant text-neutral-ink font-body-sm text-body-sm">
+<span class="w-2 h-2 rounded-full bg-palette-green"></span>
+<span class="font-code text-code">hey.demo@mikedemo.email</span>
+</div>
+<!-- Trailing action / Sign out -->
+<button class="inline-flex items-center gap-1 text-secondary dark:text-secondary-fixed font-body-sm text-body-sm hover:text-primary dark:hover:text-primary-fixed transition-colors duration-150 focus:outline-none">
+<span class="material-symbols-outlined text-base">security</span>
+<span>Sign out</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 w-full max-w-6xl mx-auto px-space-xl py-space-xl">
+<!-- Sub-navigation & Back Link -->
+<div class="mb-space-lg flex items-center justify-between">
+<a class="inline-flex items-center gap-1 text-secondary hover:text-neutral-ink transition-colors font-body-md text-body-md group" href="#">
+<span class="group-hover:-translate-x-0.5 transition-transform">←</span>
+<span>Back to vault</span>
+</a>
+<span class="font-code text-code text-secondary">ID: APP-7729-NWC</span>
+</div>
+<!-- Header Block -->
+<div class="mb-space-2xl">
+<div class="font-label-md text-label-md text-secondary tracking-wider mb-space-xs uppercase">
+        THE VAULT · EMAIL DETAIL &amp; REFRAME / DAILY WINDOW REF. 18:00
+      </div>
+<h1 class="font-headline-2xl text-headline-2xl text-neutral-ink font-semibold tracking-tight mb-space-xs">
+        Update on your application
+      </h1>
+<p class="font-body-lg text-body-lg text-secondary">
+        Inspecting Northwind Cloud Talent response with grounded facts, free of corporate fluff.
+      </p>
+</div>
+<!-- Stacked Cards Container (constrained max-w-5xl) -->
+<div class="max-w-5xl space-y-space-lg">
+<!-- 1) Email Header Summary Card -->
+<section class="bg-surface border border-outline-variant rounded-xl p-space-lg shadow-sm">
+<div class="flex flex-col md:flex-row md:items-start justify-between gap-space-md">
+<div class="space-y-1.5">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-semibold text-neutral-ink font-body-lg text-body-lg">Northwind Cloud Talent</span>
+<span class="font-code text-code text-secondary bg-surface-container px-2 py-0.5 rounded">recruiting@northwindcloud.com</span>
+</div>
+<div class="font-body-md text-body-md text-neutral-ink font-medium">
+              Update on your application for Director of Partnerships
+            </div>
+<div class="text-secondary font-body-sm text-body-sm flex flex-wrap items-center gap-2 pt-1">
+<span>Received: Today, 2:15 PM</span>
+<span class="text-outline-variant">·</span>
+<span>Application sent: 12 days ago</span>
+<span class="text-outline-variant">·</span>
+<span>Rounds completed: 2 rounds</span>
+</div>
+</div>
+<!-- Outcome Status Pill -->
+<div class="self-start">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-palette-yellow/20 text-neutral-ink border border-palette-yellow/40">
+<span class="w-2 h-2 rounded-full bg-palette-yellow"></span>
+              Outcome received
+            </span>
+</div>
+</div>
+</section>
+<!-- 2) YOUR ORIGINAL WORDS Card -->
+<section class="bg-surface border border-outline-variant rounded-xl p-space-lg shadow-sm">
+<div class="mb-space-md">
+<div class="font-label-md text-label-md text-secondary tracking-wider uppercase mb-1">
+            YOUR ORIGINAL WORDS
+          </div>
+<div class="font-body-sm text-body-sm text-secondary">
+            The untouched original message as received.
+          </div>
+</div>
+<div class="bg-surface-container-low border border-outline-variant rounded-lg p-space-lg font-code text-code text-neutral-ink leading-relaxed whitespace-pre-wrap select-all">Dear Mike,
+
+Thank you for taking the time to speak with our leadership team regarding the Director of Partnerships role. While our team was thoroughly impressed by your background and the depth of your strategic experience, we have ultimately decided to move forward with another candidate whose background more closely aligns with our immediate phase of enterprise expansion. 
+
+We will retain your profile in our candidate pool for future opportunities that align with your credentials. We wish you every success in your search.
+
+Sincerely, 
+Northwind Talent Acquisition.</div>
+</section>
+<!-- 3) IN PLAIN WORDS Card -->
+<section class="bg-surface border border-outline-variant rounded-xl p-space-lg shadow-sm">
+<div class="flex items-center justify-between mb-space-md">
+<div>
+<div class="font-label-md text-label-md text-secondary tracking-wider uppercase mb-1">
+              IN PLAIN WORDS · Synthetic distillation
+            </div>
+<div class="font-body-sm text-body-sm text-secondary">
+              Direct factual semantic extraction. Zero euphemisms.
+            </div>
+</div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm border border-outline-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+            Gemma 4 · Demo mode (hosted)
+          </span>
+</div>
+<div class="border-l-4 border-primary pl-space-lg py-space-sm bg-surface-container-lowest">
+<p class="font-body-lg text-body-lg text-neutral-ink leading-relaxed">
+            Northwind Cloud decided not to offer you the Director of Partnerships role. They chose another candidate. Your resume remains in their applicant tracking system. No feedback or next steps were provided.
+          </p>
+</div>
+</section>
+<!-- 4) FACTS & GROUNDED PERSPECTIVE Card -->
+<section class="bg-surface border border-outline-variant rounded-xl p-space-lg shadow-sm">
+<div class="font-label-md text-label-md text-secondary tracking-wider uppercase mb-space-lg">
+          FACTS &amp; GROUNDED PERSPECTIVE
+        </div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-xl">
+<!-- Column 1: Known -->
+<div class="space-y-space-md">
+<div class="flex items-center gap-2 pb-space-xs border-b border-outline-variant">
+<span class="w-2 h-2 rounded-full bg-palette-green"></span>
+<span class="font-label-md text-label-md uppercase text-neutral-ink tracking-wider font-semibold">KNOWN</span>
+</div>
+<ul class="space-y-space-md font-body-md text-body-md text-neutral-ink">
+<li class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-palette-green text-lg shrink-0 mt-0.5">check_circle</span>
+<span>You interviewed with the team last week.</span>
+</li>
+<li class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-palette-green text-lg shrink-0 mt-0.5">check_circle</span>
+<span>Another candidate was selected for the role.</span>
+</li>
+<li class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-palette-green text-lg shrink-0 mt-0.5">check_circle</span>
+<span>Your resume stays on file in their candidate database.</span>
+</li>
+</ul>
+</div>
+<!-- Column 2: Unknown -->
+<div class="space-y-space-md">
+<div class="flex items-center gap-2 pb-space-xs border-b border-outline-variant">
+<span class="w-2 h-2 rounded-full bg-outline"></span>
+<span class="font-label-md text-label-md uppercase text-secondary tracking-wider font-semibold">UNKNOWN</span>
+</div>
+<ul class="space-y-space-md font-body-md text-body-md text-secondary">
+<li class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-outline text-lg shrink-0 mt-0.5">remove</span>
+<span>Whether specific actionable feedback is available.</span>
+</li>
+<li class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-outline text-lg shrink-0 mt-0.5">remove</span>
+<span>What other relevant roles may open in the near future.</span>
+</li>
+<li class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-outline text-lg shrink-0 mt-0.5">remove</span>
+<span>The exact criteria that differentiated the selected candidate.</span>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- 5) Next-step actions row -->
+<section class="bg-surface border border-outline-variant rounded-xl p-space-lg flex flex-col sm:flex-row items-center justify-between gap-space-lg shadow-sm">
+<!-- Left Buttons Group -->
+<div class="flex items-center gap-space-md w-full sm:w-auto">
+<button class="bg-primary-container text-on-primary font-medium px-space-lg py-2.5 rounded-lg shadow-sm hover:opacity-95 transition-opacity font-body-md text-body-md text-center flex-1 sm:flex-initial">
+            Mark outcome received
+          </button>
+<button class="border border-outline-variant bg-surface hover:bg-surface-container-low text-neutral-ink font-medium px-space-lg py-2.5 rounded-lg transition-colors font-body-md text-body-md text-center flex-1 sm:flex-initial">
+            No response yet
+          </button>
+</div>
+<!-- Right Side Danger Action -->
+<div class="w-full sm:w-auto text-right">
+<button class="text-error hover:text-palette-red font-medium font-body-sm text-body-sm hover:underline transition-colors focus:outline-none">
+            Remove from Black Box
+          </button>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer (Shared Component Anchor) -->
+<footer class="w-full bottom-0 bg-surface-container-low dark:bg-inverse-surface border-t border-outline-variant dark:border-outline mt-space-3xl">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-space-xl py-space-lg max-w-6xl mx-auto gap-space-sm">
+<div class="font-body-sm text-body-sm text-secondary dark:text-secondary-fixed">
+        © 2025 Black Box. Deliberate job-search infrastructure.
+      </div>
+<div class="flex items-center gap-space-lg">
+<a class="font-body-sm text-body-sm text-secondary dark:text-secondary-fixed hover:text-neutral-ink dark:hover:text-inverse-on-surface transition-colors duration-150" href="#">Manifesto</a>
+<a class="font-body-sm text-body-sm text-secondary dark:text-secondary-fixed hover:text-neutral-ink dark:hover:text-inverse-on-surface transition-colors duration-150" href="#">Terms of Pause</a>
+<a class="font-body-sm text-body-sm text-secondary dark:text-secondary-fixed hover:text-neutral-ink dark:hover:text-inverse-on-surface transition-colors duration-150" href="#">Privacy</a>
+<a class="font-body-sm text-body-sm text-secondary dark:text-secondary-fixed hover:text-neutral-ink dark:hover:text-inverse-on-surface transition-colors duration-150" href="#">Colophon</a>
+</div>
+</div>
+</footer>
+</body></html>

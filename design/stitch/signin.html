@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-background text-on-background antialiased" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sign In — Black Box</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Inter & Mono fonts via Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-tertiary-container": "#fffdff",
+            "inverse-on-surface": "#f0f1f2",
+            "surface-container-low": "#f3f4f5",
+            "on-primary-fixed": "#001a41",
+            "tertiary-fixed": "#ffdbcc",
+            "on-surface-variant": "#414754",
+            "secondary-container": "#dee1f5",
+            "on-primary": "#ffffff",
+            "surface-container": "#edeeef",
+            "surface-tint": "#005bc0",
+            "surface-variant": "#e1e3e4",
+            "background": "#f8f9fa",
+            "palette-green": "#00ac49",
+            "neutral-ink": "#1b1d26",
+            "on-secondary-fixed-variant": "#424656",
+            "on-primary-container": "#fffdff",
+            "tertiary": "#9f3e00",
+            "tertiary-container": "#c75000",
+            "on-tertiary-fixed-variant": "#7b2f00",
+            "inverse-primary": "#adc6ff",
+            "surface-dim": "#d9dadb",
+            "tertiary-fixed-dim": "#ffb695",
+            "surface-container-highest": "#e1e3e4",
+            "on-surface": "#191c1d",
+            "on-background": "#191c1d",
+            "on-secondary-container": "#606474",
+            "error-container": "#ffdad6",
+            "error": "#ba1a1a",
+            "on-error-container": "#93000a",
+            "outline-variant": "#c1c6d6",
+            "on-error": "#ffffff",
+            "outline": "#727786",
+            "palette-red": "#dc3146",
+            "palette-yellow": "#fac22b",
+            "on-primary-fixed-variant": "#004493",
+            "surface-container-high": "#e7e8e9",
+            "on-secondary-fixed": "#171b29",
+            "on-secondary": "#ffffff",
+            "inverse-surface": "#2e3132",
+            "primary-fixed-dim": "#adc6ff",
+            "primary-fixed": "#d8e2ff",
+            "surface-container-lowest": "#ffffff",
+            "secondary-fixed": "#dee1f5",
+            "primary-container": "#0071ec",
+            "on-tertiary-fixed": "#351000",
+            "secondary": "#5a5e6e",
+            "on-tertiary": "#ffffff",
+            "surface": "#ffffff",
+            "primary": "#0059bd",
+            "surface-bright": "#f8f9fa",
+            "secondary-fixed-dim": "#c2c6d8"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "margin": "2rem",
+            "gutter": "2rem",
+            "space-3xl": "5rem",
+            "space-sm": "0.5rem",
+            "space-xl": "2rem",
+            "space-md": "1rem",
+            "space-xs": "0.25rem",
+            "space-2xl": "3rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "headline-lg": [
+              "\"Inter, ui-sans-serif, system-ui, sans-serif\""
+            ],
+            "headline-5xl": [
+              "\"Inter, ui-sans-serif, system-ui, sans-serif\""
+            ],
+            "label-md": [
+              "\"Inter, ui-sans-serif, system-ui, sans-serif\""
+            ],
+            "headline-2xl": [
+              "\"Inter, ui-sans-serif, system-ui, sans-serif\""
+            ],
+            "body-md": [
+              "\"Inter, ui-sans-serif, system-ui, sans-serif\""
+            ],
+            "label-sm": [
+              "\"Inter, ui-sans-serif, system-ui, sans-serif\""
+            ],
+            "body-lg": [
+              "\"Inter, ui-sans-serif, system-ui, sans-serif\""
+            ],
+            "code": [
+              "\"JetBrains Mono, ui-monospace, monospace\""
+            ],
+            "headline-4xl": [
+              "\"Inter, ui-sans-serif, system-ui, sans-serif\""
+            ],
+            "body-sm": [
+              "\"Inter, ui-sans-serif, system-ui, sans-serif\""
+            ],
+            "headline-3xl": [
+              "\"Inter, ui-sans-serif, system-ui, sans-serif\""
+            ],
+            "headline-xl": [
+              "\"Inter, ui-sans-serif, system-ui, sans-serif\""
+            ]
+          },
+          "fontSize": {
+            "headline-lg": [
+              "20px",
+              {
+                "lineHeight": "1.2",
+                "fontWeight": "600"
+              }
+            ],
+            "headline-5xl": [
+              "66px",
+              {
+                "lineHeight": "1.2",
+                "fontWeight": "600"
+              }
+            ],
+            "label-md": [
+              "11px",
+              {
+                "lineHeight": "1.4",
+                "letterSpacing": "0.05em",
+                "fontWeight": "600"
+              }
+            ],
+            "headline-2xl": [
+              "32px",
+              {
+                "lineHeight": "1.2",
+                "fontWeight": "600"
+              }
+            ],
+            "body-md": [
+              "14px",
+              {
+                "lineHeight": "1.6",
+                "fontWeight": "400"
+              }
+            ],
+            "label-sm": [
+              "10px",
+              {
+                "lineHeight": "1.4",
+                "letterSpacing": "0.05em",
+                "fontWeight": "600"
+              }
+            ],
+            "body-lg": [
+              "16px",
+              {
+                "lineHeight": "1.6",
+                "fontWeight": "400"
+              }
+            ],
+            "code": [
+              "13px",
+              {
+                "lineHeight": "1.5",
+                "fontWeight": "400"
+              }
+            ],
+            "headline-4xl": [
+              "52px",
+              {
+                "lineHeight": "1.2",
+                "fontWeight": "600"
+              }
+            ],
+            "body-sm": [
+              "12px",
+              {
+                "lineHeight": "1.5",
+                "fontWeight": "400"
+              }
+            ],
+            "headline-3xl": [
+              "41px",
+              {
+                "lineHeight": "1.2",
+                "fontWeight": "600"
+              }
+            ],
+            "headline-xl": [
+              "25px",
+              {
+                "lineHeight": "1.2",
+                "fontWeight": "600"
+              }
+            ]
+          }
+        },
+      },
+    }
+  </script>
+</head>
+<body class="min-h-full flex flex-col bg-background text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar Shared Component Execution -->
+<header class="w-full top-0 bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline">
+<div class="flex justify-between items-center w-full px-space-xl py-space-md max-w-6xl mx-auto">
+<!-- Brand Logo / Wordmark -->
+<a class="flex items-center gap-space-xs font-headline-lg text-headline-lg text-neutral-ink dark:text-inverse-on-surface tracking-tight font-semibold hover:text-primary transition-colors duration-150" href="#">
+<span class="inline-flex items-center justify-center w-6 h-6 rounded bg-neutral-ink text-surface text-xs font-code font-bold tracking-tighter">BB</span>
+<span>Black Box</span>
+</a>
+<!-- Primary Navigation Links (Auth context: unselected/inactive state) -->
+<nav aria-label="Main Navigation" class="hidden md:flex items-center gap-space-xl">
+<a class="text-secondary dark:text-secondary-fixed font-normal font-body-md text-body-md hover:text-primary dark:hover:text-primary-fixed transition-colors duration-150" href="#">Manifesto</a>
+<a class="text-secondary dark:text-secondary-fixed font-normal font-body-md text-body-md hover:text-primary dark:hover:text-primary-fixed transition-colors duration-150" href="#">Philosophy</a>
+<a class="text-secondary dark:text-secondary-fixed font-normal font-body-md text-body-md hover:text-primary dark:hover:text-primary-fixed transition-colors duration-150" href="#">About</a>
+</nav>
+<!-- Trailing Action -->
+<div class="flex items-center">
+<a class="inline-flex items-center gap-1 font-body-md text-body-md text-secondary dark:text-secondary-fixed hover:text-primary dark:hover:text-primary-fixed transition-colors duration-150" href="#">
+<span>Support</span>
+<span class="text-xs">↗</span>
+</a>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas: Centered Single Column with Generous Whitespace -->
+<main class="flex-1 flex flex-col items-center justify-center px-4 py-space-2xl md:py-space-3xl w-full">
+<div class="w-full max-w-md mx-auto flex flex-col items-center">
+<!-- Kicker Label: SLOW AND STEADY -->
+<div class="mb-space-md">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full border border-outline-variant bg-surface-container-low text-neutral-ink font-label-md text-label-md uppercase tracking-widest">
+          SLOW AND STEADY
+        </span>
+</div>
+<!-- Main Heading and Calm Lede -->
+<div class="text-center mb-space-xl">
+<h1 class="font-headline-2xl text-headline-2xl text-neutral-ink tracking-tight font-semibold mb-2">
+          Black Box
+        </h1>
+<p class="font-body-md text-body-md text-secondary">
+          Your applications, at your pace.
+        </p>
+</div>
+<!-- The Deliberate Authentication Container / Card -->
+<div class="w-full bg-surface border border-outline-variant rounded-xl p-space-xl shadow-none">
+<form class="space-y-space-lg" id="signin-form" onsubmit="event.preventDefault(); triggerSimulation();">
+<!-- Email Input Group -->
+<div class="space-y-2">
+<div class="flex justify-between items-baseline">
+<label class="block font-label-md text-label-md text-neutral-ink tracking-wider font-semibold" for="email">
+                EMAIL ADDRESS
+              </label>
+<span class="font-body-sm text-body-sm text-secondary">
+                Single-use link
+              </span>
+</div>
+<div class="relative">
+<input class="w-full rounded-lg border border-outline-variant bg-surface px-3.5 py-2.5 font-body-md text-body-md text-neutral-ink placeholder:text-outline focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-colors duration-150" id="email" name="email" placeholder="you@example.com" required="" type="email"/>
+</div>
+</div>
+<!-- Primary Brand-Blue Action Button -->
+<button class="w-full flex items-center justify-center gap-2 bg-primary-container hover:bg-[#0062cc] text-on-primary-container font-body-md text-body-md font-medium py-3 px-4 rounded-lg shadow-sm transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" id="submit-btn" type="submit">
+<span>Email me a sign-in link</span>
+<span aria-hidden="true">→</span>
+</button>
+</form>
+<!-- Simulated Link Success Banner (Hidden by default) -->
+<div class="hidden mt-space-md p-space-sm bg-surface-container-low border border-outline-variant rounded-lg text-neutral-ink font-body-sm text-body-sm animate-fade-in" id="simulation-banner">
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-palette-green text-lg select-none" data-icon="check_circle">check_circle</span>
+<div>
+<p class="font-medium text-neutral-ink">Simulation Link Active</p>
+<p class="text-secondary text-xs mt-0.5">Link generated in memory. Redirecting to your quiet workspace in 2 seconds...</p>
+</div>
+</div>
+</div>
+<!-- Plain Secondary Option -->
+<div class="mt-space-lg pt-space-md border-t border-surface-container flex justify-center">
+<a class="inline-flex items-center gap-1.5 font-body-md text-body-md text-secondary hover:text-neutral-ink transition-colors duration-150" href="#" onclick="event.preventDefault(); triggerSimulation();">
+<span>Continue without signing in</span>
+<span aria-hidden="true" class="text-xs">→</span>
+</a>
+</div>
+</div>
+<!-- Infrastructure / Local Disclaimer -->
+<div class="w-full mt-space-lg text-center space-y-space-sm px-2">
+<p class="font-body-sm text-body-sm text-secondary leading-relaxed">
+          Demo build: the sign-in link is simulated. No real email is sent, no server account is created, and everything you save stays in this browser.
+        </p>
+<!-- Status Pill: Local Storage Mode -->
+<div class="pt-1 flex items-center justify-center">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container border border-outline-variant font-code text-xs text-neutral-ink">
+<span class="inline-block w-2 h-2 rounded-full bg-palette-green"></span>
+<span class="tracking-tight">LOCAL STORAGE MODE · Mike-Demo/black-box</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Shared Component Execution -->
+<footer class="w-full bottom-0 bg-surface-container-low dark:bg-inverse-surface border-t border-outline-variant dark:border-outline mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-space-xl py-space-lg max-w-6xl mx-auto gap-space-sm">
+<!-- Copyright Note -->
+<div class="font-body-sm text-body-sm text-secondary dark:text-secondary-fixed text-center md:text-left">
+        © 2025 Black Box. Deliberate job-search infrastructure.
+      </div>
+<!-- Footer Navigation Links -->
+<nav aria-label="Secondary Navigation" class="flex flex-wrap items-center justify-center gap-space-lg">
+<a class="font-body-sm text-body-sm text-secondary dark:text-secondary-fixed hover:text-neutral-ink dark:hover:text-inverse-on-surface transition-colors duration-150" href="#">Manifesto</a>
+<a class="font-body-sm text-body-sm text-secondary dark:text-secondary-fixed hover:text-neutral-ink dark:hover:text-inverse-on-surface transition-colors duration-150" href="#">Terms of Pause</a>
+<a class="font-body-sm text-body-sm text-secondary dark:text-secondary-fixed hover:text-neutral-ink dark:hover:text-inverse-on-surface transition-colors duration-150" href="#">Privacy</a>
+<a class="font-body-sm text-body-sm text-secondary dark:text-secondary-fixed hover:text-neutral-ink dark:hover:text-inverse-on-surface transition-colors duration-150" href="#">Colophon</a>
+</nav>
+</div>
+</footer>
+<!-- Micro-interaction script for calm simulation -->
+<script>
+    function triggerSimulation() {
+      const btn = document.getElementById('submit-btn');
+      const banner = document.getElementById('simulation-banner');
+      const emailInput = document.getElementById('email');
+
+      if (!emailInput.value) {
+        emailInput.value = 'applicant@deliberate.work';
+      }
+
+      btn.disabled = true;
+      btn.classList.add('opacity-80', 'cursor-not-allowed');
+      btn.innerHTML = '<span>Creating deliberate session...</span>';
+
+      setTimeout(() => {
+        banner.classList.remove('hidden');
+        btn.innerHTML = '<span>Signed in</span> <span aria-hidden="true">✓</span>';
+      }, 600);
+    }
+  </script>
+</body></html>

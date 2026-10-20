@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-background text-on-surface" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Vault — Black Box</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Inter Google Font -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration matching Design System & Tokens -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "tertiary-container": "#c75000",
+            "primary-fixed": "#d8e2ff",
+            "on-primary-fixed": "#001a41",
+            "surface-variant": "#e1e3e4",
+            "surface-container": "#edeeef",
+            "on-secondary-container": "#606474",
+            "surface-bright": "#f8f9fa",
+            "error": "#ba1a1a",
+            "background": "#f8f9fa",
+            "surface-container-lowest": "#ffffff",
+            "inverse-on-surface": "#f0f1f2",
+            "on-error-container": "#93000a",
+            "surface-container-highest": "#e1e3e4",
+            "primary-container": "#0071ec",
+            "surface-dim": "#d9dadb",
+            "on-tertiary-fixed-variant": "#7b2f00",
+            "on-surface-variant": "#414754",
+            "error-container": "#ffdad6",
+            "primary": "#0059bd",
+            "inverse-primary": "#adc6ff",
+            "surface-container-high": "#e7e8e9",
+            "on-tertiary-container": "#fffdff",
+            "surface-tint": "#005bc0",
+            "on-secondary-fixed": "#171b29",
+            "on-surface": "#191c1d",
+            "palette-red": "#dc3146",
+            "on-primary": "#ffffff",
+            "on-background": "#191c1d",
+            "secondary-fixed": "#dee1f5",
+            "secondary-container": "#dee1f5",
+            "on-secondary": "#ffffff",
+            "on-secondary-fixed-variant": "#424656",
+            "primary-fixed-dim": "#adc6ff",
+            "on-primary-container": "#fffdff",
+            "tertiary-fixed": "#ffdbcc",
+            "surface": "#ffffff",
+            "on-tertiary-fixed": "#351000",
+            "secondary": "#5a5e6e",
+            "neutral-ink": "#1b1d26",
+            "inverse-surface": "#2e3132",
+            "tertiary-fixed-dim": "#ffb695",
+            "outline-variant": "#c1c6d6",
+            "palette-green": "#00ac49",
+            "palette-yellow": "#fac22b",
+            "on-error": "#ffffff",
+            "surface-container-low": "#f3f4f5",
+            "on-tertiary": "#ffffff",
+            "on-primary-fixed-variant": "#004493",
+            "outline": "#727786",
+            "tertiary": "#9f3e00",
+            "secondary-fixed-dim": "#c2c6d8"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "space-xl": "2rem",
+            "space-3xl": "5rem",
+            "margin": "2rem",
+            "space-lg": "1.5rem",
+            "space-2xl": "3rem",
+            "gutter": "2rem",
+            "space-md": "1rem"
+          },
+          "fontFamily": {
+            "label-sm": ["\"Inter, ui-sans-serif, system-ui, sans-serif\""],
+            "headline-3xl": ["\"Inter, ui-sans-serif, system-ui, sans-serif\""],
+            "label-md": ["\"Inter, ui-sans-serif, system-ui, sans-serif\""],
+            "code": ["\"ui-monospace, monospace\""],
+            "body-md": ["\"Inter, ui-sans-serif, system-ui, sans-serif\""],
+            "headline-xl": ["\"Inter, ui-sans-serif, system-ui, sans-serif\""],
+            "headline-5xl": ["\"Inter, ui-sans-serif, system-ui, sans-serif\""],
+            "body-lg": ["\"Inter, ui-sans-serif, system-ui, sans-serif\""],
+            "headline-lg": ["\"Inter, ui-sans-serif, system-ui, sans-serif\""],
+            "headline-4xl": ["\"Inter, ui-sans-serif, system-ui, sans-serif\""],
+            "headline-2xl": ["\"Inter, ui-sans-serif, system-ui, sans-serif\""],
+            "body-sm": ["\"Inter, ui-sans-serif, system-ui, sans-serif\""]
+          },
+          "fontSize": {
+            "label-sm": ["10px", { "lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "600" }],
+            "headline-3xl": ["41px", { "lineHeight": "1.2", "fontWeight": "600" }],
+            "label-md": ["11px", { "lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "600" }],
+            "code": ["13px", { "lineHeight": "1.5", "fontWeight": "400" }],
+            "body-md": ["14px", { "lineHeight": "1.6", "fontWeight": "400" }],
+            "headline-xl": ["25px", { "lineHeight": "1.2", "fontWeight": "600" }],
+            "headline-5xl": ["66px", { "lineHeight": "1.2", "fontWeight": "600" }],
+            "body-lg": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+            "headline-lg": ["20px", { "lineHeight": "1.2", "fontWeight": "600" }],
+            "headline-4xl": ["52px", { "lineHeight": "1.2", "fontWeight": "600" }],
+            "headline-2xl": ["32px", { "lineHeight": "1.2", "fontWeight": "600" }],
+            "body-sm": ["12px", { "lineHeight": "1.5", "fontWeight": "400" }]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="min-h-full flex flex-col font-body-md text-body-md bg-background text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar (Shared Component from JSON) -->
+<header class="w-full top-0 bg-surface border-b border-outline-variant">
+<div class="flex justify-between items-center w-full px-space-xl py-space-md max-w-6xl mx-auto">
+<!-- Brand & Links -->
+<div class="flex items-center gap-space-xl">
+<a class="flex items-center gap-2 group" href="#">
+<span class="w-6 h-6 rounded bg-neutral-ink text-surface flex items-center justify-center font-bold text-xs tracking-tighter">BB</span>
+<span class="font-headline-lg text-headline-lg text-neutral-ink tracking-tight font-semibold">Black Box</span>
+</a>
+<!-- Desktop Navigation Items -->
+<nav class="hidden md:flex items-center gap-space-lg text-body-sm font-body-sm">
+<a class="text-secondary hover:text-primary transition-colors duration-150 font-normal" href="#">Dashboard</a>
+<!-- Applications is the active semantic section holding The Vault -->
+<a class="text-primary font-semibold flex items-center gap-1.5" href="#">
+            Applications
+            <span class="inline-block w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+</a>
+<a class="text-secondary hover:text-primary transition-colors duration-150 font-normal" href="#">Companies</a>
+<a class="text-secondary hover:text-primary transition-colors duration-150 font-normal" href="#">Settings</a>
+</nav>
+</div>
+<!-- Trailing Controls (Shared JSON Specs) -->
+<div class="flex items-center gap-space-md">
+<!-- Private / Demo segment indicator -->
+<div class="hidden sm:inline-flex items-center bg-surface-container-low p-0.5 rounded border border-outline-variant text-[11px] font-label-md">
+<span class="px-2 py-0.5 rounded text-secondary font-medium">Private</span>
+<span class="px-2 py-0.5 rounded bg-surface shadow-xs text-neutral-ink font-semibold">Demo</span>
+</div>
+<!-- Trailing Primary Action (Account email chip) -->
+<div class="flex items-center gap-2 px-2.5 py-1 rounded bg-surface-container-low border border-outline-variant text-body-sm font-body-sm text-neutral-ink">
+<span class="w-2 h-2 rounded-full bg-palette-green"></span>
+<span class="text-secondary font-code text-code">hey.demo@mikedemo.email</span>
+</div>
+<!-- Trailing Secondary Action (Sign out with security icon) -->
+<button class="flex items-center gap-1 px-2.5 py-1 text-secondary hover:text-primary transition-colors duration-150 font-body-sm text-body-sm" type="button">
+<span class="material-symbols-outlined text-base">security</span>
+<span class="hidden sm:inline">Sign out</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 w-full max-w-6xl mx-auto px-space-xl py-space-xl">
+<!-- 1. Header & Context Section -->
+<header class="mb-space-xl pb-space-lg border-b border-outline-variant">
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center gap-2">
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+<p class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">THE DAILY WINDOW · OPENS AT 6:00 PM</p>
+</div>
+<h1 class="font-headline-2xl text-headline-2xl text-neutral-ink tracking-tight font-semibold">The Vault</h1>
+<p class="font-body-md text-body-md text-secondary max-w-2xl">
+          A bounded space to inspect updates and finalize held applications with intention.
+        </p>
+</div>
+</header>
+<div class="flex flex-col gap-space-2xl">
+<!-- 2. Quiet Banner Strip -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-md p-space-md bg-surface-container-low border border-outline-variant rounded-lg">
+<div class="flex items-center gap-3">
+<span class="w-6 h-6 rounded-full bg-palette-green/10 text-palette-green flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-base font-semibold">check</span>
+</span>
+<p class="font-body-sm text-body-sm text-neutral-ink">
+            Breathing gate completed · Everything here waited on purpose.
+          </p>
+</div>
+<div>
+<span class="inline-flex items-center px-2.5 py-1 rounded border border-outline-variant bg-surface font-label-md text-label-md uppercase tracking-wider text-secondary">
+            VAULT OPEN UNTIL 6:30 PM
+          </span>
+</div>
+</div>
+<!-- 3. Section 1: Application Email Inbox -->
+<section aria-labelledby="inbox-section-title">
+<div class="flex flex-col sm:flex-row sm:items-baseline justify-between mb-space-sm gap-1">
+<h2 class="font-label-md text-label-md uppercase tracking-wider text-neutral-ink font-semibold" id="inbox-section-title">
+            APPLICATION EMAIL INBOX
+          </h2>
+<p class="font-body-sm text-body-sm text-secondary">
+            Application emails arrive here and are only shown during your daily window to protect focus.
+          </p>
+</div>
+<div class="bg-surface border border-outline-variant rounded-lg divide-y divide-outline-variant shadow-none">
+<!-- Row 1 -->
+<article class="p-space-lg flex flex-col md:flex-row md:items-center justify-between gap-space-md hover:bg-surface-container-low/50 transition-colors duration-150">
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-2 mb-1">
+<span class="font-headline-lg text-body-md font-semibold text-neutral-ink">Northwind Cloud Talent</span>
+<span class="text-secondary text-body-sm">·</span>
+<time class="font-body-sm text-body-sm text-secondary">Today, 2:15 PM</time>
+</div>
+<p class="font-body-md text-body-md text-neutral-ink font-medium">Update on your application for Director of Partnerships</p>
+</div>
+<div class="flex items-center justify-between md:justify-end gap-space-lg flex-shrink-0">
+<!-- Status Chip: Outcome received (warm amber) -->
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#fff8e6] border border-palette-yellow/40 text-[#855700] font-label-md text-label-md font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-palette-yellow"></span>
+                Outcome received
+              </span>
+<a class="font-body-sm text-body-sm font-medium text-primary hover:text-primary-container transition-colors inline-flex items-center gap-1" href="#read">
+                Read when ready <span aria-hidden="true">→</span>
+</a>
+</div>
+</article>
+<!-- Row 2 -->
+<article class="p-space-lg flex flex-col md:flex-row md:items-center justify-between gap-space-md hover:bg-surface-container-low/50 transition-colors duration-150">
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-2 mb-1">
+<span class="font-headline-lg text-body-md font-semibold text-neutral-ink">Linear Recruiting</span>
+<span class="text-secondary text-body-sm">·</span>
+<time class="font-body-sm text-body-sm text-secondary">Today, 11:30 AM</time>
+</div>
+<p class="font-body-md text-body-md text-neutral-ink font-medium">Next steps: Conversation with VP of Design</p>
+</div>
+<div class="flex items-center justify-between md:justify-end gap-space-lg flex-shrink-0">
+<!-- Status Chip: Interview next step (soft success green) -->
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#edfdf4] border border-palette-green/30 text-[#006e2e] font-label-md text-label-md font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-palette-green"></span>
+                Interview next step
+              </span>
+<a class="font-body-sm text-body-sm font-medium text-primary hover:text-primary-container transition-colors inline-flex items-center gap-1" href="#read">
+                Read when ready <span aria-hidden="true">→</span>
+</a>
+</div>
+</article>
+<!-- Row 3 (Visually quieter / muted) -->
+<article class="p-space-lg flex flex-col md:flex-row md:items-center justify-between gap-space-md bg-surface-container-low/40">
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-2 mb-1">
+<span class="font-body-md text-body-md font-medium text-secondary">Vercel Engineering</span>
+<span class="text-secondary text-body-sm">·</span>
+<time class="font-body-sm text-body-sm text-secondary">Arrived 6:05 PM</time>
+</div>
+<p class="font-body-md text-body-md text-secondary">Application received: Principal Design Engineer</p>
+<p class="font-body-sm text-body-sm text-secondary/80 mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">schedule</span>
+                Held until tomorrow because it arrived after today's window cutoff.
+              </p>
+</div>
+<div class="flex items-center justify-between md:justify-end gap-space-lg flex-shrink-0 pt-2 md:pt-0">
+<!-- Neutral Status Chip -->
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-surface-variant border border-outline-variant text-on-surface-variant font-label-md text-label-md">
+                No response yet
+              </span>
+<span class="font-body-sm text-body-sm text-secondary cursor-not-allowed select-none">
+                Read tomorrow
+              </span>
+</div>
+</article>
+</div>
+</section>
+<!-- 4. Section 2: Ready to Decide -->
+<section aria-labelledby="decide-section-title">
+<div class="flex flex-col sm:flex-row sm:items-baseline justify-between mb-space-sm gap-1">
+<h2 class="font-label-md text-label-md uppercase tracking-wider text-neutral-ink font-semibold" id="decide-section-title">
+            READY TO DECIDE
+          </h2>
+<p class="font-body-sm text-body-sm text-secondary">
+            Held drafts that have completed the 24-hour review hold.
+          </p>
+</div>
+<div class="bg-surface border border-outline-variant rounded-lg divide-y divide-outline-variant shadow-none">
+<!-- Decision Row 1: Features the SINGLE loud primary brand button on the entire screen -->
+<div class="p-space-lg flex flex-col md:flex-row md:items-center justify-between gap-space-lg">
+<div class="flex-1">
+<div class="flex items-center gap-2.5 mb-1.5">
+<h3 class="font-headline-lg text-body-lg font-semibold text-neutral-ink">Staff Product Designer</h3>
+<span class="px-2 py-0.5 rounded bg-surface-container text-neutral-ink font-label-md text-label-md border border-outline-variant">
+                  Fit 8/10
+                </span>
+</div>
+<div class="flex flex-wrap items-center gap-2 text-body-sm font-body-sm text-secondary">
+<span>Linear</span>
+<span>·</span>
+<span>Remote US/EU</span>
+<span>·</span>
+<span class="text-neutral-ink font-medium">Held for 31 hours</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md flex-shrink-0">
+<button class="font-body-sm text-body-sm text-secondary hover:text-neutral-ink transition-colors px-2 py-1.5" type="button">
+                Let it go
+              </button>
+<!-- THE SINGLE LOUD PRIMARY BRAND BUTTON ON THE ENTIRE SCREEN -->
+<button class="bg-primary-container hover:bg-primary text-on-primary-container px-4 py-2 rounded font-body-md text-body-md font-medium transition-colors shadow-none flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-base">check</span>
+                I applied — count it
+              </button>
+</div>
+</div>
+<!-- Decision Row 2: Secondary outlined action -->
+<div class="p-space-lg flex flex-col md:flex-row md:items-center justify-between gap-space-lg">
+<div class="flex-1">
+<div class="flex items-center gap-2.5 mb-1.5">
+<h3 class="font-headline-lg text-body-lg font-semibold text-neutral-ink">Principal Design Engineer</h3>
+<span class="px-2 py-0.5 rounded bg-surface-container text-neutral-ink font-label-md text-label-md border border-outline-variant">
+                  Fit 9/10
+                </span>
+</div>
+<div class="flex flex-wrap items-center gap-2 text-body-sm font-body-sm text-secondary">
+<span>Vercel</span>
+<span>·</span>
+<span>San Francisco, CA / Remote</span>
+<span>·</span>
+<span class="text-neutral-ink font-medium">Held for 26 hours</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md flex-shrink-0">
+<button class="font-body-sm text-body-sm text-secondary hover:text-neutral-ink transition-colors px-2 py-1.5" type="button">
+                Let it go
+              </button>
+<button class="bg-surface hover:bg-surface-container-low text-neutral-ink border border-outline-variant px-4 py-2 rounded font-body-md text-body-md font-medium transition-colors" type="button">
+                I applied — count it
+              </button>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. Section 3: Read an Outcome in Plain Words -->
+<section aria-labelledby="outcome-reframe-title" class="mb-space-xl">
+<div class="bg-surface border border-outline-variant rounded-lg p-space-xl">
+<div class="max-w-2xl">
+<h2 class="font-label-md text-label-md uppercase tracking-wider text-neutral-ink font-semibold mb-1" id="outcome-reframe-title">
+              READ AN OUTCOME IN PLAIN WORDS
+            </h2>
+<p class="font-body-md text-body-md text-secondary mb-space-lg">
+              Translate corporate rejection or ambiguous updates into clear, grounded perspective without emotion or spin.
+            </p>
+<form class="flex flex-col gap-space-md" onsubmit="event.preventDefault();">
+<div>
+<label class="block font-label-md text-label-md font-semibold text-neutral-ink mb-1.5 uppercase tracking-wider" for="outcome-text">
+                  Paste an outcome email
+                </label>
+<textarea class="w-full rounded border border-outline-variant bg-surface px-3 py-2 text-body-md font-body-md text-neutral-ink placeholder:text-secondary/60 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition duration-150 resize-y" id="outcome-text" placeholder="Paste the rejection email or recruiter message here to strip corporate fluff..." rows="4"></textarea>
+</div>
+<div class="flex items-center justify-between pt-1">
+<span class="font-body-sm text-body-sm text-secondary">
+                  Processed on-device · Never logged or shared
+                </span>
+<button class="bg-surface hover:bg-surface-container-low text-neutral-ink border border-outline-variant px-4 py-2 rounded font-body-md text-body-md font-medium transition-colors duration-150" type="submit">
+                  Reframe it
+                </button>
+</div>
+</form>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer (Shared Component from JSON) -->
+<footer class="w-full bottom-0 bg-surface-container-low border-t border-outline-variant mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-space-xl py-space-lg max-w-6xl mx-auto gap-space-sm font-body-sm text-body-sm text-secondary">
+<div class="flex items-center gap-2">
+<span>© 2025 Black Box. Deliberate job-search infrastructure.</span>
+</div>
+<!-- Footer Navigation Links -->
+<nav aria-label="Footer links" class="flex items-center gap-space-lg">
+<a class="text-secondary hover:text-neutral-ink transition-colors duration-150 font-normal" href="#">Manifesto</a>
+<a class="text-secondary hover:text-neutral-ink transition-colors duration-150 font-normal" href="#">Terms of Pause</a>
+<a class="text-secondary hover:text-neutral-ink transition-colors duration-150 font-normal" href="#">Privacy</a>
+<a class="text-secondary hover:text-neutral-ink transition-colors duration-150 font-normal" href="#">Colophon</a>
+</nav>
+</div>
+</footer>
+</body></html>

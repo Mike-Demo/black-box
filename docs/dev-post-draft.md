@@ -23,6 +23,7 @@ Black Box is a job search app built in the sloth's honour — which means it is 
 - **A 48-hour draft hold.** A role you add today cannot be marked applied for two days. If it still looks right in 48 hours, it was worth applying to. Most impulse applications don't survive the hold — which is the hold working.
 - **A Gemma quality score.** Paste a job description and Gemma scores it 1–10 against *your* stated profile, with its reasons shown. A low score is information, not a verdict.
 - **A calm reframe.** Paste a hard-to-read outcome notice. Gemma restates it in plainer words and separates what it actually decided, what it states, what it does *not* say, and one factual next step. Your original text stays on screen, word for word, next to the reframe — the reframe is labelled, and it never replaces the original.
+- **An application-email inbox.** Sign in with email and application messages come into Black Box instead of your regular inbox — and then they wait, like everything else here. Mail is only shown inside the daily vault window; anything that arrives after the window is held for the next one. No pushes, no badges, no 9 p.m. rejection ambush. Open a message and you get its original words first, with the Gemma reframe as an optional second reading. **Honest demo note:** in this build the sign-in link is simulated — no email is actually sent and no server account exists — and the inbox holds sample messages, so the whole flow can be exercised end to end. The mechanics (mail waits for your window) are real; a production version connects a real mailbox behind the same screens.
 - **A one-tap mood check-in.** No streaks, no scores, no judgement. A mark for today, if you want one.
 
 Who gets to be lazier because of this? Anyone in a long job search who is spending their limited energy on checking instead of living. Black Box's whole job is to give that time back.
@@ -41,7 +42,9 @@ The demo runs in "Demo mode": hosted Gemma 4, clearly labelled in the interface,
 
 ## How I Built It
 
-One small Next.js app (App Router, TypeScript, Tailwind). No database. No accounts. No analytics. Every piece of user data — applications, vault state, budget, mood log, profile — lives in the browser's local storage, on the user's machine.
+One small Next.js app (App Router, TypeScript, Tailwind). No database. No server accounts. No analytics. Every piece of user data — applications, vault state, budget, mood log, profile, inbox, and the demo session — lives in the browser's local storage, on the user's machine.
+
+The UX was designed before it was restyled: I gave Google Stitch this repo plus the `DESIGN.md` from my open-source [happy-code-library](https://github.com/Mike-Demo/happy-code-library/tree/main/.stitch) (the Web Awesome design system), created the design system in Stitch from that file, and generated four screens — email sign-in, the Today dashboard, the Vault with its inbox, and the email reframe detail. The design exports live in the repo under `design/`, and the implementation follows them: light surfaces, one loud brand action per view, visible form labels, status chips in factual words. The restyle also replaced the mood emoji with plain words (Rough / Tiring / Neutral / Steady / Good) — plainer is calmer.
 
 The only server code is two stateless API routes, `/api/reframe` and `/api/score`, which call Gemma through a single provider layer (`src/lib/gemma.ts`) with three paths:
 
