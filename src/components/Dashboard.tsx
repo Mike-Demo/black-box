@@ -725,11 +725,11 @@ export default function Dashboard() {
         onReframed={() => bumpProgress("reframesEver")}
       />
 
-      <footer className="pb-6 text-center text-xs text-stone-400">
+      <p className="pb-2 text-center text-xs text-stone-400">
         Slow and steady. Built with Gemma 4, an open-weight model, for
         Hacktoberfest Week 3. UX designed in Google Stitch, rebuilt toward
         a Voda-inspired pastel theme.
-      </footer>
+      </p>
     </main>
   );
 }
