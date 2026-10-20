@@ -35,7 +35,7 @@ Who gets to be lazier because of this? Anyone in a long job search who is spendi
 
 **Fastest way in: https://black-box-sy5x.onrender.com/demo** — a one-click demo account that seeds a week of sample applications, inbox mail, and mood marks into your browser and signs you in as demo@mikedemo.email, so the vault, the reframe, and the progress cards can all be exercised immediately. It's sample data, it lives only in your browser, and the app says so.
 
-[DEMO VIDEO/GIF — 2–3 minute walkthrough: add a job → Gemma score → 48-hour hold → breathing gate → vault opening → reframe]
+[DEMO VIDEO — recorded walkthrough ready: docs/black-box-demo.mp4 (82 seconds — demo account → breathing gate → vault opening → live Gemma reframe of an outcome email → count it → let it go → mood mark → 10 of 10 progress cards). Upload it in the DEV editor in place of this note.]
 
 The demo runs in "Demo mode": hosted Gemma 4, clearly labelled in the interface, because Render has no GPU. Run it locally (instructions in the repo) and the same code calls Gemma on your own machine instead — see below.
 
