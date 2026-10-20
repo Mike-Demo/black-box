@@ -4,6 +4,8 @@
 
 **Live demo: https://black-box-sy5x.onrender.com** (Render free plan — may take a minute to wake after inactivity)
 
+**One-click demo account: https://black-box-sy5x.onrender.com/demo** — seeds a week of sample applications, inbox mail, and mood marks into your browser and signs you in as demo@mikedemo.email, so the whole app (vault, reframe, progress cards) can be exercised immediately. Sample data only; it never leaves your browser.
+
 Built for the [DEV Hacktoberfest Open-Source AI Challenge Week 3: Slow and Steady](https://dev.to/challenges/hacktoberfest-week3-2026-10-19) — build something with open-source AI that rewards laziness.
 
 Every job search tool tries to make you go faster: more applications, more refreshing, more dashboards. Black Box does the opposite. It is named for the flight recorder — the box you only open when it matters — and for the closed lid it puts between you and compulsive status-checking.

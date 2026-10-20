@@ -8,6 +8,7 @@
 // inbox on; everything else works without it.
 
 import { useState } from "react";
+import { loadDemoAccountAndGo } from "@/lib/demo";
 
 export default function SignIn({
   onSignedIn,
@@ -63,6 +64,16 @@ export default function SignIn({
             >
               Continue without signing in →
             </button>
+            <button
+              onClick={loadDemoAccountAndGo}
+              className="mt-1 w-full py-1 text-sm text-stone-500"
+            >
+              Just exploring? Load the demo account →
+            </button>
+            <p className="mt-1 text-center text-xs text-stone-400">
+              One click: a week of sample data, signed in as
+              demo@mikedemo.email.
+            </p>
           </>
         ) : (
           <>

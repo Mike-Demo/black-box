@@ -12,6 +12,7 @@ import ProgressCards from "@/components/ProgressCards";
 import ReframePanel from "@/components/ReframePanel";
 import SignIn from "@/components/SignIn";
 import { ACHIEVEMENTS, type AchievementContext } from "@/lib/achievements";
+import { loadDemoAccountAndGo } from "@/lib/demo";
 import {
   todayLocal,
   useApplications,
@@ -270,12 +271,20 @@ export default function Dashboard() {
                 </button>
               </>
             ) : (
-              <button
-                onClick={() => setGuest(false)}
-                className="rounded-full border border-stone-300 bg-white px-3 py-1"
-              >
-                Sign in with email
-              </button>
+              <>
+                <button
+                  onClick={() => setGuest(false)}
+                  className="rounded-full border border-stone-300 bg-white px-3 py-1"
+                >
+                  Sign in with email
+                </button>
+                <button
+                  onClick={loadDemoAccountAndGo}
+                  className="px-1 text-stone-500"
+                >
+                  Load the demo account
+                </button>
+              </>
             )}
           </div>
         </div>
