@@ -8,7 +8,10 @@ tags: devchallenge, hf26challenge
      Demo reviews this personally before anything goes live on DEV.
      Done: live demo link; both videos published on YouTube and embedded below.
      Cover image: upload the Pexo cover PNG (sloth cover) in the DEV editor.
-     Still to fill: [LAZY PAYOFF NUMBERS] after real use Thu–Fri, [AGENT SESSION LINK].
+     Still to fill: [LAZY PAYOFF NUMBERS] after real use Thu–Fri, [AGENT SESSION LINK],
+     and three 30-second category videos in production at Pexo (Gemma 02420788505,
+     Render 74901721770, Copilot 00854742325) — upload each to YouTube and swap its
+     bracketed note below for the {% embed %} line.
      Tags are set by the official submission template: devchallenge, hf26challenge only. -->
 
 *This is a submission for the [Hacktoberfest Open-Source AI Challenge Week 3: Slow and Steady](https://dev.to/challenges/hacktoberfest-week3-2026-10-19)*
@@ -78,6 +81,8 @@ I'll be precise about the limit, because it matters: the public demo can't do th
 
 ## My Agent Session
 
+[COPILOT VIDEO — 30 seconds, in production at Pexo (project 00854742325): "Built by AI. Checked by AI. Shipped by a human." — the agent build and the report-only Copilot review of this repo, in public. Upload to YouTube and replace this note with: {% embed https://www.youtube.com/watch?v=VIDEO_ID %}]
+
 [AGENT SESSION LINK — DevRelay embed or link]
 
 ## The Lazy Payoff
@@ -87,6 +92,11 @@ I'll be precise about the limit, because it matters: the public demo can't do th
 ## Prize Categories
 
 - Best Use of Gemma — Gemma 4 is the entire intelligence of the app: quality scoring and reframing, run locally via Ollama by default, with the same weights served hosted for the demo and disclosed as such.
+
+[GEMMA VIDEO — 30 seconds, in production at Pexo (project 02420788505). Upload to YouTube and replace this note with: {% embed https://www.youtube.com/watch?v=VIDEO_ID %}]
+
 - Best Use of Render — the whole app, front end and Gemma API routes, deploys as a single Render web service from the `render.yaml` Blueprint in the repo.
+
+[RENDER VIDEO — 30 seconds, in production at Pexo (project 74901721770). Upload to YouTube and replace this note with: {% embed https://www.youtube.com/watch?v=VIDEO_ID %}]
 
 🦥
