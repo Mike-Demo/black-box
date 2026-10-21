@@ -32,7 +32,7 @@ Who gets to be lazier because of this? Anyone in a long job search who is spendi
 
 ## Demo
 
-**Live demo: https://black-box-sy5x.onrender.com** (free Render plan — if it has been quiet, give it a minute to wake)
+**Live demo: https://black-box-sy5x.onrender.com** (Render Starter plan — always on, no wake-up wait)
 
 **Fastest way in: https://black-box-sy5x.onrender.com/demo** — a one-click demo account that seeds a week of sample applications, inbox mail, and mood marks into your browser and signs you in as demo@mikedemo.email, so the vault, the reframe, and the progress cards can all be exercised immediately. It's sample data, it lives only in your browser, and the app says so.
 

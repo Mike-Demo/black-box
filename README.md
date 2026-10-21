@@ -2,7 +2,7 @@
 
 **A job search app that slows you down on purpose.**
 
-**Live demo: https://black-box-sy5x.onrender.com** (Render free plan — may take a minute to wake after inactivity)
+**Live demo: https://black-box-sy5x.onrender.com** (Render Starter plan — always on)
 
 **One-click demo account: https://black-box-sy5x.onrender.com/demo** — seeds a week of sample applications, inbox mail, and mood marks into your browser and signs you in as demo@mikedemo.email, so the whole app (vault, reframe, progress cards) can be exercised immediately. Sample data only; it never leaves your browser.
 
@@ -73,7 +73,7 @@ For development without any model, `GEMMA_PROVIDER=mock` returns clearly-labelle
 
 ## Deploy on Render
 
-The repo ships a Render Blueprint (`render.yaml`): Render Dashboard → New → Blueprint → connect this repo. It creates one web service that builds and runs the whole app, with `GEMMA_PROVIDER=hosted` and a prompt for the one secret it needs (`GEMMA_HOSTED_API_KEY`). Note the free plan spins down when idle — the first visit after a quiet spell takes about a minute to wake.
+The repo ships a Render Blueprint (`render.yaml`): Render Dashboard → New → Blueprint → connect this repo. It creates one web service that builds and runs the whole app, with `GEMMA_PROVIDER=hosted` and a prompt for the one secret it needs (`GEMMA_HOSTED_API_KEY`). The live demo runs on the Starter plan, so it is always on. If you deploy your own copy on the free plan, note that it spins down when idle — the first visit after a quiet spell takes about a minute to wake.
 
 ## Prize categories entered
 

@@ -2,9 +2,9 @@
 # Deploy: Render Dashboard → New → Blueprint → connect Mike-Demo/black-box.
 # Or: render.com/deploy?repo=https://github.com/Mike-Demo/black-box
 #
-# Before judging week: the free plan spins down after inactivity (first
-# hit takes ~1 min to wake). The starter plan keeps the demo warm —
-# that plan choice is a billing decision for the repo owner.
+# The public demo runs on the Starter plan (always on). This blueprint
+# defaults to free: a free instance spins down after inactivity and the
+# first hit takes ~1 min to wake — upgrade the plan to keep a demo warm.
 services:
   - type: web
     name: black-box
