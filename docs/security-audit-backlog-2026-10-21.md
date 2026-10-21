@@ -34,13 +34,13 @@ Parent: [Security audit 2026-10-21 — prioritize findings and create remediatio
 
 No severity is assigned to these leads. Resolve each by obtaining the exact missing deployment fact from the owner; source inspection alone does not establish it.
 
-- [ ] **'Private - local Gemma' label may not match server-side Ollama topology in a hosted deployment**  
-  Fingerprint: `local-privacy-label-mismatch-server-ollama`  
-  Claimed root cause: The 'local' inference path terminates on the server host via a server-side fetch to `OLLAMA_BASE_URL`, while the UI labels it as on-device/private without gating the label on the actual deployment topology.  
-  **Exact missing fact:** Whether any real hosted/shared (multi-user) deployment of this app co-locates an Ollama reachable at `OLLAMA_BASE_URL` and offers the 'local' mode to visitors - i.e. the owner-observed deployment topology (`OLLAMA_BASE_URL` target and whose machine it runs on). This fact is not present in source.
+- [ ] **'Private - local Gemma' label may not match server-side Ollama topology in a hosted deployment**
+  - Fingerprint: `local-privacy-label-mismatch-server-ollama`
+  - Claimed root cause: The 'local' inference path terminates on the server host via a server-side fetch to `OLLAMA_BASE_URL`, while the UI labels it as on-device/private without gating the label on the actual deployment topology.
+  - **Exact missing fact:** Whether any real hosted/shared (multi-user) deployment of this app co-locates an Ollama reachable at `OLLAMA_BASE_URL` and offers the 'local' mode to visitors - i.e. the owner-observed deployment topology (`OLLAMA_BASE_URL` target and whose machine it runs on). This fact is not present in source.
 
-- [ ] **Unauthenticated `/api/score` and `/api/reframe` may be an unbounded proxy to operator-paid hosted Gemma inference**  
-  Fingerprint: `unauthenticated-paid-gemma-proxy-no-limits`  
-  Claimed root cause: Unauthenticated route handlers forward unbounded client text to operator-paid hosted inference under the operator's API key, with no in-repo length cap, rate limit, concurrency cap, timeout, or quota accounting.  
-  **Exact missing fact as provided in the parent issue:** Owner-observed deployment facts: (1) whether the live Render service is configured as `render.yaml` intends (`GEMMA_PROVIDER=hosted` with a paid `GEMMA_HOSTED_API_KEY` for `google/gemma-4-31b-it`), and (2) whether OpenRouter key limits, Render plan limits, or any WAF/proxy in front of the service impose an effective per-key rate limit or spend cap that bo…  
-  **Source limitation:** The parent issue's text ends at `bo…`; the rest of this missing-fact statement was not available in the provided issue text and is not reconstructed here.
+- [ ] **Unauthenticated `/api/score` and `/api/reframe` may be an unbounded proxy to operator-paid hosted Gemma inference**
+  - Fingerprint: `unauthenticated-paid-gemma-proxy-no-limits`
+  - Claimed root cause: Unauthenticated route handlers forward unbounded client text to operator-paid hosted inference under the operator's API key, with no in-repo length cap, rate limit, concurrency cap, timeout, or quota accounting.
+  - **Exact missing fact as provided in the parent issue:** Owner-observed deployment facts: (1) whether the live Render service is configured as `render.yaml` intends (`GEMMA_PROVIDER=hosted` with a paid `GEMMA_HOSTED_API_KEY` for `google/gemma-4-31b-it`), and (2) whether OpenRouter key limits, Render plan limits, or any WAF/proxy in front of the service impose an effective per-key rate limit or spend cap that bo…
+  - **Source limitation:** The parent issue's text ends at `bo…`; the rest of this missing-fact statement was not available in the provided issue text and is not reconstructed here.
