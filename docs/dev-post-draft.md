@@ -37,6 +37,8 @@ Who gets to be lazier because of this? Anyone in a long job search who is spendi
 
 [DEMO VIDEO — recorded walkthrough ready: docs/black-box-demo.mp4 (82 seconds — demo account → breathing gate → vault opening → live Gemma reframe of an outcome email → count it → let it go → mood mark → 10 of 10 progress cards). Upload it in the DEV editor in place of this note.]
 
+[BREATHING COVER VIDEO — published on YouTube 2026-10-20: https://youtu.be/fCtUhRa4KGk — "Breathe with the sloth — a 60-second box breathing exercise" (60s, 4K, the cover sloth animated, River narration). Embed it in the DEV editor wherever it fits — e.g. at the top of this Demo section — via {% embed https://youtu.be/fCtUhRa4KGk %}.]
+
 The demo runs in "Demo mode": hosted Gemma 4, clearly labelled in the interface, because Render has no GPU. Run it locally (instructions in the repo) and the same code calls Gemma on your own machine instead — see below.
 
 ## Code
