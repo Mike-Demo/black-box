@@ -6,8 +6,9 @@ tags: devchallenge, hf26challenge
 
 <!-- DRAFT — not for publication yet.
      Demo reviews this personally before anything goes live on DEV.
-     Placeholders to fill after real use + Render deploy:
-       [DEMO LINK]  [DEMO VIDEO/GIF]  [LAZY PAYOFF NUMBERS]  [AGENT SESSION LINK]
+     Done: live demo link; both videos published on YouTube and embedded below.
+     Cover image: upload the Pexo cover PNG (sloth cover) in the DEV editor.
+     Still to fill: [LAZY PAYOFF NUMBERS] after real use Thu–Fri, [AGENT SESSION LINK].
      Tags are set by the official submission template: devchallenge, hf26challenge only. -->
 
 *This is a submission for the [Hacktoberfest Open-Source AI Challenge Week 3: Slow and Steady](https://dev.to/challenges/hacktoberfest-week3-2026-10-19)*
@@ -35,9 +36,13 @@ Who gets to be lazier because of this? Anyone in a long job search who is spendi
 
 **Fastest way in: https://black-box-sy5x.onrender.com/demo** — a one-click demo account that seeds a week of sample applications, inbox mail, and mood marks into your browser and signs you in as demo@mikedemo.email, so the vault, the reframe, and the progress cards can all be exercised immediately. It's sample data, it lives only in your browser, and the app says so.
 
-[DEMO VIDEO — recorded walkthrough ready: docs/black-box-demo.mp4 (82 seconds — demo account → breathing gate → vault opening → live Gemma reframe of an outcome email → count it → let it go → mood mark → 10 of 10 progress cards). Upload it in the DEV editor in place of this note.]
+**The full walkthrough — 100 seconds, breathing gate and all:**
 
-[BREATHING COVER VIDEO — published on YouTube 2026-10-20: https://youtu.be/fCtUhRa4KGk — "Breathe with the sloth — a 60-second box breathing exercise" (60s, 4K, the cover sloth animated, River narration). Embed it in the DEV editor wherever it fits — e.g. at the top of this Demo section — via {% embed https://youtu.be/fCtUhRa4KGk %}.]
+{% embed https://www.youtube.com/watch?v=taNaIRyd-Ro %}
+
+**And the breathing gate as a standalone minute** — the cover sloth, animated, with a guided 4 · 4 · 4:
+
+{% embed https://www.youtube.com/watch?v=fCtUhRa4KGk %}
 
 The demo runs in "Demo mode": hosted Gemma 4, clearly labelled in the interface, because Render has no GPU. Run it locally (instructions in the repo) and the same code calls Gemma on your own machine instead — see below.
 
