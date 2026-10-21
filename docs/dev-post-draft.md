@@ -98,4 +98,6 @@ Thirty seconds on how this was built — and reviewed — in the open:
 
 {% embed https://www.youtube.com/watch?v=xPTo79bMEbs %}
 
+- Best Use of GitHub Copilot — the whole repo went through a report-only Copilot code review before submission: every claim in this post checked against the code, every finding filed as a public draft PR, and a human decided what to do with them.
+
 🦥
