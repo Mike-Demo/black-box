@@ -12,7 +12,7 @@ Live app: https://black-box-sy5x.onrender.com · Demo route: /demo · Repo: gith
 
 ## Only Demo can do these
 - [ ] **Use the app for real Thu–Fri (Oct 22–23)** — the Lazy Payoff section of the DEV draft needs real-use numbers; the seeded demo data is sample content and is explicitly NOT a substitute
-- [ ] **Review the DEV draft** — it stays unpublished until Demo personally reviews it
+- [x] **DEV post PUBLISHED by Demo 2026-10-20** — https://dev.to/mpmike/i-built-a-job-search-app-that-fights-you-back-because-slow-and-steady-is-the-only-strategy-that-3mc4 (live within the challenge window). Remaining edits happen in the DEV editor: fill The Lazy Payoff (currently reads "Will fill out on Sunday") after Thu–Fri use, and add the agent-session link / My Agent Session section if wanted — the published version currently carries the Copilot video under Prize Categories instead.
 - [x] **Demo videos — DONE 2026-10-20** — superseded by YouTube: the walkthrough, the breathing minute, and the three 30s category shorts (Gemma / Render / Copilot) are all published on YouTube and embedded in the draft via {% embed %}; no DEV-editor upload needed.
 - [x] **Render paid upgrade — DONE 2026-10-20** — Demo upgraded the live service to the $7/mo Starter plan using free credits; the demo is always on for judging (no spin-down, no wake wait). README, draft, and render.yaml updated to match.
 
